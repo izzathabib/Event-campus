@@ -1,4 +1,4 @@
 @extends('layouts.app')
 @section('content')
- <h1>Register Event</h1>
+ <h1>Event Management</h1>
 @endsection
