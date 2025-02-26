@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display the sidebar in tablet view
   function responsiveSidebar() {
-      if (window.innerWidth <= 1024 && window.innerWidth >= 767) {
+      if (window.innerWidth <= 1024 && window.innerWidth > 767) {
           sidebar.classList.remove("w-64");
           sidebar.classList.add("w-16");
           dashboardText.classList.add("hidden");
