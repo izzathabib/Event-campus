@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css', 
                 'resources/css/sidebar.css', 
+                'resources/css/botNav.css', 
                 'resources/js/app.js'
             ],
             refresh: true,
