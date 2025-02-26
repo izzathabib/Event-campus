@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dashboardText = document.getElementById("dashboard-text");
   const menuTexts = document.querySelectorAll(".menu-text");
 
-  // Display the sidebar in mobile and tablet view
+  // Display the sidebar in tablet view
   function responsiveSidebar() {
-      if (window.innerWidth <= 1024) {
+      if (window.innerWidth <= 1024 && window.innerWidth >= 767) {
           sidebar.classList.remove("w-64");
           sidebar.classList.add("w-16");
           dashboardText.classList.add("hidden");
