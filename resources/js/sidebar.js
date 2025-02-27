@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function responsiveSidebar() {
     const width = window.innerWidth;
     switch (true) {
-      case (width <= 767):
+      case (width <= 640):
         sidebar.classList.add("hidden");
         bottomNav.classList.remove("hidden");
         break;
-      case (width <= 1024 && width > 767):
+      case (width <= 1024 && width > 640):
         bottomNav.classList.add("hidden");
         sidebar.classList.remove("hidden");
         sidebar.classList.add("w-16");
