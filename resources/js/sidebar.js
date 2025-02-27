@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dashboardText = document.getElementById("dashboard-text");
   const bottomNav = document.getElementById("bottomNav");
   const menuTexts = document.querySelectorAll(".menu-text");
+  const eventManagementToggle = document.getElementById("event-management-toggle");
+  const eventManagementSubmenu = document.getElementById("event-management-submenu");
+  const sidebarDropdownMenu = document.getElementById("sidebar-dropdown-menu");
 
   // Sidebar behavior based on screen size 
   function responsiveSidebar() {
@@ -32,15 +35,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Hide sidebar when window resizes below 1024px
+  function hideEventManagementSubmenu() {
+    if (eventManagementSubmenu.classList.contains("hidden")) {
+      eventManagementSubmenu.classList.add("");
+    } else {
+      eventManagementSubmenu.classList.add("hidden");
+    }
+  }
+
+  // Resizes sidebar
   window.addEventListener("resize", responsiveSidebar);
 
   toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("w-16");
     dashboardText.classList.toggle("hidden");
     menuTexts.forEach(text => text.classList.toggle("hidden"));
-    sidebar.classList.toggle("w-64"); // When clicking back the button, the sidebar will change from w-16 to w-64
+    sidebarDropdownMenu.classList.toggle("hidden");
+    sidebar.classList.toggle("w-64");
+    eventManagementSubmenu.classList.toggle("hidden"); 
+    hideEventManagementSubmenu()
   });
 
+  // Event management dropdown menu button
+  eventManagementToggle.addEventListener("click", () => {
+    eventManagementSubmenu.classList.toggle("hidden");
+  });
   
 });

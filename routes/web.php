@@ -10,6 +10,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/eventmanagement', function () {
-    return view('eventManagement');
-})->name('eventManagement');
+Route::get('/eventmanagement/application', function () {
+    return view('event_management/application');
+})->name('event_management.application');

@@ -5,3 +5,9 @@
 .sidebar {
   background-color: #EFF3FF;
 }
+
+.active {
+  background-color: oklch(0.558 0.288 302.321);
+  color: white;
+}
+
