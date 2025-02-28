@@ -4,9 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const dashboardText = document.getElementById("dashboard-text");
   const bottomNav = document.getElementById("bottomNav");
   const menuTexts = document.querySelectorAll(".menu-text");
-  const eventManagementToggle = document.getElementById("event-management-toggle");
   const eventManagementSubmenu = document.getElementById("event-management-submenu");
-  const sidebarDropdownMenu = document.getElementById("sidebar-dropdown-menu");
+  const sidebarDropdownIcon = document.getElementById("sidebar-dropdown-menu"); // Dropdown icon only
+  const eventManagementToggle = document.getElementById("event-management-toggle"); // Event management menu including icon + dropwdown toogle
+
+  function hideEventManagementSubmenu() {
+    if (eventManagementSubmenu.classList.contains("hidden")) {
+      eventManagementSubmenu.classList.add("");
+    } else {
+      eventManagementSubmenu.classList.add("hidden");
+    }
+  }
 
   // Sidebar behavior based on screen size 
   function responsiveSidebar() {
@@ -23,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebar.classList.remove("w-64");
         dashboardText.classList.add("hidden");
         menuTexts.forEach(text => text.classList.add("hidden"));
+        sidebarDropdownIcon.classList.toggle("hidden");
+        hideEventManagementSubmenu()
         break;
       default:
         bottomNav.classList. add("hidden");
@@ -31,15 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebar.classList.add("w-64");
         dashboardText.classList.remove("hidden");
         menuTexts.forEach(text => text.classList.remove("hidden"));
+        sidebarDropdownIcon.classList.toggle("hidden");
         break;
-    }
-  }
-
-  function hideEventManagementSubmenu() {
-    if (eventManagementSubmenu.classList.contains("hidden")) {
-      eventManagementSubmenu.classList.add("");
-    } else {
-      eventManagementSubmenu.classList.add("hidden");
     }
   }
 
@@ -50,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.toggle("w-16");
     dashboardText.classList.toggle("hidden");
     menuTexts.forEach(text => text.classList.toggle("hidden"));
-    sidebarDropdownMenu.classList.toggle("hidden");
+    sidebarDropdownIcon.classList.toggle("hidden");
     sidebar.classList.toggle("w-64");
     eventManagementSubmenu.classList.toggle("hidden"); 
     hideEventManagementSubmenu()
