@@ -11,3 +11,12 @@
   color: white;
 }
 
+/* Hide sidebar on mobile devices */
+/* @media (max-width: 640px) {
+  #sidebar {
+    display: none;
+  }
+} */
+
+
+
