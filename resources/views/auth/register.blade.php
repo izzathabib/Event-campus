@@ -10,36 +10,40 @@
 
         <!-- Acc type -->
         <div>
-            <x-input-label for="account_type" :value="__('Account Type')" class="block text-sm/6 font-medium text-gray-900"/>
-            <div class="relative mt-1">
-                <button type="button" id="account_type_button" class="border border-gray-300 block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 text-sm/6">
-                    <div class="flex justify-between">
-                        <span id="selected_account_type">Please Select</span>
-                        <svg class="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
-                            <path fill-rule="evenodd" d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                </button>
-                <ul id="account_type_options" class="absolute z-10 mt-1 bg-white border w-full border-gray-300 rounded-md shadow-lg hidden">
-                    <li class="cursor-pointer px-3 py-1.5 hover:bg-purple-600 hover:text-white text-sm/6" data-value="Society">Society</li>
-                    <li class="cursor-pointer px-3 py-1.5 hover:bg-purple-600 hover:text-white text-sm/6" data-value="Individual">Individual</li>
-                    <li class="cursor-pointer px-3 py-1.5 hover:bg-purple-600 hover:text-white text-sm/6" data-value="Admin (TDC)">Admin (TDC)</li>
-                </ul>
+            <x-input-label for="account_type" :value="__('This account will be used by?')" class="block text-sm/6 font-medium text-gray-900"/>
+            <div class="flex justify-between mt-2">
+                <div class="border-gray-300 flex place-items-center gap-2 p-2 text-xs font-semibold text-gray-900 border rounded-md hover:bg-black hover:text-white cursor-pointer" id="account_type" onclick="document.getElementById('account_type_input').value = 'society'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    </svg>
+                    <span class="truncate">Student Society</span>
+                </div>
+                <div class="border-gray-300 flex place-items-center gap-2 p-2 text-xs font-semibold text-gray-900 border rounded-md hover:bg-black hover:text-white cursor-pointer" id="account_type" onclick="document.getElementById('account_type_input').value = 'individual'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                    <span class="truncate">Individual</span>
+                </div>
+                <div class="border-gray-300 flex place-items-center gap-2 p-2 text-xs font-semibold text-gray-900 border rounded-md hover:bg-black hover:text-white cursor-pointer" id="account_type" onclick="document.getElementById('account_type_input').value = 'admin'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+                    </svg>
+                    <span class="truncate">Admin</span>
+                </div>
             </div>
-            
-            <input type="hidden" name="account_type" id="account_type_input">
+            <input type="hidden" name="account_type" id="account_type_input" value="" />
             <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
         </div>
 
         <!-- Name -->
-        <div class="mt-4">
+        <div id="name-section" class="mt-4 hidden">
             <x-input-label for="name" :value="__('Name')" class="block text-sm/6 font-medium text-gray-900"/>
             <x-text-input id="name" class="block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 sm:text-sm/6" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
+        <div class="mt-4 hidden">
             <x-input-label for="email" :value="__('Email')" class="block text-sm/6 font-medium text-gray-900"/>
             <x-text-input id="email" class="block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 sm:text-sm/6" 
             type="email" name="email" :value="old('email')" required autocomplete="email" />
@@ -47,7 +51,7 @@
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="mt-4 hidden">
             <x-input-label for="password" :value="__('Password')" class="block text-sm/6 font-medium text-gray-900"/>
             <x-text-input id="password" class="block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 sm:text-sm/6"
                             type="password"
@@ -57,7 +61,7 @@
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="mt-4 hidden">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="block text-sm/6 font-medium text-gray-900"/>
             <x-text-input id="password_confirmation" class="block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 sm:text-sm/6"
                             type="password"
@@ -65,7 +69,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="mt-8">
+        <div class="mt-8 hidden">
             <button type="submit" class="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-medium text-white shadow-xs hover:bg-purple-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Create account</button>
         </div>
 

@@ -3,23 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const accountTypeOptions = document.getElementById("account_type_options");
   const selectedAccountType = document.getElementById("selected_account_type");
   const accountTypeInput = document.getElementById("account_type_input");
+  const nameSection = document.getElementById("name-section");
 
-  accountTypeButton.addEventListener("click", () => {
-    accountTypeOptions.classList.toggle("hidden");
-  });
+  // Remove hidden class from name-section if account_type_input has a value
+  
 
-  accountTypeOptions.querySelectorAll("li").forEach(option => {
-    option.addEventListener("click", () => {
-      const value = option.getAttribute("data-value");
-      selectedAccountType.textContent = value;
-      accountTypeInput.value = value;
-      accountTypeOptions.classList.add("hidden");
-    });
-  });
+  
 
-  document.addEventListener("click", (event) => {
-    if (!accountTypeButton.contains(event.target) && !accountTypeOptions.contains(event.target)) {
-      accountTypeOptions.classList.add("hidden");
-    }
-  });
 });
