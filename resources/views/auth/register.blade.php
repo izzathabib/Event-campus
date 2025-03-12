@@ -34,32 +34,18 @@
             <input type="hidden" name="account_type" id="account_type_input" value="" />
             <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
         </div>
-
-        <!-- Society Name -->
-        <div id="society-name" class="mt-4 hidden">
-            <x-input-label for="societyName" :value="__('Society')" class="block text-sm/6 font-medium text-gray-900"/>
-            <x-text-input id="societyName" class="block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 sm:text-sm/6" 
-                        type="text" 
-                        name="name" 
-                        :value="old('name')" 
-                        required 
-                        autofocus 
-                        autocomplete="societyName"
-                        placeholder="e.g., Computer Science Society" />
-            <x-input-error :messages="$errors->get('societyName')" class="mt-2" />
-        </div>
         
         <!-- Name -->
         <div id="full-name" class="mt-4 hidden">
-            <x-input-label for="name" :value="__('Full Name')" class="block text-sm/6 font-medium text-gray-900"/>
+            <x-input-label id="fullname-label" for="name" :value="__('Full Name')" class="block text-sm/6 font-medium text-gray-900"/>
+            <x-input-label id="society-label" for="name" :value="__('Society')" class="block text-sm/6 font-medium text-gray-900"/>
             <x-text-input id="name" class="block mt-1 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-1 focus:-outline-offset-1 focus:outline-purple-600 sm:text-sm/6" 
                         type="text" 
                         name="name" 
                         :value="old('name')" 
                         required 
                         autofocus 
-                        autocomplete="name"
-                        placeholder="e.g., Muhammad Izzat Bin Habib" />
+                        autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 

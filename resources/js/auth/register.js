@@ -8,8 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailSection = document.getElementById("email-section");
   const psswrdSection = document.getElementById("psswrd-section");
   const confirmPsswrd = document.getElementById("confirm-psswrd");
-  const societyName = document.getElementById("society-name");
   const submitButton = document.getElementById("submit-button");
+  const fullnameLabel = document.getElementById("fullname-label");
+  const societyLabel = document.getElementById("society-label");
+  const inputName = document.getElementById("name");
+
 
   // Remove hidden class from name-section if account_type_input has a value
   societyButton.addEventListener("click", () => {
@@ -17,13 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     individualButton.classList.remove("roleSelect");
     adminButton.classList.remove("roleSelect");
 
-    societyName.classList.remove("hidden");
     userName.classList.remove("hidden");
-    fullName.classList.add("hidden");
+    fullName.classList.remove("hidden");
+    fullnameLabel.classList.add("hidden");
+    societyLabel.classList.remove("hidden");
     emailSection.classList.remove("hidden");
     psswrdSection.classList.remove("hidden");
     confirmPsswrd.classList.remove("hidden");
     submitButton.classList.remove("hidden");
+    inputName.placeholder = "e.g., Computer Science Society";
   }); 
 
   individualButton.addEventListener("click", () => {
@@ -32,13 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
     adminButton.classList.remove("roleSelect");
 
     userName.classList.remove("hidden");
-    societyName.classList.add("hidden");
     fullName.classList.remove("hidden");
+    fullnameLabel.classList.remove("hidden");
+    societyLabel.classList.add("hidden");
     psswrdSection.classList.remove("hidden");
     confirmPsswrd.classList.remove("hidden");
     emailSection.classList.remove("hidden");
     submitButton.classList.remove("hidden");
-
+    inputName.placeholder = "e.g., Ahmad Bin Saiful";
   });
 
   adminButton.addEventListener("click", () => {
@@ -47,12 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
     societyButton.classList.remove("roleSelect");
     
     userName.classList.remove("hidden");
-    societyName.classList.add("hidden");
     fullName.classList.remove("hidden");
+    fullnameLabel.classList.remove("hidden");
+    societyLabel.classList.add("hidden");
     psswrdSection.classList.remove("hidden");
     confirmPsswrd.classList.remove("hidden");
     submitButton.classList.remove("hidden");
     emailSection.classList.remove("hidden");
+    inputName.placeholder = "e.g., Ahmad Bin Saiful";
   });
   
 
