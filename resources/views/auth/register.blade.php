@@ -10,7 +10,7 @@
 
         <!-- Acc type -->
         <div>
-            <x-input-label for="account_type" :value="__('This account will be used by?')" class="block text-sm/6 font-medium text-gray-900"/>
+            <x-input-label for="role_id" :value="__('This account will be used by?')" class="block text-sm/6 font-medium text-gray-900"/>
             <div class="flex justify-between mt-2">
                 <div class="border-gray-300 flex place-items-center gap-2 p-2 text-xs font-semibold text-gray-900 border rounded-md hover:bg-black hover:text-white cursor-pointer" id="society">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -31,8 +31,7 @@
                     <span class="truncate">Admin</span>
                 </div>
             </div>
-            <input type="hidden" name="account_type" id="account_type_input" value="" />
-            <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
+            <input type="hidden" name="role_id" id="account_type_input" value="" />
         </div>
         
         <!-- Name -->

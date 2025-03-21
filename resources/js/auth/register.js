@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Remove hidden class from name-section if account_type_input has a value
   societyButton.addEventListener("click", () => {
+    accountTypeInput.value = "1";
     societyButton.classList.add("roleSelect");
     individualButton.classList.remove("roleSelect");
     adminButton.classList.remove("roleSelect");
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }); 
 
   individualButton.addEventListener("click", () => {
+    accountTypeInput.value = "2";
     individualButton.classList.add("roleSelect");
     societyButton.classList.remove("roleSelect");
     adminButton.classList.remove("roleSelect");
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   adminButton.addEventListener("click", () => {
+    accountTypeInput.value = "3";
     adminButton.classList.add("roleSelect");
     individualButton.classList.remove("roleSelect");
     societyButton.classList.remove("roleSelect");
