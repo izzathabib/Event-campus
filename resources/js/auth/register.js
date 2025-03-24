@@ -11,8 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submit-button");
   const fullnameLabel = document.getElementById("fullname-label");
   const societyLabel = document.getElementById("society-label");
+  const studEmailLabel = document.getElementById("studEmail-label");
+  const emailLabel = document.getElementById("email-label");
   const inputName = document.getElementById("name");
-
+  const inputEmail = document.getElementById("email");
 
   // Remove hidden class from name-section if account_type_input has a value
   societyButton.addEventListener("click", () => {
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     individualButton.classList.remove("roleSelect");
     adminButton.classList.remove("roleSelect");
 
+    studEmailLabel.classList.add("hidden");
+    emailLabel.classList.remove("hidden");
     userName.classList.remove("hidden");
     fullName.classList.remove("hidden");
     fullnameLabel.classList.add("hidden");
@@ -30,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmPsswrd.classList.remove("hidden");
     submitButton.classList.remove("hidden");
     inputName.placeholder = "e.g., Computer Science Society";
+    inputEmail.placeholder = "";
   }); 
 
   individualButton.addEventListener("click", () => {
@@ -38,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     societyButton.classList.remove("roleSelect");
     adminButton.classList.remove("roleSelect");
 
+    studEmailLabel.classList.remove("hidden");
+    emailLabel.classList.add("hidden");
     userName.classList.remove("hidden");
     fullName.classList.remove("hidden");
     fullnameLabel.classList.remove("hidden");
@@ -47,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emailSection.classList.remove("hidden");
     submitButton.classList.remove("hidden");
     inputName.placeholder = "e.g., Ahmad Bin Saiful";
+    inputEmail.placeholder = "e.g., ali@student.usm.my";
   });
 
   adminButton.addEventListener("click", () => {
@@ -55,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
     individualButton.classList.remove("roleSelect");
     societyButton.classList.remove("roleSelect");
     
+    emailLabel.classList.remove("hidden");
+    studEmailLabel.classList.add("hidden");
     userName.classList.remove("hidden");
     fullName.classList.remove("hidden");
     fullnameLabel.classList.remove("hidden");
@@ -63,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmPsswrd.classList.remove("hidden");
     submitButton.classList.remove("hidden");
     emailSection.classList.remove("hidden");
+    inputEmail.placeholder = "";
     inputName.placeholder = "e.g., Ahmad Bin Saiful";
   });
   
