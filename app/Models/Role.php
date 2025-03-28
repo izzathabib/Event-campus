@@ -12,7 +12,7 @@ class Role extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['description']; // Add other fillable attributes if needed
+    protected $fillable = ['desc']; // Add other fillable attributes if needed
 
     /**
      * Get the users for the role.
