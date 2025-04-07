@@ -52,7 +52,7 @@
 
         <p class="mt-8 text-center text-sm/6 text-gray-500">
         You dont have an account yet?
-        <a href="{{ route('register') }}" class="font-semibold text-purple-600 hover:text-purple-500">Create account</a>
+        <a href="{{ route('register') }}" class="font-semibold text-purple-600 hover:text-purple-500"> Create account</a>
         </p>
     </form>
 </x-guest-layout>
