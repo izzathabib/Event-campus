@@ -101,7 +101,7 @@
 
         <p class="mt-4 text-center text-sm/6 text-gray-500">
         Already have an account?
-        <a href="{{ route('login') }}" class="font-semibold text-purple-600 hover:text-purple-500">Log In</a>
+        <a href="{{ route('login') }}" class="font-semibold text-purple-600 hover:text-purple-500"> Login</a>
         </p>
         
     </form>
