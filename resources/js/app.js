@@ -1,5 +1,6 @@
 import './bootstrap';
 import './auth/register';
+import './sidebar';
 
 import Alpine from 'alpinejs';
 
