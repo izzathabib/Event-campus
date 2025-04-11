@@ -62,9 +62,9 @@
                             </span>
                             <span class="menu-text text-sm">Event Management</span>
                             <span>
-                            <svg id="sidebar-dropdown-menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 ml-auto">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12l-7.5 7.5-7.5-7.5" />
-                            </svg>
+                                <svg id="sidebar-dropdown-menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 ml-auto">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12l-7.5 7.5-7.5-7.5" />
+                                </svg>
                             </span>
                         </button>
                         <ul id="event-management-submenu" class="mt-2 hidden">
