@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Society\EventManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Society\DashboardController as SocietyDashboardController;
@@ -24,6 +25,7 @@ Route::get('/', function () {
 // Society Routes
 Route::middleware(['auth', 'verified', 'IsSociety'])->group(function () {
     Route::get('/dashboard', [SocietyDashboardController::class, 'index'])->name('society.dashboard');
+    Route::get('/eventapplicationview', [EventManagementController::class, 'eventApplicationView'])->name('society.event_application_view');
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // })->name('dashboard');
