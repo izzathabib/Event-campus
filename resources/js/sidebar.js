@@ -74,7 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Resizes sidebar
   window.addEventListener("resize", responsiveSidebar);
 
-  // Normal screen sidebar toggle button 
+  /* 
+
+    # Normal screen sidebar toggle button 
+      * This button is used to toggle the sidebar between a collapsed and expanded state when in a normal screen size. *
+     
+  */
   toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("w-16");
     dashboardText.classList.toggle("hidden");
@@ -85,7 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
     hideEventManagementSubmenu()
   });
 
-  // Mobile screen sidebar toggle button
+  /* 
+  
+    # Mobile screen sidebar toggle button 
+      * This button is used to toggle the sidebar between a collapsed and expanded state when in a mobile screen size. *
+     
+  */
   mobileSidebarButton.addEventListener("click", () => {
     sidebar.classList.remove("hidden");
     sidebar.classList.add("w-full");
