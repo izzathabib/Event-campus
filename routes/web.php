@@ -43,6 +43,9 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified', 'IsSociety'])->group(function () {
     Route::get('/dashboard', [SocietyDashboardController::class, 'index'])->name('society.dashboard');
     Route::get('/eventapplicationview', [EventManagementController::class, 'eventApplicationView'])->name('society.event_application_view');
+    Route::get('/create-event-view', function () {
+        return view('society.createEvent');
+    })->name('society.create-event-view');
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // })->name('dashboard');
