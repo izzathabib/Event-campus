@@ -4,6 +4,8 @@
 
 .sidebar {
   background-color: #EFF3FF;
+  position: fixed;
+  z-index: 1000;
 }
 
 .active {

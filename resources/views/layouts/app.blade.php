@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventUSM</title>
+    @yield('styles')
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite([
       'resources/css/app.css',
       'resources/css/sidebar.css', 
@@ -12,9 +14,9 @@
       'resources/js/app.js'
       ])
 </head>
-<body class="flex">
+<body class="flex-1">
     <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar h-screen w-64 transition-all p-2 flex flex-col justify-between">
+    <aside id="sidebar" class="sidebar h-screen w-64 transition-all p-2 flex flex-col justify-between fixed">
         <div id="top-sidebar">
             <div class="flex items-center gap-4 p-3">
                 <button id="toggle-btn">
@@ -104,7 +106,7 @@
         </div>
     </aside>
     <!-- Main Content -->  
-    <main id="main-section" class="flex-1 flex-col p-6">
+    <main id="main-section" class="flex flex-col p-6">
         <!-- Top navigation for mobile screen -->
         <div id="mobile-top-nav" class="flex justify-between hidden mb-4">
             <button id="mobile-sidebar-button">
@@ -142,7 +144,9 @@
                 </div>
             </div>
         </div>
-        @yield('content')
+        <div id="main-content">
+            @yield('content')
+        </div>
     </main>
 </body>
 </html>
