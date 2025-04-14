@@ -6,7 +6,7 @@
     <h1 class="text-lg font-semibold ml-4">Create Event</h1>
     <div class="flex items-center justify-center p-4 mt-3 w-full">
         <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden p-4">
-         <form>
+         <form action="{{ route('society.createEvent') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <!-- Cancel and share buttons -->
           <div id="cancel-share-but" class="flex items-center justify-between p-2 hidden">

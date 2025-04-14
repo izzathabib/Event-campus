@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreateEventContoller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Society\EventManagementController;
 use Illuminate\Support\Facades\Route;
@@ -53,11 +54,7 @@ Route::middleware(['auth', 'verified', 'IsSociety'])->group(function () {
     Route::get('/create-event-view', function () {
         return view('society.createEvent');
     })->name('society.create-event-view');
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
-    // Add other admin-specific routes here, for example:
-    // Route::resource('/users', \App\Http\Controllers\Admin\UserController::class);
+    Route::post('/create-event', [CreateEventContoller::class, 'store'])->name('society.createEvent');
 });
 
 // Student Routes
