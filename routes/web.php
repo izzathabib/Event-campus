@@ -40,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 // Admin Routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'adminDashboardView'])->name('adminDashboard');
+    Route::post('/admin/verify-user/{id}', [AdminDashboardController::class, 'verifyUser'])->name('VerifyUser');
     
 });
 
