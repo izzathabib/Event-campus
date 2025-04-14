@@ -28,4 +28,13 @@ class CreateEventContoller extends Controller
         return redirect()->route('homeEvent');
         // ->with('success', 'Event created successfully!')
     }
+
+    public function displayEvent() {
+
+        $events = Event::with('users')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        return view('homeEvent', compact('events'));
+    }
 }

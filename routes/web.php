@@ -30,9 +30,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function() {
-    Route::get('/home-event', function () {
-        return view('homeEvent');
-    })->name('homeEvent');
+    Route::get('/home-event', [CreateEventContoller::class, 'displayEvent'])->name('homeEvent');
 });
 
 
