@@ -25,8 +25,6 @@ class CreateEventContoller extends Controller
             // 'status' => 'pending', // Default status
         ]);
 
-        // dd($event);
-
         return redirect()->route('homeEvent');
         // ->with('success', 'Event created successfully!')
     }
