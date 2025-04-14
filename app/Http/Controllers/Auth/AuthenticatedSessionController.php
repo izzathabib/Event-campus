@@ -24,11 +24,29 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+       
         $request->authenticate();
 
         $request->session()->regenerate();
+        
+        return $this->getRedirectByRole();
+    }
 
-        return redirect()->intended(route('society.dashboard', absolute: false));
+    /**
+     * Get the redirect route based on user role.
+     */
+    private function getRedirectByRole(): RedirectResponse
+    {
+        $role = Auth::user()->roles->desc;
+        $routes = [
+            'society' => 'society.dashboard',
+            'admin' => 'admin.dashboard',
+            'student' => 'homeEvent'
+        ];
+        
+        
+        $route = $routes[$role] ?? abort(403, 'Unauthorized roles.'); // Default to home if role not found
+        return redirect()->intended(route($route, absolute: false));
     }
 
     /**

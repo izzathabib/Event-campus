@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CreateEventContoller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Society\EventManagementController;
@@ -25,9 +26,7 @@ Route::post('/my-csd-form', [MapcsdDemoController::class, 'submitForm'])->name('
 
 
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/home-event', [CreateEventContoller::class, 'displayEvent'])->name('homeEvent');
@@ -39,14 +38,13 @@ Route::middleware(['auth', 'verified'])->group(function() {
 // })->middleware(['auth', 'verified', 'role:society'])->name('dashboard');
 
 // Admin Routes
-// Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-//     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-//     // Add other admin-specific routes here, for example:
-//     // Route::resource('/users', \App\Http\Controllers\Admin\UserController::class);
-// });
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    
+});
 
 // Society Routes
-Route::middleware(['auth', 'verified', 'IsSociety'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [SocietyDashboardController::class, 'index'])->name('society.dashboard');
     Route::get('/eventapplicationview', [EventManagementController::class, 'eventApplicationView'])->name('society.event_application_view');
     Route::get('/create-event-view', function () {
@@ -54,14 +52,6 @@ Route::middleware(['auth', 'verified', 'IsSociety'])->group(function () {
     })->name('society.create-event-view');
     Route::post('/create-event', [CreateEventContoller::class, 'store'])->name('society.createEvent');
 });
-
-// Student Routes
-// Route::middleware(['auth', 'verified', 'role:student'])->group(function () {
-//     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
-//     // Add other student-specific routes here, for example:
-//     // Route::get('/courses', [\App\Http\Controllers\Student\CourseController::class, 'index'])->name('courses.index');
-// });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
