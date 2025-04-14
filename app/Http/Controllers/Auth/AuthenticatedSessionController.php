@@ -38,10 +38,12 @@ class AuthenticatedSessionController extends Controller
     private function getRedirectByRole(): RedirectResponse
     {
         $role = Auth::user()->roles->desc;
+        
         $routes = [
             'society' => 'society.dashboard',
-            'admin' => 'admin.dashboard',
-            'student' => 'homeEvent'
+            'student' => 'homeEvent',
+            'admin' => 'adminDashboard',
+            
         ];
         
         
