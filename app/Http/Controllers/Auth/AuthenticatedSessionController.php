@@ -29,23 +29,28 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         
-        return $this->getRedirectByRole();
+        return $this->getRedirectByRole($request);
     }
 
     /**
      * Get the redirect route based on user role.
      */
-    private function getRedirectByRole(): RedirectResponse
+    private function getRedirectByRole($request): RedirectResponse
     {
         $role = Auth::user()->roles->desc;
-        
         $routes = [
             'society' => 'society.dashboard',
             'student' => 'homeEvent',
             'admin' => 'adminDashboard',
             
         ];
-        
+
+        // Prevent login for society that was not being verified by admin
+        if ($role === 'society' && !$request->user()->admin_verified) {
+            Auth::logout();
+            return redirect()->route('login')
+            ->with('adminNotVerified', 'Your account is not verified by Talent Development Centre yet.');
+        }
         
         $route = $routes[$role] ?? abort(403, 'Unauthorized roles.'); // Default to home if role not found
         return redirect()->intended(route($route, absolute: false));

@@ -34,12 +34,18 @@ class VerifyEmailController extends Controller
         $role = $request->user()->roles->desc;
         $routes = [
             'society' => 'society.dashboard',
-            'admin' => 'homeEvent',
+            'admin' => 'adminDashboard',
             'student' => 'homeEvent'
         ];
+
+        // Prevent login for society that was not being verified by admin
+        if ($role === 'society' && !$request->user()->admin_verified) {
+            Auth::logout();
+            return redirect()->route('login')
+            ->with('adminNotVerified', 'You have successfully verified your email address, Please wait for Talent Development Centre to verify your account.');
+        }
         
         $route = $routes[$role] ?? abort(403, 'Unauthorized roles.'); 
-
         return redirect()->intended(route($route, absolute: false).'?verified=1');
     }
 }
