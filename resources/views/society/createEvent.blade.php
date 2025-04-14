@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 <div class="grid grid-cols-6">
   <div class="col-span-5 col-start-2">
@@ -94,6 +92,3 @@
     });
 </script>
 @endsection
-
-
-</html>
