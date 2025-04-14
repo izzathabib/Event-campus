@@ -28,6 +28,13 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/home-event', function () {
+        return view('homeEvent');
+    })->name('homeEvent');
+});
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified', 'role:society'])->name('dashboard');
