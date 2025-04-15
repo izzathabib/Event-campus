@@ -511,7 +511,7 @@
                             x-show="currentStep > 1" 
                             @click="goToPrevStep" 
                             type="button"
-                            class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md transition-colors duration-300"
+                            class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm rounded-md transition-colors duration-300"
                         >
                             Previous
                         </button>
@@ -521,7 +521,7 @@
                                 x-show="currentStep < steps.length" 
                                 @click="goToNextStep" 
                                 type="button"
-                                class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors duration-300"
+                                class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-md transition-colors duration-300"
                             >
                                 Next
                             </button>
@@ -529,7 +529,7 @@
                             <button 
                                 x-show="currentStep === steps.length" 
                                 type="submit"
-                                class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors duration-300"
+                                class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-md transition-colors duration-300"
                             >
                                 Submit Application
                             </button>
