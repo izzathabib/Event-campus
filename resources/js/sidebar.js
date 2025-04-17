@@ -13,18 +13,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const xIcon = document.getElementById("x-icon");
 
 
+    // if (sidebar.classList.contains("w-16")) {
+    //     mainSection.classList.add("ml-16");
+    // } else {
+    //     mainSection.classList.add("ml-64");
+    // }
+
+
   function hideEventManagementSubmenu() {
-    if (eventManagementSubmenu.classList.contains("hidden")) {
-      eventManagementSubmenu.classList.add("");
-    } else {
+    if (!eventManagementSubmenu.classList.contains("hidden")) {
       eventManagementSubmenu.classList.add("hidden");
-    }
+    } 
   }
 
   function mobileScreenLayout() {
     sidebar.classList.add("hidden");
     notiProfile.classList.add("hidden");
     mobileTopNav.classList.remove("hidden");
+    mainSection.classList.remove("ml-64");
+    mainSection.classList.remove("ml-16");
   }
 
   function tabletScreenLayout() {
@@ -36,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menuTexts.forEach(text => text.classList.add("hidden"));
     sidebarDropdownIcon.classList.toggle("hidden");
     mobileTopNav.classList.add("hidden");
+    mainSection.classList.add("ml-16");
+    mainSection.classList.remove("ml-64");
   }
 
   function largeScreenLayout() {
@@ -47,6 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menuTexts.forEach(text => text.classList.remove("hidden"));
     sidebarDropdownIcon.classList.remove("hidden");
     mobileTopNav.classList.add("hidden");
+    mainSection.classList.remove("ml-16");
+    mainSection.classList.add("ml-64");
   }
 
   // Sidebar behavior based on screen size 
@@ -67,9 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Hide sidebar on page load if screen width is less than or equal to 640px
-  if (window.innerWidth <= 640) {
-    mobileScreenLayout();
-  }
+  // if (window.innerWidth <= 640) {
+  //   mobileScreenLayout();
+  // }
 
   // Resizes sidebar
   window.addEventListener("resize", responsiveSidebar);
@@ -81,13 +92,26 @@ document.addEventListener("DOMContentLoaded", () => {
      
   */
   toggleBtn.addEventListener("click", () => {
+    // Toggle sidebar width
+    sidebar.classList.toggle("w-64");
     sidebar.classList.toggle("w-16");
+
+    // Toggle visibility of text elements
     dashboardText.classList.toggle("hidden");
     menuTexts.forEach(text => text.classList.toggle("hidden"));
     sidebarDropdownIcon.classList.toggle("hidden");
-    sidebar.classList.toggle("w-64");
-    eventManagementSubmenu.classList.toggle("hidden"); 
     hideEventManagementSubmenu()
+    mainSection.classList.toggle("ml-64");
+    mainSection.classList.toggle("ml-16");
+
+    // Adjust main-section margin
+    // if (sidebar.classList.contains("w-16")) {
+    //     mainSection.classList.remove("ml-64");
+    //     mainSection.classList.add("ml-16");
+    // } else {
+    //     mainSection.classList.remove("ml-16");
+    //     mainSection.classList.add("ml-64");
+    // }
   });
 
   /* 

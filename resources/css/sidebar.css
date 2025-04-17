@@ -4,13 +4,17 @@
 
 .sidebar {
   background-color: #EFF3FF;
-  position: fixed;
   z-index: 1000;
+  transition: width 0.3s ease;
 }
 
 .active {
   background-color: oklch(0.558 0.288 302.321);
   color: white;
+}
+
+#main-section {
+  transition: margin-left 0.3s ease;
 }
 
 /* Hide sidebar on mobile devices */

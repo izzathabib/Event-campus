@@ -14,9 +14,9 @@
       'resources/js/app.js'
       ])
 </head>
-<body class="flex-1">
+<body class="flex">
     <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar h-screen w-64 transition-all p-2 flex flex-col justify-between fixed">
+    <aside id="sidebar" class="sidebar h-full w-64 transition-all p-2 flex flex-col justify-between fixed">
         <div id="top-sidebar">
             <div class="flex items-center gap-4 p-3">
                 <button id="toggle-btn">
@@ -127,7 +127,7 @@
         </div>
     </aside>
     <!-- Main Content -->  
-    <main id="main-section" class="flex flex-col p-6">
+    <main id="main-section" class="flex flex-col p-6 w-full ml-64">
         <!-- Top navigation for mobile screen -->
         <div id="mobile-top-nav" class="flex justify-between hidden mb-4">
             <button id="mobile-sidebar-button">
@@ -165,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <div id="main-content">
+        <div id="main-content" class="">
             @yield('content')
         </div>
     </main>
