@@ -1,8 +1,9 @@
 @extends('layouts.app')
+
 @section('content')
-  
-<p class="text-base font-semibold mb-6 mt-3 text-gray-800">Students Society</p>
-@if (session()->has('userVerified'))
+<h1 class="text-lg font-semibold ml-4">Create Event</h1> 
+<!-- <p class="">Students Society</p> -->
+<!-- @if (session()->has('userVerified'))
 <div id="flash-error" class="bg-green-100 text-green-800 px-4 py-3 rounded relative mb-4 text-sm font-medium flex items-center justify-between" role="alert">
     <div class="px-4 py-3">
         <span class="block sm:inline">{{ session('userVerified') }}</span>
@@ -15,7 +16,7 @@
     </button>
 </div>
 @endif
-<div class="bg-white shadow-md rounded-lg flex mr-2">
+<div class="bg-white border shadow-md rounded-lg flex mr-2">
     
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
@@ -79,9 +80,9 @@
             @endforeach
             </tbody>
     </table>
-</div>
+</div> -->
   
-<script>
+<!-- <script>
     // Auto dismiss flash messages after 3 seconds
     setTimeout(function() {
         const flashMessages = document.querySelectorAll('[id^="flash-"]');
@@ -89,5 +90,5 @@
             message.remove();
         });
     }, 7000);
-</script>
+</script> -->
 @endsection

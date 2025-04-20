@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dashboardText = document.getElementById("dashboard-text");
   const menuTexts = document.querySelectorAll(".menu-text");
   const eventManagementSubmenu = document.getElementById("event-management-submenu");
-  const sidebarDropdownIcon = document.getElementById("sidebar-dropdown-menu"); // Dropdown icon only
+  const sidebarDropdownIcon = document.getElementById("sidebar-dropdown-icon"); // Dropdown icon only
   const eventManagementToggle = document.getElementById("event-management-toggle"); // Event management menu including icon + dropwdown toogle
   const notiProfile = document.getElementById("noti-profile"); 
   const mobileTopNav = document.getElementById("mobile-top-nav"); 
@@ -21,9 +21,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function hideEventManagementSubmenu() {
-    if (!eventManagementSubmenu.classList.contains("hidden")) {
-      eventManagementSubmenu.classList.add("hidden");
-    } 
+    
+    if (eventManagementSubmenu) {
+      if (!eventManagementSubmenu.classList.contains("hidden")) {
+        eventManagementSubmenu.classList.add("hidden");
+      }
+    }
+     
   }
 
   function mobileScreenLayout() {
@@ -54,7 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.add("w-64");
     dashboardText.classList.remove("hidden");
     menuTexts.forEach(text => text.classList.remove("hidden"));
-    sidebarDropdownIcon.classList.remove("hidden");
+
+    if (sidebarDropdownIcon) {
+      sidebarDropdownIcon.classList.remove("hidden");
+    }
+
     mobileTopNav.classList.add("hidden");
     mainSection.classList.remove("ml-16");
     mainSection.classList.add("ml-64");
@@ -99,7 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Toggle visibility of text elements
     dashboardText.classList.toggle("hidden");
     menuTexts.forEach(text => text.classList.toggle("hidden"));
-    sidebarDropdownIcon.classList.toggle("hidden");
+
+    if (sidebarDropdownIcon) {
+      sidebarDropdownIcon.classList.toggle("hidden");
+    }
+
     hideEventManagementSubmenu()
     mainSection.classList.toggle("ml-64");
     mainSection.classList.toggle("ml-16");
@@ -140,8 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Event management dropdown menu button
-  eventManagementToggle.addEventListener("click", () => {
-    eventManagementSubmenu.classList.toggle("hidden");
-  });
+  if (eventManagementToggle) {
+
+    eventManagementToggle.addEventListener("click", () => {
+      eventManagementSubmenu.classList.toggle("hidden");
+    });
+
+  }
   
 });
