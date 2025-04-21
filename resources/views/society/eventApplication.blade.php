@@ -411,10 +411,10 @@
                 ],
                 formData: {
                     // Paper work
-                    tajuk_kk: '',
+                    tajukKk: '',
                     
                     // MyCSD Mapping
-                    taj_prog: '',
+                    tajProg: '',
                     
                     // Application to Organize Events
                     nama: '',

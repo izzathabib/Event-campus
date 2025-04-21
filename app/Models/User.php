@@ -61,4 +61,19 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Event::class);
     }
+
+    public function paper_works(): HasMany
+    {
+        return $this->hasMany(PaperWork::class);
+    }
+
+    public function apply_to_organize_events(): HasMany
+    {
+        return $this->hasMany(ApplyToOrganizeEvent::class);
+    }
+
+    public function mycsd_maps(): HasMany
+    {
+        return $this->hasMany(MycsdMap::class);
+    }
 }
