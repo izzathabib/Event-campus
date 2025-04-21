@@ -49,7 +49,7 @@
         <!-- Form Body -->
         <div class="p-6">
             <form id="multi-step-form" @submit.prevent="submitForm">
-                <!-- Step 1: Personal Information -->
+                <!-- Step 1: Paper work -->
                 <div x-show="currentStep === 1" class="step-transition">
                     <h3 class="text-xl font-bold text-gray-800 mb-6">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI
                     PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
@@ -62,7 +62,7 @@
                                 required>
                         </div>
                         
-                        <div>
+                        <!-- <div>
                             <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
                             <textarea id="peng_kump_sasar" name="peng_kump_sasar" rows="10" cols="50" x-model="formData.pengKumpSasar" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
@@ -84,12 +84,12 @@
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                                 required>
                             </textarea>
-                        </div>
+                        </div> -->
                     </div>
-                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
+                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
                         TENTATIF PROGRAM/ PROJEK/ AKTIVITI
-                    </h5>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    </h5> -->
+                    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="tarikh" class="block text-sm font-medium text-gray-700 mb-1">Tarikh/ Hari</label>
                             <input type="date" id="tarikh" name="tarikh" x-model="formData.tarikh" 
@@ -110,42 +110,41 @@
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                                 required>
                         </div>
-                    </div>
-                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
+                    </div> -->
+                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
                     Atur Cara
-                    </h5>
-                    <div>
-                        <!-- <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label> -->
+                    </h5> -->
+                    <!-- <div>
+                        <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
                         <textarea id="atur_cara" name="atur_cara" rows="10" cols="50" x-model="formData.aturCara" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                             required>
                         </textarea>
-                    </div>
+                    </div> -->
 
-                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
+                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
                         JAWATANKUASA PELAKSANA
-                    </h5>
-                    <div>
-                        <!-- <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label> -->
+                    </h5> -->
+                    <!-- <div>
+                        <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
                         <textarea id="jawat_pelak" name="jawat_pelak" rows="10" cols="50" x-model="formData.jawatPelak" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                             required>
                         </textarea>
-                    </div>
+                    </div> -->
 
-                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
+                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
                         CADANGAN BELANJAWAN
                     </h5>
                     <div>
-                        <!-- <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label> -->
                         <textarea id="cada_belan" name="cada_belan" rows="10" cols="50" x-model="formData.cadaBelan" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                             required>
                         </textarea>
-                    </div>
+                    </div> -->
                 </div>
                 
-                <!-- Step 2: Address Information -->
+                <!-- Step 2: MyCSD Mapping -->
                 <div x-show="currentStep === 2" class="step-transition">
                     <h3 class="text-xl font-bold text-gray-800 mb-6">
                         PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
@@ -159,15 +158,15 @@
                                 required>
                         </div>
 
-                        <div>
+                        <!-- <div>
                             <label for="nam_pert" class="block text-sm font-medium text-gray-700 mb-1">NAMA PERTUBUHAN</label>
                             <input type="text" id="nam_pert" name="nam_pert" x-model="formData.namPert" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                                 required>
-                        </div>
+                        </div> -->
                         
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div>
+                        <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> -->
+                            <!-- <div>
                                 <label for="kaedah" class="block text-sm font-medium text-gray-700 mb-1">KAEDAH</label>
                                 <select id="kaedah" name="kaedah" x-model="formData.kaedah" 
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
@@ -177,83 +176,83 @@
                                     <option value="Fizikal (Berdasarkan SOP MKN semasa)" {{ old('kaedah', $defaultKaedah ?? '') == 'physical' ? 'selected' : '' }}>Fizikal (Berdasarkan SOP MKN semasa)</option>
                                     <option value="Hybrid (Berdasarkan SOP MKN semasa)" {{ old('kaedah', $defaultKaedah ?? '') == 'hybrid' ? 'selected' : '' }}>Hybrid (Berdasarkan SOP MKN semasa)</option> 
                                 </select>
-                            </div>
+                            </div> -->
 
-                            <div>
-                                <p class="block text-sm font-medium text-gray-700 mb-1">HEBAT FLAGSHIP PROGRAMMES (HFP)</p> 
+                            <!-- <div> -->
+                                <!-- <p class="block text-sm font-medium text-gray-700 mb-1">HEBAT FLAGSHIP PROGRAMMES (HFP)</p>  -->
                                 {{-- Using flex column for vertical layout --}}
-                                <div class="space-y-2"> 
+                                <!-- <div class="space-y-2">  -->
                                     {{-- Option 1: Ya --}}
-                                    <div class="flex items-center">
-                                        <input 
+                                    <!-- <div class="flex items-center"> -->
+                                        <!-- <input 
                                             type="radio" 
                                             id="hfp_ya" 
                                             name="hfp" 
                                             value="ya" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
                                             {{-- Pre-select if it was the old input or a default --}}
-                                            {{ old('hfp', $defaultHfp ?? '') == 'ya' ? 'checked' : '' }} 
+                                            <!-- {{ old('hfp', $defaultHfp ?? '') == 'ya' ? 'checked' : '' }} 
                                         >
                                         <label for="hfp_ya" class="ml-3 block text-sm font-medium text-gray-700">
                                             Ya
                                         </label>
-                                    </div>
+                                    </div> -->
 
                                     {{-- Option 2: Tidak --}}
-                                    <div class="flex items-center">
+                                    <!-- <div class="flex items-center">
                                         <input 
                                             type="radio" 
                                             id="hfp_tidak" 
                                             name="hfp" 
                                             value="tidak" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
                                             {{-- Pre-select if it was the old input or a default --}}
-                                            {{ old('hfp', $defaultHfp ?? '') == 'tidak' ? 'checked' : '' }} 
+                                            <!-- {{ old('hfp', $defaultHfp ?? '') == 'tidak' ? 'checked' : '' }} 
                                         >
                                         <label for="kaedah_online" class="ml-3 block text-sm font-medium text-gray-700">
                                             Tidak
                                         </label>
-                                    </div>
-                                </div>
+                                    </div> -->
+                                <!-- </div>
                             </div>
 
                             <div>
-                                <p class="block text-sm font-medium text-gray-700 mb-1">POSTER</p> 
+                                <p class="block text-sm font-medium text-gray-700 mb-1">POSTER</p>  -->
                                 {{-- Using flex column for vertical layout --}}
-                                <div class="space-y-2"> 
+                                <!-- <div class="space-y-2">  -->
                                     {{-- Option 1: Ya --}}
-                                    <div class="flex items-center">
+                                    <!-- <div class="flex items-center">
                                         <input 
                                             type="radio" 
                                             id="poster_ya" 
                                             name="poster" 
                                             value="ya" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
                                             {{-- Pre-select if it was the old input or a default --}}
-                                            {{ old('poster', $defaultPoster ?? '') == 'ya' ? 'checked' : '' }} 
+                                            <!-- {{ old('poster', $defaultPoster ?? '') == 'ya' ? 'checked' : '' }} 
                                         >
                                         <label for="poster_ya" class="ml-3 block text-sm font-medium text-gray-700">
                                             Ya
                                         </label>
-                                    </div>
+                                    </div> -->
 
                                     {{-- Option 2: Tidak --}}
-                                    <div class="flex items-center">
+                                    <!-- <div class="flex items-center">
                                         <input 
                                             type="radio" 
                                             id="poster_tidak" 
                                             name="poster" 
                                             value="tidak" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300"
+                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
                                             {{-- Pre-select if it was the old input or a default --}}
-                                            {{ old('poster', $defaultPoster ?? '') == 'tidak' ? 'checked' : '' }} 
+                                            <!-- {{ old('poster', $defaultPoster ?? '') == 'tidak' ? 'checked' : '' }} 
                                         >
                                         <label for="kaedah_online" class="ml-3 block text-sm font-medium text-gray-700">
                                             Tidak
                                         </label>
                                     </div>
-                                </div>
-                            </div>
+                                </div> -->
+                            <!-- </div>
                         </div>
 
                         <div>
@@ -269,11 +268,11 @@
                                 <option value="Anak Negeri" {{ old('jen_pertub', $jenPertub ?? '') == 'Anak Negeri' ? 'selected' : '' }}>Anak Negeri</option> 
                                 <option value="Sekretariat" {{ old('jen_pertub', $jenPertub ?? '') == 'Sekretariat' ? 'selected' : '' }}>Sekretariat</option> 
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 
-                <!-- Step 3: Education -->
+                <!-- Step 3: Application to Organize Events -->
                 <div x-show="currentStep === 3" class="step-transition">
                     <h3 class="text-xl font-bold text-gray-800 mb-6">PERMOHONAN MENGADAKAN PROGRAM</h3>
                     
@@ -288,7 +287,7 @@
                                 required>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="no_ic" class="block text-sm font-medium text-gray-700 mb-1">No. Kad Pengenalan</label>
                                 <input type="text" id="no_ic" name="no_ic" x-model="formData.noIc" 
@@ -322,9 +321,9 @@
                                 <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500">
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div>
+                        <!-- <div>
                             <label for="alamat_penggal" class="block text-sm font-medium text-gray-700 mb-1">Alamat Penggal</label>
                             <textarea id="alamat_penggal" name="alamat_penggal" rows="5" cols="30" x-model="formData.alamatPenggal" 
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
@@ -338,171 +337,10 @@
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
                                 required>
                             </textarea>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
-                
-                <!-- Step 4: Professional Experience -->
-                <div x-show="currentStep === 4" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">Professional Experience</h3>
-                    
-                    <div class="grid grid-cols-1 gap-6">
-                        <div>
-                            <label for="current_employer" class="block text-sm font-medium text-gray-700 mb-1">Current Employer</label>
-                            <input type="text" id="current_employer" name="current_employer" x-model="formData.currentEmployer" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                required>
-                        </div>
-                        
-                        <div>
-                            <label for="job_title" class="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
-                            <input type="text" id="job_title" name="job_title" x-model="formData.jobTitle" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                required>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="years_experience" class="block text-sm font-medium text-gray-700 mb-1">Years of Experience</label>
-                                <input type="number" id="years_experience" name="years_experience" x-model="formData.yearsExperience" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    min="0" max="50" required>
-                            </div>
-                            
-                            <div>
-                                <label for="industry" class="block text-sm font-medium text-gray-700 mb-1">Industry</label>
-                                <select id="industry" name="industry" x-model="formData.industry" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                    required>
-                                    <option value="">Select Industry</option>
-                                    <option value="technology">Technology</option>
-                                    <option value="healthcare">Healthcare</option>
-                                    <option value="finance">Finance</option>
-                                    <option value="education">Education</option>
-                                    <option value="retail">Retail</option>
-                                    <!-- Add more industries as needed -->
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="skills" class="block text-sm font-medium text-gray-700 mb-1">Key Skills (comma separated)</label>
-                            <textarea id="skills" name="skills" x-model="formData.skills" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 h-24"
-                                required></textarea>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Step 5: Review and Submit -->
-                <div x-show="currentStep === 5" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">Review Your Information</h3>
-                    
-                    <div class="space-y-6">
-                        <!-- Personal Information Review -->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-800 mb-2">Personal Information</h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div>
-                                    <span class="text-gray-600">Name:</span> 
-                                    <span class="font-medium" x-text="formData.firstName + ' ' + formData.lastName"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Email:</span> 
-                                    <span class="font-medium" x-text="formData.email"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Phone:</span> 
-                                    <span class="font-medium" x-text="formData.phone"></span>
-                                </div>
-                            </div>
-                            <button type="button" @click="goToStep(1)" class="text-sm text-blue-600 hover:underline mt-2">Edit</button>
-                        </div>
-                        
-                        <!-- Address Information Review -->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-800 mb-2">Address Information</h4>
-                            <div class="grid grid-cols-1 gap-2 text-sm">
-                                <div>
-                                    <span class="text-gray-600">Address:</span> 
-                                    <span class="font-medium" x-text="formData.address"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">City, State, Postal Code:</span> 
-                                    <span class="font-medium" x-text="formData.city + ', ' + formData.state + ' ' + formData.postalCode"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Country:</span> 
-                                    <span class="font-medium" x-text="formData.country"></span>
-                                </div>
-                            </div>
-                            <button type="button" @click="goToStep(2)" class="text-sm text-blue-600 hover:underline mt-2">Edit</button>
-                        </div>
-                        
-                        <!-- Education Information Review -->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-800 mb-2">Education Information</h4>
-                            <div class="grid grid-cols-1 gap-2 text-sm">
-                                <div>
-                                    <span class="text-gray-600">Education Level:</span> 
-                                    <span class="font-medium" x-text="getEducationDisplayName(formData.highestEducation)"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Institution:</span> 
-                                    <span class="font-medium" x-text="formData.institution"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Field of Study:</span> 
-                                    <span class="font-medium" x-text="formData.fieldOfStudy"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Graduation Year:</span> 
-                                    <span class="font-medium" x-text="formData.graduationYear"></span>
-                                </div>
-                            </div>
-                            <button type="button" @click="goToStep(3)" class="text-sm text-blue-600 hover:underline mt-2">Edit</button>
-                        </div>
-                        
-                        <!-- Professional Experience Review -->
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <h4 class="font-medium text-gray-800 mb-2">Professional Experience</h4>
-                            <div class="grid grid-cols-1 gap-2 text-sm">
-                                <div>
-                                    <span class="text-gray-600">Current Employer:</span> 
-                                    <span class="font-medium" x-text="formData.currentEmployer"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Job Title:</span> 
-                                    <span class="font-medium" x-text="formData.jobTitle"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Years of Experience:</span> 
-                                    <span class="font-medium" x-text="formData.yearsExperience"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Industry:</span> 
-                                    <span class="font-medium" x-text="formData.industry"></span>
-                                </div>
-                                <div>
-                                    <span class="text-gray-600">Skills:</span> 
-                                    <span class="font-medium" x-text="formData.skills"></span>
-                                </div>
-                            </div>
-                            <button type="button" @click="goToStep(4)" class="text-sm text-blue-600 hover:underline mt-2">Edit</button>
-                        </div>
-                        
-                        <div class="border-t border-gray-200 pt-4">
-                            <div class="flex items-center mb-4">
-                                <input type="checkbox" id="agree_terms" name="agree_terms" x-model="formData.agreeTerms" 
-                                    class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required>
-                                <label for="agree_terms" class="ml-2 block text-sm text-gray-700">
-                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>.
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+
                 <!-- Form Navigation Buttons -->
                 <div class="flex justify-between mt-8">
                     <button 
@@ -572,47 +410,30 @@
                     { title: 'Application to Organize Events' },
                 ],
                 formData: {
-                    // Personal information
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phone: '',
+                    // Paper work
+                    tajuk_kk: '',
                     
-                    // Address information
-                    address: '',
-                    city: '',
-                    state: '',
-                    postalCode: '',
-                    country: '',
+                    // MyCSD Mapping
+                    taj_prog: '',
                     
-                    // Education information
-                    highestEducation: '',
-                    institution: '',
-                    fieldOfStudy: '',
-                    graduationYear: '',
-                    
-                    // Professional experience
-                    currentEmployer: '',
-                    jobTitle: '',
-                    yearsExperience: '',
-                    industry: '',
-                    skills: '',
-                    
+                    // Application to Organize Events
+                    nama: '',
+
                     // Terms agreement
-                    agreeTerms: false
+                    // agreeTerms: false
                 },
                 
-                getEducationDisplayName(value) {
-                    const educationMap = {
-                        'high_school': 'High School',
-                        'associate': 'Associate Degree',
-                        'bachelor': 'Bachelor\'s Degree',
-                        'master': 'Master\'s Degree',
-                        'doctorate': 'Doctorate'
-                    };
+                // getEducationDisplayName(value) {
+                //     const educationMap = {
+                //         'high_school': 'High School',
+                //         'associate': 'Associate Degree',
+                //         'bachelor': 'Bachelor\'s Degree',
+                //         'master': 'Master\'s Degree',
+                //         'doctorate': 'Doctorate'
+                //     };
                     
-                    return educationMap[value] || value;
-                },
+                //     return educationMap[value] || value;
+                // },
                 
                 goToNextStep() {
                     if (this.currentStep < this.steps.length) {
@@ -637,10 +458,10 @@
                 
                 submitForm() {
                     // Form validation
-                    if (!this.formData.agreeTerms) {
-                        alert('Please agree to the Terms and Conditions to continue.');
-                        return;
-                    }
+                    // if (!this.formData.agreeTerms) {
+                    //     alert('Please agree to the Terms and Conditions to continue.');
+                    //     return;
+                    // }
                     
                     // Here you would normally send the data to your Laravel backend
                     console.log('Form submitted!', this.formData);
@@ -667,9 +488,6 @@
     </script>
 </div>
 
-
-
 @endsection
-
 
 </html>
