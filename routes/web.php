@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('society.createEvent');
     })->name('society.create-event-view');
     Route::post('/create-event', [CreateEventContoller::class, 'store'])->name('society.createEvent');
+    Route::post('/store-event-application-data', [EventManagementController::class, 'storeEventApplicationData'])->name('society.storeEventApplicationData');
 });
 
 Route::middleware('auth')->group(function () {
