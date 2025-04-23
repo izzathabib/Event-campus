@@ -60,7 +60,7 @@
         @endif
         <!-- Form Body -->
         <div class="p-6">
-            <form action="{{ route('society.storeEventApplicationData') }}" method="POST" enctype="multipart/form-data" id="multi-step-form" @submit.prevent="submitForm">
+            <form action="{{ route('society.storeEventApplicationData') }}" method="POST" enctype="multipart/form-data" id="multi-step-form">
                 @csrf
                 <!-- Step 1: Paper work -->
                 <div x-show="currentStep === 1" class="step-transition">
