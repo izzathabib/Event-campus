@@ -68,36 +68,166 @@
                     PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
                     
                     <div class="grid grid-cols-1  gap-6">
-                        <div>
+                        <!-- Tajuk Kertas Kerja -->
+                        <div x-data="{ 
+                            value: '{{ old('tajuk_kk') }}',
+                            hasError: {{ $errors->has('tajuk_kk') ? 'true' : 'false' }},
+                            errorMessage: '',
+                            validate() {
+                                if (this.value.length === 0) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else if (this.value.length > 1) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 100 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $parent.updateFormError('tajuk_kk', this.hasError);
+                            }
+                        }" @init="validate()">
                             <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
-                            <input type="text" id="tajuk_kk" name="tajuk_kk" x-model="formData.tajukKk" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            <input type="text" id="tajuk_kk" name="tajuk_kk"
+                                x-model="value"
+                                @input="validate()"
+                                x-bind:class="hasError 
+                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
                                 required>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('tajuk_kk')" class="mt-2" />
                         </div>
-                        
-                        <!-- <div>
+                        <!-- Pengenalan & Kumpulan Sasaran/ Penyertaan -->
+                        <div x-data="{ 
+                            value: '{{ old('peng_kump_sasar') }}',
+                            hasError: {{ $errors->has('peng_kump_sasar') ? 'true' : 'false' }},
+                            errorMessage: '',
+                            validate() {
+                                if (this.value.length === 0) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else if (this.value.length > 1) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 2000 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $parent.updateFormError('peng_kump_sasar', this.hasError);
+                            }
+                        }" @init="validate()">
                             <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                            <textarea id="peng_kump_sasar" name="peng_kump_sasar" rows="10" cols="50" x-model="formData.pengKumpSasar" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                            </textarea>
+                            <textarea 
+                            id="peng_kump_sasar" 
+                            name="peng_kump_sasar" 
+                            rows="10" cols="50"
+                            x-model="value"
+                            @input="validate()" 
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
+                            required
+                            ></textarea>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('peng_kump_sasar')" class="mt-2" />
                         </div>
-                        
-                        <div>
+                        <!-- Objektif (Selaras dengan Elemen & Atribut HEBAT) -->
+                        <div x-data="{ 
+                            value: '{{ old('obj') }}',
+                            hasError: {{ $errors->has('obj') ? 'true' : 'false' }},
+                            errorMessage: '',
+                            validate() {
+                                if (this.value.length === 0) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else if (this.value.length > 1) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 1000 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $parent.updateFormError('obj', this.hasError);
+                            }
+                        }" @init="validate()">
                             <label for="obj" class="block text-sm font-medium text-gray-700 mb-1">Objektif (Selaras dengan Elemen & Atribut HEBAT)</label>
-                            <textarea id="obj" name="obj" rows="5" cols="50" x-model="formData.obj" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                            </textarea>
+                            <textarea 
+                            id="obj" 
+                            name="obj" 
+                            rows="5" cols="50"
+                            x-model="value"
+                            @input="validate()" 
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
+                            required
+                            ></textarea>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('obj')" class="mt-2" />
                         </div>
-                        
-                        <div>
+                        <!-- Impak Dijangkakan -->
+                        <div x-data="{ 
+                            value: '{{ old('impak') }}',
+                            hasError: {{ $errors->has('impak') ? 'true' : 'false' }},
+                            errorMessage: '',
+                            validate() {
+                                if (this.value.length === 0) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else if (this.value.length > 1) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 2000 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $parent.updateFormError('impak', this.hasError);
+                            }
+                        }" @init="validate()">
                             <label for="impak" class="block text-sm font-medium text-gray-700 mb-1">Impak Dijangkakan</label>
-                            <textarea id="impak" name="impak" rows="10" cols="50" x-model="formData.impak" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                            </textarea>
-                        </div> -->
+                            <textarea 
+                            id="impak" 
+                            name="impak" 
+                            rows="10" cols="50"
+                            x-model="value"
+                            @input="validate()" 
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
+                            required
+                            ></textarea>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('impak')" class="mt-2" />
+                        </div>
                     </div>
                     <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
                         TENTATIF PROGRAM/ PROJEK/ AKTIVITI
@@ -378,7 +508,12 @@
                         <button 
                             x-show="currentStep === steps.length" 
                             type="submit"
-                            class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-md transition-colors duration-300"
+                            x-bind:disabled="hasErrors()"
+                            class="px-6 py-2 text-sm rounded-md transition-colors duration-300"
+                            x-bind:class="{
+                                'bg-purple-600 hover:bg-purple-700 text-white cursor-pointer': !hasErrors(),
+                                'bg-gray-400 text-gray-200 cursor-not-allowed': hasErrors()
+                            }"
                         >
                             Submit Application
                         </button>
@@ -417,6 +552,15 @@
             return {
                 currentStep: 1,
                 showSuccessModal: false,
+                formErrors: {
+                    tajuk_kk: false,
+                    peng_kump_sasar: false,
+                    obj: false,
+                    impak: false,
+                    taj_prog: false,
+                    nama: false
+                },
+                
                 steps: [
                     { title: 'Paper Work' },
                     { title: 'MyCSD Mapping' },
@@ -425,6 +569,9 @@
                 formData: {
                     // Paper work
                     tajukKk: '',
+                    pengKumpSasar: '',
+                    obj: '',
+                    impak: '',
                     
                     // MyCSD Mapping
                     tajProg: '',
@@ -434,6 +581,16 @@
 
                     // Terms agreement
                     // agreeTerms: false
+                },
+
+                // Add hasErrors method here
+                hasErrors() {
+                    return Object.values(this.formErrors).some(error => error === true);
+                },
+
+                // Add this method to update form errors
+                updateFormError(field, hasError) {
+                    this.formErrors[field] = hasError;
                 },
                 
                 // getEducationDisplayName(value) {
@@ -496,6 +653,8 @@
                         }
                     });
                 }
+
+                
             };
         }
     </script>

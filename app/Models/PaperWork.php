@@ -12,6 +12,9 @@ class PaperWork extends Model
     protected $fillable = [
         'user_id',
         'tajuk_kk',
+        'peng_kump_sasar',
+        'obj',
+        'impak',
     ];
 
     public function users()
