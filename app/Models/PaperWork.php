@@ -21,5 +21,15 @@ class PaperWork extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function apply_to_organize_events()
+    {
+        return $this->hasOne(ApplyToOrganizeEvent::class);
+    }
+
+    public function mycsd_maps()
+    {
+        return $this->hasOne(MycsdMap::class);
+    }
     
 }

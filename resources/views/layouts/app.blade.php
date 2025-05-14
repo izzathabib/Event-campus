@@ -6,11 +6,10 @@
     <title>EventUSM</title>
     @yield('styles')
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     @vite([
       'resources/css/app.css',
       'resources/css/sidebar.css', 
-      'resources/css/botNav.css', 
       'resources/js/app.js'
       ])
 </head>
@@ -169,5 +168,7 @@
             @yield('content')
         </div>
     </main>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @yield('scripts')
 </body>
 </html>

@@ -11,12 +11,18 @@ class ApplyToOrganizeEvent extends Model
 
     protected $fillable = [
         'user_id',
+        'paper_work_id',
         'nama',
     ];
 
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function paper_works()
+    {
+        return $this->belongsTo(PaperWork::class, 'paper_work_id', 'id');
     }
     
 }

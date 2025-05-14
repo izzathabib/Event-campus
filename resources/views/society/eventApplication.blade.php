@@ -64,17 +64,16 @@
                 @csrf
                 <!-- Step 1: Paper work -->
                 <div x-show="currentStep === 1" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI
-                    PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
                     
                     <div class="grid grid-cols-1  gap-6">
                         <!-- Tajuk Kertas Kerja -->
                         <div x-data="{ 
                             value: '{{ old('tajuk_kk') }}',
-                            hasError: {{ $errors->has('tajuk_kk') ? 'true' : 'false' }},
+                            hasError: false,
                             errorMessage: '',
                             validate() {
-                                if (this.value.length === 0) {
+                                if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
                                 } else if (this.value.length > 1) {
@@ -84,10 +83,9 @@
                                     this.hasError = false;
                                     this.errorMessage = '';
                                 }
-                                // Update the parent form's error tracking
-                                $parent.updateFormError('tajuk_kk', this.hasError);
+                                $data.updateFormError('tajuk_kk', this.hasError);
                             }
-                        }" @init="validate()">
+                        }" @init="validate()" @input="validate()">
                             <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
                             <input type="text" id="tajuk_kk" name="tajuk_kk"
                                 x-model="value"
@@ -108,10 +106,10 @@
                         <!-- Pengenalan & Kumpulan Sasaran/ Penyertaan -->
                         <div x-data="{ 
                             value: '{{ old('peng_kump_sasar') }}',
-                            hasError: {{ $errors->has('peng_kump_sasar') ? 'true' : 'false' }},
+                            hasError: false,
                             errorMessage: '',
                             validate() {
-                                if (this.value.length === 0) {
+                                if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
                                 } else if (this.value.length > 1) {
@@ -122,9 +120,9 @@
                                     this.errorMessage = '';
                                 }
                                 // Update the parent form's error tracking
-                                $parent.updateFormError('peng_kump_sasar', this.hasError);
+                                $data.updateFormError('peng_kump_sasar', this.hasError);
                             }
-                        }" @init="validate()">
+                        }" @init="validate()" @input="validate()">
                             <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
                             <textarea 
                             id="peng_kump_sasar" 
@@ -149,10 +147,10 @@
                         <!-- Objektif (Selaras dengan Elemen & Atribut HEBAT) -->
                         <div x-data="{ 
                             value: '{{ old('obj') }}',
-                            hasError: {{ $errors->has('obj') ? 'true' : 'false' }},
+                            hasError: false,
                             errorMessage: '',
                             validate() {
-                                if (this.value.length === 0) {
+                                if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
                                 } else if (this.value.length > 1) {
@@ -163,9 +161,9 @@
                                     this.errorMessage = '';
                                 }
                                 // Update the parent form's error tracking
-                                $parent.updateFormError('obj', this.hasError);
+                                $data.updateFormError('obj', this.hasError);
                             }
-                        }" @init="validate()">
+                        }" @init="validate()" @input="validate()">
                             <label for="obj" class="block text-sm font-medium text-gray-700 mb-1">Objektif (Selaras dengan Elemen & Atribut HEBAT)</label>
                             <textarea 
                             id="obj" 
@@ -190,10 +188,10 @@
                         <!-- Impak Dijangkakan -->
                         <div x-data="{ 
                             value: '{{ old('impak') }}',
-                            hasError: {{ $errors->has('impak') ? 'true' : 'false' }},
+                            hasError: false,
                             errorMessage: '',
                             validate() {
-                                if (this.value.length === 0) {
+                                if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
                                 } else if (this.value.length > 1) {
@@ -204,9 +202,9 @@
                                     this.errorMessage = '';
                                 }
                                 // Update the parent form's error tracking
-                                $parent.updateFormError('impak', this.hasError);
+                                $data.updateFormError('impak', this.hasError);
                             }
-                        }" @init="validate()">
+                        }" @init="validate()" @input="validate()">
                             <label for="impak" class="block text-sm font-medium text-gray-700 mb-1">Impak Dijangkakan</label>
                             <textarea 
                             id="impak" 
@@ -294,11 +292,42 @@
                     </h3>
                     
                     <div class="grid grid-cols-1 gap-6">
-                        <div>
+                        <!-- TAJUK PROGRAM / AKTIVITI -->
+                        <div x-data="{ 
+                            value: '{{ old('taj_prog') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value || this.value.trim() === '') {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else if (this.value.length > 1) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 2000 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $data.updateFormError('taj_prog', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
                             <label for="taj_prog" class="block text-sm font-medium text-gray-700 mb-1">TAJUK PROGRAM / AKTIVITI</label>
-                            <input type="text" id="taj_prog" name="taj_prog" x-model="formData.tajProg" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
+                            <input type="text" id="taj_prog" name="taj_prog" 
+                            x-model="value"
+                            @input="validate()" 
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                            required>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('taj_prog')" class="mt-2" />
                         </div>
 
                         <!-- <div>
@@ -423,11 +452,43 @@
                     <h5 class="text-sm font-semibold text-gray-800 mb-2 mt-2">
                     1. Butiran Pemohon
                     </h5>
-                        <div>
+
+                        <!-- Nama -->
+                        <div x-data="{ 
+                            value: '{{ old('nama') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value || this.value.trim() === '') {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else if (this.value.length > 1) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 100 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $data.updateFormError('nama', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
                             <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
-                            <input type="text" id="nama" name="nama" x-model="formData.nama" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
+                            <input type="text" id="nama" name="nama" 
+                            x-model="value"
+                            @input="validate()"
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                            required>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('nama')" class="mt-2" />
                         </div>
                         
                         <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -514,8 +575,9 @@
                                 'bg-purple-600 hover:bg-purple-700 text-white cursor-pointer': !hasErrors(),
                                 'bg-gray-400 text-gray-200 cursor-not-allowed': hasErrors()
                             }"
+                            
                         >
-                            Submit Application
+                            <span>Submit Application</span>
                         </button>
                     </div>
                 </div>
@@ -546,118 +608,7 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        function multiStepForm() {
-            return {
-                currentStep: 1,
-                showSuccessModal: false,
-                formErrors: {
-                    tajuk_kk: false,
-                    peng_kump_sasar: false,
-                    obj: false,
-                    impak: false,
-                    taj_prog: false,
-                    nama: false
-                },
-                
-                steps: [
-                    { title: 'Paper Work' },
-                    { title: 'MyCSD Mapping' },
-                    { title: 'Application to Organize Events' },
-                ],
-                formData: {
-                    // Paper work
-                    tajukKk: '',
-                    pengKumpSasar: '',
-                    obj: '',
-                    impak: '',
-                    
-                    // MyCSD Mapping
-                    tajProg: '',
-                    
-                    // Application to Organize Events
-                    nama: '',
-
-                    // Terms agreement
-                    // agreeTerms: false
-                },
-
-                // Add hasErrors method here
-                hasErrors() {
-                    return Object.values(this.formErrors).some(error => error === true);
-                },
-
-                // Add this method to update form errors
-                updateFormError(field, hasError) {
-                    this.formErrors[field] = hasError;
-                },
-                
-                // getEducationDisplayName(value) {
-                //     const educationMap = {
-                //         'high_school': 'High School',
-                //         'associate': 'Associate Degree',
-                //         'bachelor': 'Bachelor\'s Degree',
-                //         'master': 'Master\'s Degree',
-                //         'doctorate': 'Doctorate'
-                //     };
-                    
-                //     return educationMap[value] || value;
-                // },
-                
-                goToNextStep() {
-                    if (this.currentStep < this.steps.length) {
-                        this.currentStep++;
-                        window.scrollTo(0, 0);
-                    }
-                },
-                
-                goToPrevStep() {
-                    if (this.currentStep > 1) {
-                        this.currentStep--;
-                        window.scrollTo(0, 0);
-                    }
-                },
-                
-                goToStep(step) {
-                    if (step >= 1 && step <= this.steps.length) {
-                        this.currentStep = step;
-                        window.scrollTo(0, 0);
-                    }
-                },
-                
-                submitForm() {
-                    // Form validation
-                    // if (!this.formData.agreeTerms) {
-                    //     alert('Please agree to the Terms and Conditions to continue.');
-                    //     return;
-                    // }
-                    
-                    // Here you would normally send the data to your Laravel backend
-                    console.log('Form submitted!', this.formData);
-                    
-                    // For demo purposes, we'll just show a success message
-                    this.showSuccessModal = true;
-                },
-                
-                resetForm() {
-                    this.currentStep = 1;
-                    this.showSuccessModal = false;
-                    
-                    // Reset form data
-                    Object.keys(this.formData).forEach(key => {
-                        if (typeof this.formData[key] === 'boolean') {
-                            this.formData[key] = false;
-                        } else {
-                            this.formData[key] = '';
-                        }
-                    });
-                }
-
-                
-            };
-        }
-    </script>
 </div>
-
 @endsection
+
+

@@ -34,11 +34,12 @@ class EventManagementController extends Controller
             // Application to Organize Events
             'nama' => 'bail|required|string|max:1',
         ], [
-
+            #--#--#
+            # KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA
             // tajuk_kk
             'tajuk_kk.required' => 'Tajuk Kertas Kerja is required.',
             'tajuk_kk.string' => 'Tajuk Kertas Kerja must be a valid text.',
-            'tajuk_kk.max' => 'Tajuk Kertas Kerja must not exceed 255 characters.',
+            'tajuk_kk.max' => 'Tajuk Kertas Kerja must not exceed 100 characters.',
 
             // peng_kump_sasar
             'peng_kump_sasar.required' => 'Pengenalan & Kumpulan Sasaran is required.',
@@ -53,14 +54,27 @@ class EventManagementController extends Controller
             // impak
             'impak.required' => 'Impak Dijangkakan is required.',
             'impak.string' => 'Impak Dijangkakan must be a valid text.',
-            'impak.max' => 'Impak Dijangkakan must not exceed 1000 characters.',
-
+            'impak.max' => 'Impak Dijangkakan must not exceed 2000 characters.',
+            
+            #--#--#
+            # PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
+            // taj_prog
+            'taj_prog.required' => 'Tajuk Program is required.',
+            'taj_prog.string' => 'Tajuk Program must be a valid text.',
+            'taj_prog.max' => 'Tajuk Program must not exceed 100 characters.',
+            
+            #--#--#
+            # PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
+            // nama
+            'nama.required' => 'Nama Program is required.',
+            'nama.string' => 'Nama Program must be a valid text.',
+            'nama.max' => 'Nama Program must not exceed 100 characters.',
         ]);
 
-        dd($validatedData);
+        
 
         // Store data in the respective tables
-        PaperWork::create([
+        $paperWork = PaperWork::create([
             'user_id' => Auth::id(),
             'tajuk_kk' => $validatedData['tajuk_kk'],
             'peng_kump_sasar' => $validatedData['peng_kump_sasar'],
@@ -70,11 +84,13 @@ class EventManagementController extends Controller
 
         MycsdMap::create([
             'user_id' => Auth::id(),
+            'paper_work_id' => $paperWork->id,
             'taj_prog' => $validatedData['taj_prog'],
         ]);
 
         ApplyToOrganizeEvent::create([
             'user_id' => Auth::id(),
+            'paper_work_id' => $paperWork->id,
             'nama' => $validatedData['nama'],
         ]);
 
