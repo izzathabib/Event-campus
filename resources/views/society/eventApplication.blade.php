@@ -314,11 +314,43 @@
                     </div>
 
                     <!-- Lokasi -->
-                    <div>
+                    <div x-data="{ 
+                        value: '{{ old('lokasi') }}',
+                        hasError: false,
+                        errorMessage: '',
+                        validate() {
+                            if (!this.value || this.value.trim() === '') {
+                                this.hasError = true;
+                                this.errorMessage = 'This field is required.';
+                            } else if (this.value.length > 1) {
+                                this.hasError = true;
+                                this.errorMessage = 'Location must not exceed 100 characters.';
+                            } else {
+                                this.hasError = false;
+                                this.errorMessage = '';
+                            }
+                            $data.updateFormError('lokasi', this.hasError);
+                        }
+                    }" @init="validate()" @input="validate()">
                         <label for="lokasi" class="block text-sm font-medium text-gray-700 mb-1 mt-4">Lokasi</label>
-                        <input type="text" id="lokasi" name="lokasi"  
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                        <input type="text" id="lokasi" name="lokasi"
+                            x-model="value"
+                            @input="validate()"
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                             required>
+                        <p class="block text-sm font-medium text-gray-700 mb-1 mt-6">
+                            *S1la nyatakan alamat pautan sekiranya Program/ Projek/ Aktiviti dijalankan secara atas talian atau hibrid.<br> 
+                            Sila patuhi SOP pencegahan/ penularan wabak pandemik Covid-19 MKN/ USM yang sedang berkuatkuasa.
+                        </p>
+                        <!-- Real-time error message -->
+                        <p x-show="hasError" 
+                            x-text="errorMessage"
+                            class="mt-2 text-sm text-red-600">
+                        </p>
+                        <!-- Server-side error message -->
+                        <x-input-error :messages="$errors->get('lokasi')" class="mt-2" />
                     </div>
                     <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
                     Atur Cara

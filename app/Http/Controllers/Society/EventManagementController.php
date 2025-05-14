@@ -29,6 +29,7 @@ class EventManagementController extends Controller
             'impak' => 'bail|required|string|max:1',
             'tarikh' => 'required|date|after:today',
             'masa' => 'required|date_format:H:i',
+            'lokasi' => 'required|string|max:100',
 
             // MyCSD Mapping
             'taj_prog' => 'bail|required|string|max:1',
@@ -66,6 +67,11 @@ class EventManagementController extends Controller
             // masa
             'masa.required' => 'Time is required.',
             'masa.date_format' => 'Please enter a valid time.',
+
+            // lokasi
+            'lokasi.required' => 'Location is required.',
+            'lokasi.string' => 'Location must be text.',
+            'lokasi.max' => 'Location must not exceed 100 characters.',
             
             #--#--#
             # PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
@@ -91,6 +97,9 @@ class EventManagementController extends Controller
             'peng_kump_sasar' => $validatedData['peng_kump_sasar'],
             'obj' => $validatedData['obj'],
             'impak' => $validatedData['impak'],
+            'tarikh' => $validatedData['tarikh'],
+            'masa' => $validatedData['masa'],
+            'lokasi' => $validatedData['lokasi'],
         ]);
 
         MycsdMap::create([

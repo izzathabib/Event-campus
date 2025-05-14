@@ -15,6 +15,9 @@ class PaperWork extends Model
         'peng_kump_sasar',
         'obj',
         'impak',
+        'tarikh',
+        'masa',
+        'lokasi',
     ];
 
     public function users()
@@ -31,5 +34,5 @@ class PaperWork extends Model
     {
         return $this->hasOne(MycsdMap::class);
     }
-    
+
 }

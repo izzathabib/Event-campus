@@ -10,6 +10,7 @@ window.multiStepForm = function() {
             impak: true,
             tarikh: true,
             masa: true,
+            lokasi: true,
             // MyCSD Mapping
             taj_prog: true,
             // Application to Organize Events
