@@ -27,6 +27,8 @@ class EventManagementController extends Controller
             'peng_kump_sasar' => 'bail|required|string|max:1',
             'obj' => 'bail|required|string|max:1',
             'impak' => 'bail|required|string|max:1',
+            'tarikh' => 'required|date|after:today',
+            'masa' => 'required|date_format:H:i',
 
             // MyCSD Mapping
             'taj_prog' => 'bail|required|string|max:1',
@@ -55,6 +57,15 @@ class EventManagementController extends Controller
             'impak.required' => 'Impak Dijangkakan is required.',
             'impak.string' => 'Impak Dijangkakan must be a valid text.',
             'impak.max' => 'Impak Dijangkakan must not exceed 2000 characters.',
+
+            // tarikh
+            'tarikh.required' => 'Date is required.',
+            'tarikh.date' => 'Please enter a valid date.',
+            'tarikh.after' => 'Date must be in the future.',
+
+            // masa
+            'masa.required' => 'Time is required.',
+            'masa.date_format' => 'Please enter a valid time.',
             
             #--#--#
             # PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI

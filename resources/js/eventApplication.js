@@ -3,11 +3,16 @@ window.multiStepForm = function() {
         currentStep: 1,
         showSuccessModal: false,
         formErrors: {
+            // Paper work
             tajuk_kk: true,
             peng_kump_sasar: true,
             obj: true,
             impak: true,
+            tarikh: true,
+            masa: true,
+            // MyCSD Mapping
             taj_prog: true,
+            // Application to Organize Events
             nama: true
         },
         

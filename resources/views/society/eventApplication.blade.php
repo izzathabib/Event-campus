@@ -92,7 +92,8 @@
                                 @input="validate()"
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
+                                class="cursor-auto" 
                                 required>
                             <!-- Real-time error message -->
                             <p
@@ -227,31 +228,98 @@
                             <x-input-error :messages="$errors->get('impak')" class="mt-2" />
                         </div>
                     </div>
-                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
+                    <p class="text-sm font-semibold text-gray-800 mb-4 mt-14">Lampiran A</p>
+                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
                         TENTATIF PROGRAM/ PROJEK/ AKTIVITI
-                    </h5> -->
-                    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
+                    </h5>
+                    <!-- Tarikh and Masa in 1 line -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Tarikh -->
+                        <div x-data="{ 
+                            value: '{{ old('tarikh') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else {
+                                    // Get current date
+                                    const today = new Date();
+                                    const selectedDate = new Date(this.value);
+                                    
+                                    // Check if date is in the past
+                                    if (selectedDate < today) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Date cannot be in the past.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                }
+                                $data.updateFormError('tarikh', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
                             <label for="tarikh" class="block text-sm font-medium text-gray-700 mb-1">Tarikh/ Hari</label>
-                            <input type="date" id="tarikh" name="tarikh" x-model="formData.tarikh" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            <input type="date" id="tarikh" name="tarikh"
+                                x-model="value"
+                                @input="validate()"
+                                x-bind:class="hasError 
+                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 cursor-pointer focus:outline-none focus:ring-1 focus:ring-purple-500'" 
                                 required>
+                            <!-- Real-time error message -->
+                            <p x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600">
+                            </p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('tarikh')" class="mt-2" />
                         </div>
 
-                        <div>
+                        <!-- Masa -->
+                        <div x-data="{
+                            value: '{{ old('masa') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field is required.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                $data.updateFormError('masa', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
                             <label for="masa" class="block text-sm font-medium text-gray-700 mb-1">Masa</label>
-                            <input type="time" id="masa" name="masa" x-model="formData.masa" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            <input type="time" id="masa" name="masa"
+                                x-model="value"
+                                @input="validate()"
+                                x-bind:class="hasError 
+                                    ? ' border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                    : ' '" 
+                                class="w-full cursor-pointer px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500"
                                 required>
+                            <!-- Real-time error message -->
+                            <p x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600">
+                            </p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('masa')" class="mt-2" />
                         </div>
+                    </div>
 
-                        <div>
-                            <label for="lokasi" class="block text-sm font-medium text-gray-700 mb-1">Lokasi</label>
-                            <input type="text" id="lokasi" name="lokasi" x-model="formData.lokasi" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                        </div>
-                    </div> -->
+                    <!-- Lokasi -->
+                    <div>
+                        <label for="lokasi" class="block text-sm font-medium text-gray-700 mb-1 mt-4">Lokasi</label>
+                        <input type="text" id="lokasi" name="lokasi"  
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            required>
+                    </div>
                     <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
                     Atur Cara
                     </h5> -->
