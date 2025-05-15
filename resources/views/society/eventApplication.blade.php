@@ -341,7 +341,7 @@
                                 : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                             required>
                         <p class="block text-sm font-medium text-gray-700 mb-1 mt-6">
-                            *S1la nyatakan alamat pautan sekiranya Program/ Projek/ Aktiviti dijalankan secara atas talian atau hibrid.<br> 
+                            * Sila nyatakan alamat pautan sekiranya Program/ Projek/ Aktiviti dijalankan secara atas talian atau hibrid.<br> 
                             Sila patuhi SOP pencegahan/ penularan wabak pandemik Covid-19 MKN/ USM yang sedang berkuatkuasa.
                         </p>
                         <!-- Real-time error message -->
@@ -352,9 +352,118 @@
                         <!-- Server-side error message -->
                         <x-input-error :messages="$errors->get('lokasi')" class="mt-2" />
                     </div>
-                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
-                    Atur Cara
-                    </h5> -->
+                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-10">
+                        Atur Cara
+                    </h5>
+
+                    <!-- Table for Time and Activity -->
+                    <div x-data="{
+                        timeActivities: [{ time: '', activity: '', id: 1, hasError: false }],
+                        /* 
+                            Prevent only time or only acivity filled up.
+                            The valid input is when both field in same row (time and activity) filled up.
+                        */
+                        validateRow(row) {
+                            let isValid = true;
+                            if (!row.time || !row.activity.trim()) {
+                                row.hasError = true;
+                                row.errorMessage = 'Both time and activity are required.';
+                                isValid = false;
+                            } else {
+                                row.hasError = false;
+                            }
+                            
+                            // Update the parent form error state for timeActivities
+                            $data.updateFormError('timeActivities', this.timeActivities.some(row => !row.time || !row.activity.trim()));
+                            
+                            return isValid;
+                        },
+                        // Returns true only if ALL rows are valid allowing for submission
+                        /* validateAllRows() {
+                            return this.timeActivities.every(row => this.validateRow(row));
+                        }, */
+                        addRow() {
+                            this.timeActivities.push({
+                                time: '',
+                                activity: '',
+                                id: Date.now(),
+                                hasError: false
+                            });
+                            // Validate after adding new row
+                            this.validateRow(this.timeActivities[this.timeActivities.length - 1]);
+                        },
+                        removeRow(index) {
+                            if (this.timeActivities.length > 1) {
+                                this.timeActivities.splice(index, 1);
+                            }
+                        }
+                    }" x-ref="timeActivitiesForm">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
+                                        <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
+                                        <!-- <th class="px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template x-for="(row, index) in timeActivities" :key="row.id">
+                                        <tr>
+                                            <td class="px-2 py-4 whitespace-nowrap border-b">
+                                                <input 
+                                                    type="time" 
+                                                    x-model="row.time"
+                                                    @input="validateRow(row)"
+                                                    :class="row.hasError 
+                                                        ? 'w-32 px-2 py-2 border rounded-md border-red-500'
+                                                        : 'w-32 px-2 py-2 border rounded-md border-gray-300'"
+                                                    required
+                                                >
+                                            </td>
+                                            <td class="px-2 py-4 whitespace-nowrap border-b">
+                                                <input 
+                                                    type="text" 
+                                                    x-model="row.activity"
+                                                    @input="validateRow(row)"
+                                                    :class="row.hasError 
+                                                        ? 'w-full px-2 py-2 border rounded-md border-red-500'
+                                                        : 'w-full px-2 py-2 border rounded-md border-gray-300'"
+                                                    placeholder="Enter activity"
+                                                    required
+                                                >
+                                            </td>
+                                            <td class="px-1 py-4 whitespace-nowrap border-b">
+                                                <button 
+                                                    type="button"
+                                                    @click="removeRow(index)"
+                                                    class="text-red-600 hover:text-red-800 text-center"
+                                                    x-show="timeActivities.length > 1"
+                                                >
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Error message for the whole table -->
+                        <p x-show="timeActivities.some(row => !row.time || !row.activity.trim())"
+                            class="text-sm text-red-600 font-medium mt-3">
+                            * Please fill in both time and activity fields or remove unwanted rows. 
+                        </p>
+
+                        <button 
+                            type="button"
+                            @click="addRow"
+                            class="mt-4 px-4 py-2 border border-gray-300 text-purple-700 text-sm font-medium rounded-md hover:font-semibold transition-colors duration-300 hover:shadow-md"
+                        >
+                            Add Row
+                        </button>
+                    </div>
                     <!-- <div>
                         <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
                         <textarea id="atur_cara" name="atur_cara" rows="10" cols="50" x-model="formData.aturCara" 

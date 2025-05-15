@@ -11,6 +11,7 @@ window.multiStepForm = function() {
             tarikh: true,
             masa: true,
             lokasi: true,
+            timeActivities: true,
             // MyCSD Mapping
             taj_prog: true,
             // Application to Organize Events
