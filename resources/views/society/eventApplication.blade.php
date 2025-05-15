@@ -404,7 +404,7 @@
                                     <tr class="bg-gray-50">
                                         <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
                                         <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
-                                        <!-- <th class="px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th> -->
+                                        <th class="px-4 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -433,7 +433,7 @@
                                                     required
                                                 >
                                             </td>
-                                            <td class="px-1 py-4 whitespace-nowrap border-b">
+                                            <td class="py-4 whitespace-nowrap border-b">
                                                 <button 
                                                     type="button"
                                                     @click="removeRow(index)"
@@ -462,6 +462,14 @@
                             class="mt-4 px-4 py-2 border border-gray-300 text-purple-700 text-sm font-medium rounded-md hover:font-semibold transition-colors duration-300 hover:shadow-md"
                         >
                             Add Row
+                        </button>
+
+                        <button 
+                            type="button"
+                            @click="addRow"
+                            class="mt-4 ml-2 px-4 py-2 border border-gray-300 text-purple-700 text-sm font-medium rounded-md hover:font-semibold transition-colors duration-300 hover:shadow-md"
+                        >
+                            Add Day
                         </button>
                     </div>
                     <!-- <div>
