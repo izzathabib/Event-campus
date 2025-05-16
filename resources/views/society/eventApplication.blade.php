@@ -233,23 +233,21 @@
                         TENTATIF PROGRAM/ PROJEK/ AKTIVITI
                     </h5>
                     <!-- Tarikh and Masa in 1 line -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 justify-between">
 
-                        <!-- Tarikh -->
-                        <div x-data="{ 
-                            value: '{{ old('tarikh') }}',
+                        <!-- Tarikh Mula -->
+                        <div class="w-48"
+                        x-data="{ 
+                            value: '{{ old('start_date') }}',
                             hasError: false,
                             errorMessage: '',
                             validate() {
                                 if (!this.value) {
                                     this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
+                                    this.errorMessage = 'Start date is required.';
                                 } else {
-                                    // Get current date
                                     const today = new Date();
                                     const selectedDate = new Date(this.value);
-                                    
-                                    // Check if date is in the past
                                     if (selectedDate < today) {
                                         this.hasError = true;
                                         this.errorMessage = 'Date cannot be in the past.';
@@ -258,29 +256,66 @@
                                         this.errorMessage = '';
                                     }
                                 }
-                                $data.updateFormError('tarikh', this.hasError);
+                                $data.updateFormError('start_date', this.hasError);
                             }
                         }" @init="validate()" @input="validate()">
-                            <label for="tarikh" class="block text-sm font-medium text-gray-700 mb-1">Tarikh/ Hari</label>
-                            <input type="date" id="tarikh" name="tarikh"
+                            <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">Tarikh Mula</label>
+                            <input type="date" 
+                                id="start_date" 
+                                name="start_date"
                                 x-model="value"
                                 @input="validate()"
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 cursor-pointer focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                                 required>
-                            <!-- Real-time error message -->
                             <p x-show="hasError" 
                                 x-text="errorMessage"
                                 class="mt-2 text-sm text-red-600">
                             </p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('tarikh')" class="mt-2" />
                         </div>
 
-                        <!-- Masa -->
-                        <div x-data="{
-                            value: '{{ old('masa') }}',
+                        <!-- Masa Mula -->
+                        <div class="w-40"
+                        x-data="{ 
+                            value: '{{ old('start_time') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'Start time is required.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                $data.updateFormError('start_time', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
+                            <label for="start_time" class="block text-sm font-medium text-gray-700 mb-1">Masa Mula</label>
+                            <input type="time" 
+                                id="start_time" 
+                                name="start_time"
+                                x-model="value"
+                                @input="validate()"
+                                x-bind:class="hasError 
+                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
+                                required>
+                            <p x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600">
+                            </p>
+                        </div>
+
+                        <div class="w-6 flex items-center">
+                            <span class="inline-block w-5 h-px bg-gray-400"></span>
+                        </div>
+
+                        <!-- Tarikh Tamat -->
+                        <div class="w-48"
+                        x-data="{ 
+                            value: '{{ old('end_date') }}',
                             hasError: false,
                             errorMessage: '',
                             validate() {
@@ -288,29 +323,85 @@
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
                                 } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
+                                    // Get the start date value from the start_date input
+                                    const startDate = new Date(document.getElementById('start_date').value);
+                                    const endDate = new Date(this.value);
+                                    
+                                    if (endDate < startDate) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Tarikh tamat cannot be before tarikh mula.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
                                 }
-                                $data.updateFormError('masa', this.hasError);
+                                $data.updateFormError('end_date', this.hasError);
                             }
                         }" @init="validate()" @input="validate()">
-                            <label for="masa" class="block text-sm font-medium text-gray-700 mb-1">Masa</label>
-                            <input type="time" id="masa" name="masa"
+                            <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">Tarikh Tamat</label>
+                            <input type="date" 
+                                id="end_date" 
+                                name="end_date"
                                 x-model="value"
                                 @input="validate()"
                                 x-bind:class="hasError 
-                                    ? ' border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : ' '" 
-                                class="w-full cursor-pointer px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                                 required>
-                            <!-- Real-time error message -->
                             <p x-show="hasError" 
                                 x-text="errorMessage"
                                 class="mt-2 text-sm text-red-600">
                             </p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('masa')" class="mt-2" />
                         </div>
+
+                        <!-- Masa Tamat -->
+                        <div class="w-40" 
+                        x-data="{ 
+                            value: '{{ old('end_time') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'End time is required.';
+                                } else {
+                                    // Get start date and end date
+                                    const startDate = document.getElementById('start_date').value;
+                                    const endDate = document.getElementById('end_date').value;
+                                
+                                    // Get start time
+                                    const startTime = document.getElementById('start_time').value;
+                                
+                                    // If same day, check time
+                                    if (startDate === endDate) {
+                                        if (this.value <= startTime) {
+                                            this.hasError = true;
+                                            this.errorMessage = 'End time must be after start time.';
+                                        } else {
+                                            this.hasError = false;
+                                            this.errorMessage = '';
+                                        }
+                                    }
+                                } 
+                                $data.updateFormError('end_time', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
+                            <label for="end_time" class="block text-sm font-medium text-gray-700 mb-1">Masa Tamat</label>
+                            <input type="time" 
+                                id="end_time" 
+                                name="end_time"
+                                x-model="value"
+                                @input="validate()"
+                                x-bind:class="hasError 
+                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
+                                required>
+                            <p x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600">
+                            </p>
+                        </div>
+                        
                     </div>
 
                     <!-- Lokasi -->

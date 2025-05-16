@@ -8,8 +8,9 @@ window.multiStepForm = function() {
             peng_kump_sasar: true,
             obj: true,
             impak: true,
-            tarikh: true,
-            masa: true,
+            start_date: true,
+            start_time: true,
+            end_date: true,
             lokasi: true,
             timeActivities: true,
             // MyCSD Mapping
