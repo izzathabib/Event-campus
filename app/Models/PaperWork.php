@@ -15,8 +15,10 @@ class PaperWork extends Model
         'peng_kump_sasar',
         'obj',
         'impak',
-        'tarikh',
-        'masa',
+        'start_date',
+        'start_time',
+        'end_date',
+        'end_time',
         'lokasi',
     ];
 

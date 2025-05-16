@@ -8,6 +8,7 @@ use App\Models\MycsdMap;
 use App\Models\PaperWork;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EventManagementController extends Controller
 {
@@ -27,8 +28,36 @@ class EventManagementController extends Controller
             'peng_kump_sasar' => 'bail|required|string|max:1',
             'obj' => 'bail|required|string|max:1',
             'impak' => 'bail|required|string|max:1',
-            'tarikh' => 'required|date|after:today',
-            'masa' => 'required|date_format:H:i',
+            'start_date' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    $startDate = \Carbon\Carbon::parse($value);
+                    $today = \Carbon\Carbon::today();
+
+                    if ($startDate->isBefore($today)) {
+                        $fail('The start date cannot be in the past.');
+                    }
+                }
+            ],
+            'start_time' => 'required|date_format:H:i',
+            'end_date' => [
+                'required',
+                'date',
+                'after_or_equal:start_date'
+            ],
+            'end_time' => [
+                'required',
+                'date_format:H:i',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->start_date === $request->end_date) {
+                        $startTime = $request->start_time;
+                        if ($value <= $startTime) {
+                            $fail('End time must be after start time when dates are the same.');
+                        }
+                    }
+                }
+            ],
             'lokasi' => 'required|string|max:100',
 
             // MyCSD Mapping
@@ -97,8 +126,10 @@ class EventManagementController extends Controller
             'peng_kump_sasar' => $validatedData['peng_kump_sasar'],
             'obj' => $validatedData['obj'],
             'impak' => $validatedData['impak'],
-            'tarikh' => $validatedData['tarikh'],
-            'masa' => $validatedData['masa'],
+            'start_date' => $validatedData['start_date'],
+            'start_time' => $validatedData['start_time'],
+            'end_date' => $validatedData['end_date'],
+            'end_time' => $validatedData['end_time'],
             'lokasi' => $validatedData['lokasi'],
         ]);
 
