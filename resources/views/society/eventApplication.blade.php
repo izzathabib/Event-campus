@@ -449,12 +449,14 @@
 
                     <!-- Table for Time and Activity -->
                     <div x-data="{
-                        timeActivities: [{ time: '', activity: '', id: 1, hasError: false }],
-                        /* 
-                            Prevent only time or only acivity filled up.
-                            The valid input is when both field in same row (time and activity) filled up.
-                        */
-                        validateRow(row) {
+                        days: [
+                            {
+                                id: 1,
+                                title: 'Hari Pertama',
+                                timeActivities: [{ time: '', activity: '', id: 1, hasError: false }]
+                            }
+                        ],
+                        validateRow(dayIndex, row) {
                             let isValid = true;
                             if (!row.time || !row.activity.trim()) {
                                 row.hasError = true;
@@ -465,100 +467,140 @@
                             }
                             
                             // Update the parent form error state for timeActivities
-                            $data.updateFormError('timeActivities', this.timeActivities.some(row => !row.time || !row.activity.trim()));
+                            $data.updateFormError('timeActivities', 
+                                this.days.some(day => day.timeActivities.some(row => !row.time || !row.activity.trim()))
+                            );
                             
                             return isValid;
                         },
-                        // Returns true only if ALL rows are valid allowing for submission
-                        /* validateAllRows() {
-                            return this.timeActivities.every(row => this.validateRow(row));
-                        }, */
-                        addRow() {
-                            this.timeActivities.push({
+                        addRow(dayIndex) {
+                            this.days[dayIndex].timeActivities.push({
                                 time: '',
                                 activity: '',
                                 id: Date.now(),
                                 hasError: false
                             });
-                            // Validate after adding new row
-                            this.validateRow(this.timeActivities[this.timeActivities.length - 1]);
                         },
-                        removeRow(index) {
-                            if (this.timeActivities.length > 1) {
-                                this.timeActivities.splice(index, 1);
+                        removeRow(dayIndex, rowIndex) {
+                            if (this.days[dayIndex].timeActivities.length > 1) {
+                                this.days[dayIndex].timeActivities.splice(rowIndex, 1);
+                            }
+                        },
+                        addDay() {
+                            this.days.push({
+                                id: Date.now(),
+                                title: `Hari Ke - ${this.days.length + 1}`,
+                                timeActivities: [{ time: '', activity: '', id: Date.now(), hasError: false }]
+                            });
+                        },
+                        removeDay(dayIndex) {
+                            if (this.days.length > 1) {
+                                this.days.splice(dayIndex, 1);
+                                // Update day titles
+                                this.days.forEach((day, index) => {
+                                    day.title = `Day ${index + 1}`;
+                                });
                             }
                         }
                     }" x-ref="timeActivitiesForm">
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full bg-white border border-gray-300 rounded-lg">
-                                <thead>
-                                    <tr class="bg-gray-50">
-                                        <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
-                                        <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
-                                        <th class="px-4 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <template x-for="(row, index) in timeActivities" :key="row.id">
-                                        <tr>
-                                            <td class="px-2 py-4 whitespace-nowrap border-b">
-                                                <input 
-                                                    type="time" 
-                                                    x-model="row.time"
-                                                    @input="validateRow(row)"
-                                                    :class="row.hasError 
-                                                        ? 'w-32 px-2 py-2 border rounded-md border-red-500'
-                                                        : 'w-32 px-2 py-2 border rounded-md border-gray-300'"
-                                                    required
-                                                >
-                                            </td>
-                                            <td class="px-2 py-4 whitespace-nowrap border-b">
-                                                <input 
-                                                    type="text" 
-                                                    x-model="row.activity"
-                                                    @input="validateRow(row)"
-                                                    :class="row.hasError 
-                                                        ? 'w-full px-2 py-2 border rounded-md border-red-500'
-                                                        : 'w-full px-2 py-2 border rounded-md border-gray-300'"
-                                                    placeholder="Enter activity"
-                                                    required
-                                                >
-                                            </td>
-                                            <td class="py-4 whitespace-nowrap border-b">
-                                                <button 
-                                                    type="button"
-                                                    @click="removeRow(index)"
-                                                    class="text-red-600 hover:text-red-800 text-center"
-                                                    x-show="timeActivities.length > 1"
-                                                >
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                    </svg>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </template>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Error message for the whole table -->
-                        <p x-show="timeActivities.some(row => !row.time || !row.activity.trim())"
+
+                        <!-- Loop through each day -->
+                        <template x-for="(day, dayIndex) in days" :key="day.id">
+                            <div class="mb-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h6 class="text-sm font-semibold text-gray-800" x-text="day.title" x-show="days.length > 1"></h6>
+                                    <button 
+                                        type="button"
+                                        @click="removeDay(dayIndex)"
+                                        class="text-red-600 hover:text-red-800"
+                                        x-show="days.length > 1"
+                                    >
+                                        <span class="text-sm">Remove Day</span>
+                                    </button>
+                                </div>
+
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                                        <thead>
+                                            <tr class="bg-gray-50">
+                                                <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
+                                                <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
+                                                <th class="px-4 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template x-for="(row, index) in day.timeActivities" :key="row.id">
+                                                <tr>
+                                                    <td class="px-2 py-4 whitespace-nowrap border-b">
+                                                        <input 
+                                                            type="time" 
+                                                            x-model="row.time"
+                                                            @input="validateRow(dayIndex, row)"
+                                                            :class="row.hasError 
+                                                                ? 'w-32 px-2 py-2 border rounded-md border-red-500'
+                                                                : 'w-32 px-2 py-2 border rounded-md border-gray-300'"
+                                                            required
+                                                        >
+                                                    </td>
+                                                    <td class="px-2 py-4 whitespace-nowrap border-b">
+                                                        <input 
+                                                            type="text" 
+                                                            x-model="row.activity"
+                                                            @input="validateRow(dayIndex, row)"
+                                                            :class="row.hasError 
+                                                                ? 'w-full px-2 py-2 border rounded-md border-red-500'
+                                                                : 'w-full px-2 py-2 border rounded-md border-gray-300'"
+                                                            placeholder="Enter activity"
+                                                            required
+                                                        >
+                                                    </td>
+                                                    <td class="py-4 whitespace-nowrap border-b">
+                                                        <button 
+                                                            type="button"
+                                                            @click="removeRow(dayIndex, index)"
+                                                            class="text-red-600 hover:text-red-800 text-center"
+                                                            x-show="day.timeActivities.length > 1"
+                                                        >
+                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                            </svg>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="px-2 py-1 whitespace-nowrap">
+                                                    <button 
+                                                        type="button"
+                                                        @click="addRow(dayIndex)"
+                                                        class="w-full px-1 py-1 text-purple-700 text-sm font-medium hover:font-semibold transition-colors duration-300 flex flex-row  justify-center gap-2"
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-4">
+                                                        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <p>
+                                                            <span>
+                                                                Add Row
+                                                            </span>
+                                                        </p>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </template>
+                        <p x-show="days.some(day => day.timeActivities.some(row => !row.time || !row.activity.trim()))"
                             class="text-sm text-red-600 font-medium mt-3">
-                            * Please fill in both time and activity fields or remove unwanted rows. 
+                            * Please fill in both time and activity fields and remove unwanted rows. 
                         </p>
-
                         <button 
                             type="button"
-                            @click="addRow"
+                            @click="addDay"
                             class="mt-4 px-4 py-2 border border-gray-300 text-purple-700 text-sm font-medium rounded-md hover:font-semibold transition-colors duration-300 hover:shadow-md"
-                        >
-                            Add Row
-                        </button>
-
-                        <button 
-                            type="button"
-                            @click="addRow"
-                            class="mt-4 ml-2 px-4 py-2 border border-gray-300 text-purple-700 text-sm font-medium rounded-md hover:font-semibold transition-colors duration-300 hover:shadow-md"
                         >
                             Add Day
                         </button>

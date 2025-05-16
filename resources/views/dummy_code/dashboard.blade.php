@@ -1,162 +1,91 @@
-<div class="flex flex-col md:flex-row space-y-6 md:space-y-0 justify-between">
+<thead>
+    <tr class="bg-gray-50">
+        <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
+        <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
+        <th class="px-4 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+    </tr>
+</thead>
 
-<!-- Start Date -->
-<div class="w-48"
-x-data="{ 
-    value: '{{ old('start_date') }}',
-    hasError: false,
-    errorMessage: '',
-    validate() {
-        if (!this.value) {
-            this.hasError = true;
-            this.errorMessage = 'Start date is required.';
-        } else {
-            const today = new Date();
-            const selectedDate = new Date(this.value);
-            if (selectedDate < today) {
-                this.hasError = true;
-                this.errorMessage = 'Date cannot be in the past.';
-            } else {
-                this.hasError = false;
-                this.errorMessage = '';
-            }
-        }
-        $data.updateFormError('start_date', this.hasError);
-    }
-}" @init="validate()" @input="validate()">
-    <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">Tarikh Mula</label>
-    <input type="date" 
-        id="start_date" 
-        name="start_date"
-        x-model="value"
-        @input="validate()"
-        x-bind:class="hasError 
-            ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-            : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-        required>
-    <p x-show="hasError" 
-        x-text="errorMessage"
-        class="mt-2 text-sm text-red-600">
-    </p>
-</div>
+<tfoot>
+    <tr>
+        <td colspan="3" class="px-2 py-1 whitespace-nowrap">
+            <button 
+                type="button"
+                @click="addRow(dayIndex)"
+                class="w-full px-1 py-1 text-purple-700 text-sm font-medium hover:font-semibold transition-colors duration-300 flex flex-row  justify-center gap-2"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-4">
+                <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                </svg>
+                <p>
+                    <span>
+                        Add Row
+                    </span>
+                </p>
+            </button>
+        </td>
+    </tr>
+</tfoot>
 
-<!-- Start Time -->
-<div class="w-40"
-x-data="{ 
-    value: '{{ old('start_time') }}',
-    hasError: false,
-    errorMessage: '',
-    validate() {
-        if (!this.value) {
-            this.hasError = true;
-            this.errorMessage = 'Start time is required.';
-        } else {
-            this.hasError = false;
-            this.errorMessage = '';
-        }
-        $data.updateFormError('start_time', this.hasError);
-    }
-}" @init="validate()" @input="validate()">
-    <label for="start_time" class="block text-sm font-medium text-gray-700 mb-1">Masa Mula</label>
-    <input type="time" 
-        id="start_time" 
-        name="start_time"
-        x-model="value"
-        @input="validate()"
-        x-bind:class="hasError 
-            ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-            : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-        required>
-    <p x-show="hasError" 
-        x-text="errorMessage"
-        class="mt-2 text-sm text-red-600">
-    </p>
-</div>
+<td class="py-4 whitespace-nowrap border-b">
+    <button 
+        type="button"
+        @click="removeRow(index)"
+        class="text-red-600 hover:text-red-800 text-center"
+        x-show="timeActivities.length > 1"
+    >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+    </button>
+</td>
 
-<div class="w-6 flex items-center justify-center text-sm font-medium text-gray-700">
-    <p>to</p>
-</div>
 
-<!-- End Date -->
-<div class="w-48"
-x-data="{ 
-    value: '{{ old('end_date') }}',
-    hasError: false,
-    errorMessage: '',
-    validate() {
-        if (!this.value) {
-            this.hasError = true;
-            this.errorMessage = 'End date is required.';
-        } else {
-            const startDate = new Date($refs.startDate.value);
-            const endDate = new Date(this.value);
-            if (endDate < startDate) {
-                this.hasError = true;
-                this.errorMessage = 'End date cannot be before start date.';
-            } else {
-                this.hasError = false;
-                this.errorMessage = '';
-            }
-        }
-        $data.updateFormError('end_date', this.hasError);
-    }
-}" @init="validate()" @input="validate()">
-    <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">Tarikh Tamat</label>
-    <input type="date" 
-        id="end_date" 
-        name="end_date"
-        x-model="value"
-        @input="validate()"
-        x-bind:class="hasError 
-            ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-            : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-        required>
-    <p x-show="hasError" 
-        x-text="errorMessage"
-        class="mt-2 text-sm text-red-600">
-    </p>
-</div>
+<!-- Error message for the whole table -->
+<p x-show="timeActivities.some(row => !row.time || !row.activity.trim())"
+    class="text-sm text-red-600 font-medium mt-3">
+    * Please fill in both time and activity fields or remove unwanted rows. 
+</p>
 
-<!-- End Time -->
-<div class="w-40" 
-x-data="{ 
-    value: '{{ old('end_time') }}',
-    hasError: false,
-    errorMessage: '',
-    validate() {
-        if (!this.value) {
-            this.hasError = true;
-            this.errorMessage = 'End time is required.';
-        } else if ($refs.startDate.value === $refs.endDate.value) {
-            const startTime = new Date(`2000-01-01T${$refs.startTime.value}`);
-            const endTime = new Date(`2000-01-01T${this.value}`);
-            if (endTime <= startTime) {
-                this.hasError = true;
-                this.errorMessage = 'End time must be after start time.';
-            } else {
-                this.hasError = false;
-                this.errorMessage = '';
-            }
-        } else {
-            this.hasError = false;
-            this.errorMessage = '';
-        }
-        $data.updateFormError('end_time', this.hasError);
-    }
-}" @init="validate()" @input="validate()">
-    <label for="end_time" class="block text-sm font-medium text-gray-700 mb-1">Masa Tamat</label>
-    <input type="time" 
-        id="end_time" 
-        name="end_time"
-        x-model="value"
-        @input="validate()"
-        x-bind:class="hasError 
-            ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-            : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-        required>
-    <p x-show="hasError" 
-        x-text="errorMessage"
-        class="mt-2 text-sm text-red-600">
-    </p>
-</div>
-</div>
+
+<tbody>
+    <template x-for="(row, index) in timeActivities" :key="row.id">
+        <tr>
+            <td class="px-2 py-4 whitespace-nowrap border-b">
+                <input 
+                    type="time" 
+                    x-model="row.time"
+                    @input="validateRow(row)"
+                    :class="row.hasError 
+                        ? 'w-32 px-2 py-2 border rounded-md border-red-500'
+                        : 'w-32 px-2 py-2 border rounded-md border-gray-300'"
+                    required
+                >
+            </td>
+            <td class="px-2 py-4 whitespace-nowrap border-b">
+                <input 
+                    type="text" 
+                    x-model="row.activity"
+                    @input="validateRow(row)"
+                    :class="row.hasError 
+                        ? 'w-full px-2 py-2 border rounded-md border-red-500'
+                        : 'w-full px-2 py-2 border rounded-md border-gray-300'"
+                    placeholder="Enter activity"
+                    required
+                >
+            </td>
+            <td class="py-4 whitespace-nowrap border-b">
+                <button 
+                    type="button"
+                    @click="removeRow(index)"
+                    class="text-red-600 hover:text-red-800 text-center"
+                    x-show="timeActivities.length > 1"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            </td>
+        </tr>
+    </template>
+</tbody>
