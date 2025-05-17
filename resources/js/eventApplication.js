@@ -2,6 +2,61 @@ window.multiStepForm = function() {
     return {
         currentStep: 1,
         showSuccessModal: false,
+
+        days: [
+            {
+                id: 1,
+                title: 'Hari Pertama',
+                timeActivities: [{ time: '', activity: '', id: 1, hasError: false }]
+            }
+        ],
+        validateRow(dayIndex, row) {
+            let isValid = true;
+            if (!row.time || !row.activity.trim()) {
+                row.hasError = true;
+                row.errorMessage = 'Both time and activity are required.';
+                isValid = false;
+            } else {
+                row.hasError = false;
+            }
+            
+            // Update the parent form error state for timeActivities
+            this.updateFormError('timeActivities', 
+                this.days.some(day => day.timeActivities.some(row => !row.time || !row.activity.trim()))
+            );
+            
+            return isValid;
+        },
+        addRow(dayIndex) {
+            this.days[dayIndex].timeActivities.push({
+                time: '',
+                activity: '',
+                id: Date.now(),
+                hasError: false
+            });
+        },
+        removeRow(dayIndex, rowIndex) {
+            if (this.days[dayIndex].timeActivities.length > 1) {
+                this.days[dayIndex].timeActivities.splice(rowIndex, 1);
+            }
+        },
+        addDay() {
+            this.days.push({
+                id: Date.now(),
+                title: `Hari Ke - ${this.days.length + 1}`,
+                timeActivities: [{ time: '', activity: '', id: Date.now(), hasError: false }]
+            });
+        },
+        removeDay(dayIndex) {
+            if (this.days.length > 1) {
+                this.days.splice(dayIndex, 1);
+                // Update day titles
+                this.days.forEach((day, index) => {
+                    day.title = `Day ${index + 1}`;
+                });
+            }
+        },
+
         formErrors: {
             // Paper work
             tajuk_kk: true,

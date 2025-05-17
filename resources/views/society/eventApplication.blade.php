@@ -448,62 +448,7 @@
                     </h5>
 
                     <!-- Table for Time and Activity -->
-                    <div x-data="{
-                        days: [
-                            {
-                                id: 1,
-                                title: 'Hari Pertama',
-                                timeActivities: [{ time: '', activity: '', id: 1, hasError: false }]
-                            }
-                        ],
-                        validateRow(dayIndex, row) {
-                            let isValid = true;
-                            if (!row.time || !row.activity.trim()) {
-                                row.hasError = true;
-                                row.errorMessage = 'Both time and activity are required.';
-                                isValid = false;
-                            } else {
-                                row.hasError = false;
-                            }
-                            
-                            // Update the parent form error state for timeActivities
-                            $data.updateFormError('timeActivities', 
-                                this.days.some(day => day.timeActivities.some(row => !row.time || !row.activity.trim()))
-                            );
-                            
-                            return isValid;
-                        },
-                        addRow(dayIndex) {
-                            this.days[dayIndex].timeActivities.push({
-                                time: '',
-                                activity: '',
-                                id: Date.now(),
-                                hasError: false
-                            });
-                        },
-                        removeRow(dayIndex, rowIndex) {
-                            if (this.days[dayIndex].timeActivities.length > 1) {
-                                this.days[dayIndex].timeActivities.splice(rowIndex, 1);
-                            }
-                        },
-                        addDay() {
-                            this.days.push({
-                                id: Date.now(),
-                                title: `Hari Ke - ${this.days.length + 1}`,
-                                timeActivities: [{ time: '', activity: '', id: Date.now(), hasError: false }]
-                            });
-                        },
-                        removeDay(dayIndex) {
-                            if (this.days.length > 1) {
-                                this.days.splice(dayIndex, 1);
-                                // Update day titles
-                                this.days.forEach((day, index) => {
-                                    day.title = `Day ${index + 1}`;
-                                });
-                            }
-                        }
-                    }" x-ref="timeActivitiesForm">
-
+                    <div>
                         <!-- Loop through each day -->
                         <template x-for="(day, dayIndex) in days" :key="day.id">
                             <div class="mb-8">
@@ -605,6 +550,8 @@
                             Add Day
                         </button>
                     </div>
+
+                    <input type="hidden" name="days" x-bind:value="JSON.stringify(days)">
                     <!-- <div>
                         <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
                         <textarea id="atur_cara" name="atur_cara" rows="10" cols="50" x-model="formData.aturCara" 
