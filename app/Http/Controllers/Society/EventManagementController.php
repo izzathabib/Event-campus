@@ -20,7 +20,7 @@ class EventManagementController extends Controller
     // Store event application data
     public function storeEventApplicationData(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         // Validate the form data
         $validatedData = $request->validate([
             // Paper Work
@@ -32,8 +32,8 @@ class EventManagementController extends Controller
                 'required',
                 'date',
                 function ($attribute, $value, $fail) {
-                    $startDate = \Carbon\Carbon::parse($value);
-                    $today = \Carbon\Carbon::today();
+                    $startDate = Carbon::parse($value);
+                    $today = Carbon::today();
 
                     if ($startDate->isBefore($today)) {
                         $fail('The start date cannot be in the past.');
