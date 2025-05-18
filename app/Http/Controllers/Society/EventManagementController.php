@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Society;
 
 use App\Http\Controllers\Controller;
 use App\Models\ApplyToOrganizeEvent;
+use App\Models\EventDay;
 use App\Models\MycsdMap;
 use App\Models\PaperWork;
+use App\Models\TimeActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -20,7 +22,8 @@ class EventManagementController extends Controller
     // Store event application data
     public function storeEventApplicationData(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        
         // Validate the form data
         $validatedData = $request->validate([
             // Paper Work
@@ -59,6 +62,7 @@ class EventManagementController extends Controller
                 }
             ],
             'lokasi' => 'required|string|max:100',
+            'days' => ['required', 'json'],
 
             // MyCSD Mapping
             'taj_prog' => 'bail|required|string|max:1',
@@ -117,7 +121,8 @@ class EventManagementController extends Controller
             'nama.max' => 'Nama Program must not exceed 100 characters.',
         ]);
 
-        
+        // Decode the JSON days data
+        $daysData = json_decode($request->days, true);
 
         // Store data in the respective tables
         $paperWork = PaperWork::create([
@@ -132,6 +137,26 @@ class EventManagementController extends Controller
             'end_time' => $validatedData['end_time'],
             'lokasi' => $validatedData['lokasi'],
         ]);
+        // dd($paperWork);
+        foreach ($daysData as $index => $day) {
+            $eventDay = EventDay::create([
+                'paper_work_id' => $paperWork->id,
+                'title' => $day['title'],
+                'day_number' => $index + 1
+            ]);
+
+            foreach ($day['timeActivities'] as $activity) {
+                if (!empty($activity['time']) && !empty($activity['activity'])) {
+                    TimeActivity::create([
+                        'event_day_id' => $eventDay->id,
+                        'time' => $activity['time'],
+                        'activity' => $activity['activity']
+                    ]);
+                }
+            }
+        }
+
+        // dd($eventDay);
 
         MycsdMap::create([
             'user_id' => Auth::id(),
