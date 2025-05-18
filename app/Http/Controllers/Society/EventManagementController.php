@@ -124,54 +124,64 @@ class EventManagementController extends Controller
         // Decode the JSON days data
         $daysData = json_decode($request->days, true);
 
-        // Store data in the respective tables
-        $paperWork = PaperWork::create([
-            'user_id' => Auth::id(),
-            'tajuk_kk' => $validatedData['tajuk_kk'],
-            'peng_kump_sasar' => $validatedData['peng_kump_sasar'],
-            'obj' => $validatedData['obj'],
-            'impak' => $validatedData['impak'],
-            'start_date' => $validatedData['start_date'],
-            'start_time' => $validatedData['start_time'],
-            'end_date' => $validatedData['end_date'],
-            'end_time' => $validatedData['end_time'],
-            'lokasi' => $validatedData['lokasi'],
-        ]);
-        // dd($paperWork);
-        foreach ($daysData as $index => $day) {
-            $eventDay = EventDay::create([
-                'paper_work_id' => $paperWork->id,
-                'title' => $day['title'],
-                'day_number' => $index + 1
-            ]);
+        try {
 
-            foreach ($day['timeActivities'] as $activity) {
-                if (!empty($activity['time']) && !empty($activity['activity'])) {
-                    TimeActivity::create([
-                        'event_day_id' => $eventDay->id,
-                        'time' => $activity['time'],
-                        'activity' => $activity['activity']
-                    ]);
+            // Store data in the respective tables
+            $paperWork = PaperWork::create([
+                'user_id' => Auth::id(),
+                'tajuk_kk' => $validatedData['tajuk_kk'],
+                'peng_kump_sasar' => $validatedData['peng_kump_sasar'],
+                'obj' => $validatedData['obj'],
+                'impak' => $validatedData['impak'],
+                'start_date' => $validatedData['start_date'],
+                'start_time' => $validatedData['start_time'],
+                'end_date' => $validatedData['end_date'],
+                'end_time' => $validatedData['end_time'],
+                'lokasi' => $validatedData['lokasi'],
+            ]);
+            // dd($paperWork);
+            foreach ($daysData as $index => $day) {
+                $eventDay = EventDay::create([
+                    'paper_work_id' => $paperWork->id,
+                    'title' => $day['title'],
+                    'day_number' => $index + 1
+                ]);
+
+                foreach ($day['timeActivities'] as $activity) {
+                    if (!empty($activity['time']) && !empty($activity['activity'])) {
+                        TimeActivity::create([
+                            'event_day_id' => $eventDay->id,
+                            'time' => $activity['time'],
+                            'activity' => $activity['activity']
+                        ]);
+                    }
                 }
             }
+
+            MycsdMap::create([
+                'user_id' => Auth::id(),
+                'paper_work_id' => $paperWork->id,
+                'taj_prog' => $validatedData['taj_prog'],
+            ]);
+
+            ApplyToOrganizeEvent::create([
+                'user_id' => Auth::id(),
+                'paper_work_id' => $paperWork->id,
+                'nama' => $validatedData['nama'],
+            ]);
+
+            // Redirect or return a success response
+            return redirect()->back()
+                ->with('success', 'Event application submitted successfully!');
+
+        } catch (\Exception $e) {
+
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['error' => 'Something went wrong. Please try again.']);
+                
         }
 
-        // dd($eventDay);
-
-        MycsdMap::create([
-            'user_id' => Auth::id(),
-            'paper_work_id' => $paperWork->id,
-            'taj_prog' => $validatedData['taj_prog'],
-        ]);
-
-        ApplyToOrganizeEvent::create([
-            'user_id' => Auth::id(),
-            'paper_work_id' => $paperWork->id,
-            'nama' => $validatedData['nama'],
-        ]);
-
-        // Redirect or return a success response
-        return redirect()->back()->with('success', 'Event application submitted successfully!');
     }
 }
  
