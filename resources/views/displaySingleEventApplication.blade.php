@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
-  <style>
-      [x-cloak] { display: none !important; }
-      .step-transition {
-          transition: all 0.3s ease-in-out;
-      }
-  </style>
+  
 @endsection
 
 @section('content')
@@ -15,57 +10,22 @@
 <div class="flex items-center justify-center p-4 mt-3 w-full">
     <div class="w-full max-w-4xl bg-white rounded-lg border-2 shadow-md overflow-hidden" x-data="multiStepForm()" x-cloak>
     
-        <!-- Form Header with Progress -->
-        <div class=" p-6 text-gray-500">
-            <div class="relative pt-1">
-                <div class="flex items-center justify-between mb-7">
-                    <div class="text-xs font-semibold inline-block py-1">
-                        Step <span x-text="currentStep"></span> of <span x-text="steps.length"></span>
-                    </div>
-                </div>
-    
-                
-                <!-- Step Indicators -->
-                <div class="flex justify-between">
-                    <template x-for="(step, index) in steps" :key="index">
-                        <div class="flex flex-col items-center">
-                            <div 
-                                :class="{
-                                    'bg-lime-500 text-white border-lime-500': currentStep > index + 1,
-                                    'bg-white text-purple-600 border-purple-300': currentStep <= index + 1,
-                                    'ring-2 ring-purple-600 ring-offset-2': currentStep === index + 1
-                                }"
-                                class="rounded-full h-8 w-8 flex items-center justify-center border text-sm font-bold transition-all duration-300"
-                            >
-                                <span x-show="currentStep > index + 1">✓</span>
-                                <span x-show="currentStep <= index + 1" x-text="index + 1"></span>
-                            </div>
-                            <div class="text-xs mt-4 font-medium" x-text="step.title"></div>
-                        </div>
-                    </template>
-                </div>
+        <!-- Form Header -->
+        <div class=" p-6">
+            <div class="flex flex-col items-center justify-center mt-6 mb-4">
+                <img src="{{ asset('images/USM-COLOR-72703c67.png') }}" alt="Organization Logo" class="h-20 mb-6">
+                <h3 class="text-xl font-bold text-gray-800">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI</h3>
+                <h3 class="text-xl font-bold text-gray-800">PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
             </div>
         </div>
-        @if (session()->has('success'))
-            <div id="flash-error" class="bg-sky-700 text-white px-4 py-3 rounded relative mb-4 text-sm font-medium flex items-center justify-between" role="alert">
-                <div class="px-4 py-3">
-                    <span class="block sm:inline">{{ session('success') }}</span>
-                </div>
-                <button class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="document.getElementById('flash-error').remove()">
-                    <svg class="fill-current h-6 w-6 text-white" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <title>Close</title>
-                        <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
-                    </svg>
-                </button>
-            </div>
-        @endif
+        
         <!-- Form Body -->
         <div class="p-6">
             <form action="{{ route('society.storeEventApplicationData') }}" method="POST" enctype="multipart/form-data" id="multi-step-form">
                 @csrf
                 <!-- Step 1: Paper work -->
                 <div x-show="currentStep === 1" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
+                    
                     
                     <div class="grid grid-cols-1  gap-6">
                         <!-- Tajuk Kertas Kerja -->
@@ -883,29 +843,6 @@
         </div>
     </div>
     
-    <!-- Success Modal -->
-    <div x-show="showSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" x-cloak>
-        <div class="bg-white rounded-lg p-8 max-w-md w-full">
-            <div class="text-center">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-6">
-                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </div>
-                
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Application Submitted!</h3>
-                <p class="text-gray-600 mb-6">Thank you for your application. We'll review your information and get back to you soon.</p>
-                
-                <button 
-                    @click="resetForm" 
-                    type="button"
-                    class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-300"
-                >
-                    Close
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
 

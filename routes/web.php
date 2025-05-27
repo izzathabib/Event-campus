@@ -53,6 +53,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('society.create-event-view');
     Route::post('/create-event', [CreateEventContoller::class, 'store'])->name('society.createEvent');
     Route::post('/store-event-application-data', [EventManagementController::class, 'storeEventApplicationData'])->name('society.storeEventApplicationData');
+    Route::get('/display-single-event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])
+        ->name('society.displaySingleEventApplication');
+    // Route::get('/event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])->name('society.event-application');
 });
 
 Route::middleware('auth')->group(function () {
