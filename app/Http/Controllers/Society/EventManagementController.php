@@ -27,10 +27,10 @@ class EventManagementController extends Controller
         // Validate the form data
         $validatedData = $request->validate([
             // Paper Work
-            'tajuk_kk' => 'bail|required|string|max:1',
-            'peng_kump_sasar' => 'bail|required|string|max:1',
-            'obj' => 'bail|required|string|max:1',
-            'impak' => 'bail|required|string|max:1',
+            'tajuk_kk' => 'bail|required|string|max:100',
+            'peng_kump_sasar' => 'bail|required|string|max:2000',
+            'obj' => 'bail|required|string|max:1000',
+            'impak' => 'bail|required|string|max:2000',
             'start_date' => [
                 'required',
                 'date',
@@ -65,10 +65,10 @@ class EventManagementController extends Controller
             'days' => ['required', 'json'],
 
             // MyCSD Mapping
-            'taj_prog' => 'bail|required|string|max:1',
+            'taj_prog' => 'bail|required|string|max:100',
 
             // Application to Organize Events
-            'nama' => 'bail|required|string|max:1',
+            'nama' => 'bail|required|string|max:60',
         ], [
             #--#--#
             # KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA

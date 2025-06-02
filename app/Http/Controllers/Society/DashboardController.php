@@ -20,9 +20,10 @@ class DashboardController extends Controller
     public function displaySingleEventApplication($id)
     {
         // Get single event application
-        $eventApplication = PaperWork::where('user_id', auth()->id())
+        $eventApplications = PaperWork::with('event_days.time_activities')
+        ->where('user_id', auth()->id())
         ->where('id', $id)->first();
-        // dd($eventApplication);
-        return view('displaySingleEventApplication');
+        // dd($eventApplications);
+        return view('displaySingleEventApplication', compact('eventApplications'));
     }
 }

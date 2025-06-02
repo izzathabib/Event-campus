@@ -29,381 +29,68 @@
                     
                     <div class="grid grid-cols-1  gap-6">
                         <!-- Tajuk Kertas Kerja -->
-                        <div x-data="{ 
-                            value: '{{ old('tajuk_kk') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value || this.value.trim() === '') {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 100 characters.';
-                                } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
-                                }
-                                $data.updateFormError('tajuk_kk', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
+                        <div>
                             <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
-                            <input type="text" id="tajuk_kk" name="tajuk_kk"
-                                x-model="value"
-                                @input="validate()"
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                class="cursor-auto" 
-                                required>
-                            <!-- Real-time error message -->
-                            <p
-                                x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600"
-                            ></p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('tajuk_kk')" class="mt-2" />
+                            <div class="w-full px-3 py-2 border rounded-md border-gray-300">
+                                {{ $eventApplications->tajuk_kk }}
+                            </div>
                         </div>
                         <!-- Pengenalan & Kumpulan Sasaran/ Penyertaan -->
-                        <div x-data="{ 
-                            value: '{{ old('peng_kump_sasar') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value || this.value.trim() === '') {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 2000 characters.';
-                                } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
-                                }
-                                // Update the parent form's error tracking
-                                $data.updateFormError('peng_kump_sasar', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
+                        <div>
                             <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                            <textarea 
-                            id="peng_kump_sasar" 
-                            name="peng_kump_sasar" 
-                            rows="10" cols="50"
-                            x-model="value"
-                            @input="validate()" 
-                            x-bind:class="hasError 
-                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                            required
-                            ></textarea>
-                            <!-- Real-time error message -->
-                            <p
-                                x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600"
-                            ></p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('peng_kump_sasar')" class="mt-2" />
+                            <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
+                                {{ $eventApplications->peng_kump_sasar }}
+                            </div>
                         </div>
                         <!-- Objektif (Selaras dengan Elemen & Atribut HEBAT) -->
-                        <div x-data="{ 
-                            value: '{{ old('obj') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value || this.value.trim() === '') {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 1000 characters.';
-                                } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
-                                }
-                                // Update the parent form's error tracking
-                                $data.updateFormError('obj', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
+                        <div>
                             <label for="obj" class="block text-sm font-medium text-gray-700 mb-1">Objektif (Selaras dengan Elemen & Atribut HEBAT)</label>
-                            <textarea 
-                            id="obj" 
-                            name="obj" 
-                            rows="5" cols="50"
-                            x-model="value"
-                            @input="validate()" 
-                            x-bind:class="hasError 
-                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                            required
-                            ></textarea>
-                            <!-- Real-time error message -->
-                            <p
-                                x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600"
-                            ></p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('obj')" class="mt-2" />
+                            <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
+                                {{ $eventApplications->obj }}
+                            </div>
                         </div>
                         <!-- Impak Dijangkakan -->
-                        <div x-data="{ 
-                            value: '{{ old('impak') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value || this.value.trim() === '') {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 2000 characters.';
-                                } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
-                                }
-                                // Update the parent form's error tracking
-                                $data.updateFormError('impak', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
+                        <div>
                             <label for="impak" class="block text-sm font-medium text-gray-700 mb-1">Impak Dijangkakan</label>
-                            <textarea 
-                            id="impak" 
-                            name="impak" 
-                            rows="10" cols="50"
-                            x-model="value"
-                            @input="validate()" 
-                            x-bind:class="hasError 
-                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                            required
-                            ></textarea>
-                            <!-- Real-time error message -->
-                            <p
-                                x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600"
-                            ></p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('impak')" class="mt-2" />
+                            <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
+                                {{ $eventApplications->impak }}
+                            </div>
                         </div>
                     </div>
                     <p class="text-sm font-semibold text-gray-800 mb-4 mt-14">Lampiran A</p>
                     <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
                         TENTATIF PROGRAM/ PROJEK/ AKTIVITI
                     </h5>
-                    <!-- Tarikh and Masa in 1 line -->
-                    <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 justify-between">
-
-                        <!-- Tarikh Mula -->
-                        <div class="w-48"
-                        x-data="{ 
-                            value: '{{ old('start_date') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'Start date is required.';
-                                } else {
-                                    const today = new Date();
-                                    const selectedDate = new Date(this.value);
-                                    if (selectedDate < today) {
-                                        this.hasError = true;
-                                        this.errorMessage = 'Date cannot be in the past.';
-                                    } else {
-                                        this.hasError = false;
-                                        this.errorMessage = '';
-                                    }
-                                }
-                                $data.updateFormError('start_date', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
-                            <label for="start_date" class="block text-sm font-medium text-gray-700 mb-1">Tarikh Mula</label>
-                            <input type="date" 
-                                id="start_date" 
-                                name="start_date"
-                                x-model="value"
-                                @input="validate()"
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
-                            <p x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600">
-                            </p>
-                        </div>
-
-                        <!-- Masa Mula -->
-                        <div class="w-40"
-                        x-data="{ 
-                            value: '{{ old('start_time') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'Start time is required.';
-                                } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
-                                }
-                                $data.updateFormError('start_time', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
-                            <label for="start_time" class="block text-sm font-medium text-gray-700 mb-1">Masa Mula</label>
-                            <input type="time" 
-                                id="start_time" 
-                                name="start_time"
-                                x-model="value"
-                                @input="validate()"
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
-                            <p x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600">
-                            </p>
-                        </div>
-
-                        <div class="w-6 flex items-center">
-                            <span class="inline-block w-5 h-px bg-gray-400"></span>
-                        </div>
-
-                        <!-- Tarikh Tamat -->
-                        <div class="w-48"
-                        x-data="{ 
-                            value: '{{ old('end_date') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
-                                } else {
-                                    // Get the start date value from the start_date input
-                                    const startDate = new Date(document.getElementById('start_date').value);
-                                    const endDate = new Date(this.value);
-                                    
-                                    if (endDate < startDate) {
-                                        this.hasError = true;
-                                        this.errorMessage = 'Tarikh tamat cannot be before tarikh mula.';
-                                    } else {
-                                        this.hasError = false;
-                                        this.errorMessage = '';
-                                    }
-                                }
-                                $data.updateFormError('end_date', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
-                            <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">Tarikh Tamat</label>
-                            <input type="date" 
-                                id="end_date" 
-                                name="end_date"
-                                x-model="value"
-                                @input="validate()"
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
-                            <p x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600">
-                            </p>
-                        </div>
-
-                        <!-- Masa Tamat -->
-                        <div class="w-40" 
-                        x-data="{ 
-                            value: '{{ old('end_time') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'End time is required.';
-                                } else {
-                                    // Get start date and end date
-                                    const startDate = document.getElementById('start_date').value;
-                                    const endDate = document.getElementById('end_date').value;
-                                
-                                    // Get start time
-                                    const startTime = document.getElementById('start_time').value;
-                                
-                                    // If same day, check time
-                                    if (startDate === endDate) {
-                                        if (this.value <= startTime) {
-                                            this.hasError = true;
-                                            this.errorMessage = 'End time must be after start time.';
-                                        } else {
-                                            this.hasError = false;
-                                            this.errorMessage = '';
-                                        }
-                                    }
-                                } 
-                                $data.updateFormError('end_time', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
-                            <label for="end_time" class="block text-sm font-medium text-gray-700 mb-1">Masa Tamat</label>
-                            <input type="time" 
-                                id="end_time" 
-                                name="end_time"
-                                x-model="value"
-                                @input="validate()"
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
-                            <p x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600">
-                            </p>
-                        </div>
-                        
+                    <div class="w-full px-3 py-2 border rounded-md border-gray-300">
+                        <table class="w-full mb-6">
+                            <tbody>
+                                <!-- Tarikh -->
+                                <tr class="border-b">
+                                    <td class="py-2 font-medium text-gray-700">Tarikh: 
+                                        @if ($eventApplications->start_date === $eventApplications->end_date)
+                                            {{ \Carbon\Carbon::parse($eventApplications->start_date)->format('d F Y') }}
+                                        @else
+                                            {{ \Carbon\Carbon::parse($eventApplications->start_date)->format('d F Y') }} - {{ \Carbon\Carbon::parse($eventApplications->end_date)->format('d F Y') }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <!-- Masa -->
+                                <tr class="border-b">
+                                    <td class="py-2 font-medium text-gray-700">Masa: 
+                                        @if ($eventApplications->start_time === $eventApplications->end_time)
+                                            {{ \Carbon\Carbon::parse($eventApplications->start_time)->format('h:i A') }}
+                                        @else
+                                            {{ \Carbon\Carbon::parse($eventApplications->start_time)->format('h:i A') }} - {{ \Carbon\Carbon::parse($eventApplications->end_time)->format('h:i A') }}
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 font-medium text-gray-700">Lokasi: {{ $eventApplications->lokasi }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <!-- Lokasi -->
-                    <div x-data="{ 
-                        value: '{{ old('lokasi') }}',
-                        hasError: false,
-                        errorMessage: '',
-                        validate() {
-                            if (!this.value || this.value.trim() === '') {
-                                this.hasError = true;
-                                this.errorMessage = 'This field is required.';
-                            } else if (this.value.length > 1) {
-                                this.hasError = true;
-                                this.errorMessage = 'Location must not exceed 100 characters.';
-                            } else {
-                                this.hasError = false;
-                                this.errorMessage = '';
-                            }
-                            $data.updateFormError('lokasi', this.hasError);
-                        }
-                    }" @init="validate()" @input="validate()">
-                        <label for="lokasi" class="block text-sm font-medium text-gray-700 mb-1 mt-4">Lokasi</label>
-                        <input type="text" id="lokasi" name="lokasi"
-                            x-model="value"
-                            @input="validate()"
-                            x-bind:class="hasError 
-                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                            required>
-                        <p class="block text-sm font-medium text-gray-700 mb-1 mt-6">
-                            * Sila nyatakan alamat pautan sekiranya Program/ Projek/ Aktiviti dijalankan secara atas talian atau hibrid.<br> 
-                            Sila patuhi SOP pencegahan/ penularan wabak pandemik Covid-19 MKN/ USM yang sedang berkuatkuasa.
-                        </p>
-                        <!-- Real-time error message -->
-                        <p x-show="hasError" 
-                            x-text="errorMessage"
-                            class="mt-2 text-sm text-red-600">
-                        </p>
-                        <!-- Server-side error message -->
-                        <x-input-error :messages="$errors->get('lokasi')" class="mt-2" />
-                    </div>
                     <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-10">
                         Atur Cara
                     </h5>
@@ -411,136 +98,44 @@
                     <!-- Table for Time and Activity -->
                     <div>
                         <!-- Loop through each day -->
-                        <template x-for="(day, dayIndex) in days" :key="day.id">
-                            <div class="mb-8">
-                                <div class="flex justify-between items-center mb-4">
-                                    <h6 class="text-sm font-semibold text-gray-800" x-text="day.title" x-show="days.length > 1"></h6>
-                                    <button 
-                                        type="button"
-                                        @click="removeDay(dayIndex)"
-                                        class="text-red-600 hover:text-red-800"
-                                        x-show="days.length > 1"
-                                    >
-                                        <span class="text-sm">Remove Day</span>
-                                    </button>
-                                </div>
-
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
-                                        <thead>
-                                            <tr class="bg-gray-50">
-                                                <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
-                                                <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
-                                                <th class="px-4 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <template x-for="(row, index) in day.timeActivities" :key="row.id">
-                                                <tr>
-                                                    <td class="px-2 py-4 whitespace-nowrap border-b">
-                                                        <input 
-                                                            type="time" 
-                                                            x-model="row.time"
-                                                            @input="validateRow(dayIndex, row)"
-                                                            :class="row.hasError 
-                                                                ? 'w-32 px-2 py-2 border rounded-md border-red-500'
-                                                                : 'w-32 px-2 py-2 border rounded-md border-gray-300'"
-                                                            required
-                                                        >
-                                                    </td>
-                                                    <td class="px-2 py-4 whitespace-nowrap border-b">
-                                                        <input 
-                                                            type="text" 
-                                                            x-model="row.activity"
-                                                            @input="validateRow(dayIndex, row)"
-                                                            :class="row.hasError 
-                                                                ? 'w-full px-2 py-2 border rounded-md border-red-500'
-                                                                : 'w-full px-2 py-2 border rounded-md border-gray-300'"
-                                                            placeholder="Enter activity"
-                                                            required
-                                                        >
-                                                    </td>
-                                                    <td class="py-4 whitespace-nowrap border-b">
-                                                        <button 
-                                                            type="button"
-                                                            @click="removeRow(dayIndex, index)"
-                                                            class="text-red-600 hover:text-red-800 text-center"
-                                                            x-show="day.timeActivities.length > 1"
-                                                        >
-                                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                            </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </template>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="3" class="px-2 py-1 whitespace-nowrap">
-                                                    <button 
-                                                        type="button"
-                                                        @click="addRow(dayIndex)"
-                                                        class="w-full px-1 py-1 text-purple-700 text-sm font-medium hover:font-semibold transition-colors duration-300 flex flex-row  justify-center gap-2"
-                                                    >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-4">
-                                                        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                                                        </svg>
-                                                        <p>
-                                                            <span>
-                                                                Add Row
-                                                            </span>
-                                                        </p>
-                                                    </button>
+                        <div class="mb-8">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                                    <thead>
+                                        <tr class="bg-gray-50">
+                                            <th class="w-32 px-6 py-3 border-b border-r border-gray-300 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
+                                            <th class="w-full px-6 py-3 border-b border-gray-300 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($eventApplications->event_days as $day)
+                                            @if($eventApplications->event_days->count() > 1)
+                                            <tr class="border-b">
+                                                <td>
+                                                    <h5 class="text-sm font-semibold text-gray-800 px-2 py-2">{{ $day->title }}</h5>
                                                 </td>
                                             </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                                            @endif
+                                            @foreach($day->time_activities as $activity)
+                                            <tr class="border-b">
+                                                <td class="whitespace-nowrap border-r border-gray-300 px-2">
+                                                    <div class="w-32">
+                                                        {{ \Carbon\Carbon::parse($activity->time)->format('h:i A') }}
+                                                    </div>
+                                                </td>
+                                                <td class="whitespace-nowrap px-2 py-2">
+                                                    <div class="w-32">
+                                                        {{ $activity->activity }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                        </template>
-                        <p x-show="days.some(day => day.timeActivities.some(row => !row.time || !row.activity.trim()))"
-                            class="text-sm text-red-600 font-medium mt-3">
-                            * Please fill in both time and activity fields and remove unwanted rows. 
-                        </p>
-                        <button 
-                            type="button"
-                            @click="addDay"
-                            class="mt-4 px-4 py-2 border border-gray-300 text-purple-700 text-sm font-medium rounded-md hover:font-semibold transition-colors duration-300 hover:shadow-md"
-                        >
-                            Add Day
-                        </button>
+                        </div>
                     </div>
-
-                    <input type="hidden" name="days" x-bind:value="JSON.stringify(days)">
-                    <!-- <div>
-                        <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                        <textarea id="atur_cara" name="atur_cara" rows="10" cols="50" x-model="formData.aturCara" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            required>
-                        </textarea>
-                    </div> -->
-
-                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
-                        JAWATANKUASA PELAKSANA
-                    </h5> -->
-                    <!-- <div>
-                        <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                        <textarea id="jawat_pelak" name="jawat_pelak" rows="10" cols="50" x-model="formData.jawatPelak" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            required>
-                        </textarea>
-                    </div> -->
-
-                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
-                        CADANGAN BELANJAWAN
-                    </h5>
-                    <div>
-                        <textarea id="cada_belan" name="cada_belan" rows="10" cols="50" x-model="formData.cadaBelan" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            required>
-                        </textarea>
-                    </div> -->
                 </div>
                 
                 <!-- Step 2: MyCSD Mapping -->
@@ -841,8 +436,8 @@
                 </div>
             </form>
         </div>
+
     </div>
-    
 </div>
 @endsection
 

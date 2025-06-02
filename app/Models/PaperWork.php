@@ -37,4 +37,9 @@ class PaperWork extends Model
         return $this->hasOne(MycsdMap::class);
     }
 
+    public function event_days()
+    {
+        return $this->hasMany(EventDay::class);
+    }
+
 }

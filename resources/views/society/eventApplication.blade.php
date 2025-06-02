@@ -77,7 +77,7 @@
                                 if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
+                                } else if (this.value.length > 100) {
                                     this.hasError = true;
                                     this.errorMessage = 'This field must not exceed 100 characters.';
                                 } else {
@@ -114,7 +114,7 @@
                                 if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
+                                } else if (this.value.length > 2000) {
                                     this.hasError = true;
                                     this.errorMessage = 'This field must not exceed 2000 characters.';
                                 } else {
@@ -155,7 +155,7 @@
                                 if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
+                                } else if (this.value.length > 1000) {
                                     this.hasError = true;
                                     this.errorMessage = 'This field must not exceed 1000 characters.';
                                 } else {
@@ -196,7 +196,7 @@
                                 if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
+                                } else if (this.value.length > 2000) {
                                     this.hasError = true;
                                     this.errorMessage = 'This field must not exceed 2000 characters.';
                                 } else {
@@ -414,7 +414,7 @@
                             if (!this.value || this.value.trim() === '') {
                                 this.hasError = true;
                                 this.errorMessage = 'This field is required.';
-                            } else if (this.value.length > 1) {
+                            } else if (this.value.length > 100) {
                                 this.hasError = true;
                                 this.errorMessage = 'Location must not exceed 100 characters.';
                             } else {
@@ -599,9 +599,9 @@
                                 if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
+                                } else if (this.value.length > 100) {
                                     this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 2000 characters.';
+                                    this.errorMessage = 'This field must not exceed 100 characters.';
                                 } else {
                                     this.hasError = false;
                                     this.errorMessage = '';
@@ -760,9 +760,9 @@
                                 if (!this.value || this.value.trim() === '') {
                                     this.hasError = true;
                                     this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 1) {
+                                } else if (this.value.length > 60) {
                                     this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 100 characters.';
+                                    this.errorMessage = 'This field must not exceed 60 characters.';
                                 } else {
                                     this.hasError = false;
                                     this.errorMessage = '';
