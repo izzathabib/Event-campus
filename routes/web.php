@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/store-event-application-data', [EventManagementController::class, 'storeEventApplicationData'])->name('society.storeEventApplicationData');
     Route::get('/display-single-event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])
         ->name('society.displaySingleEventApplication');
+    Route::delete('/society/delete-event-epplication/{id}', [SocietyDashboardController::class, 'deleteEventApplication'])->name('society.deleteEventApplication');
     // Route::get('/event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])->name('society.event-application');
 });
 

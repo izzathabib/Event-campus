@@ -26,4 +26,12 @@ class DashboardController extends Controller
         // dd($eventApplications);
         return view('displaySingleEventApplication', compact('eventApplications'));
     }
+
+    public function deleteEventApplication($id)
+    {
+        $event = PaperWork::where('user_id', auth()->id())->findOrFail($id);
+        $event->delete();
+        
+        return redirect()->route('society.dashboard')->with('delete_success', 'Event application deleted successfully.');
+    }
 }
