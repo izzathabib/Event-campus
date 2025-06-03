@@ -588,6 +588,68 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-6">
                         PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
                     </h3>
+
+                    <!-- Kaedah / Poster / HFP -->
+                     <div class="flex flex-row justify-between gap-2 mb-4">
+                        <!-- Kaedah -->
+                        <div class="flex flex-row border border-gray-300">
+                            <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
+                                <p class="text-sm">KAEDAH</p>
+                            </div>
+                            <div class="border-r text-sm flex flex-col">
+                                <label for="kaedah1" class="border-b border-gray-300 p-2">Atas Talian</label>
+                                <label for="kaedah2" class="border-b border-gray-300 p-2">Fizikal</label>
+                                <label for="kaedah3" class="p-2">Hybrid</label>
+                            </div>
+                            <div class="flex flex-col items-center text-sm">
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian">
+                                </div>
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="kaedah2" name="kaedah" value="fizikal">
+                                </div>
+                                <div class="p-2">
+                                    <input type="radio" id="kaedah3" name="kaedah" value="hybrid">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- HFP -->
+                        <div class="flex flex-row border border-gray-300">
+                            <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
+                                <p class="text-sm">HEBAT FLAGSHIP PROGRAMMES (HFP)</p>
+                            </div>
+                            <div class="border-r text-sm flex flex-col">
+                                <label for="hfp_ya" class="border-b border-gray-300 p-2">Ya</label>
+                                <label for="hfp_tidak" class="border-b border-gray-300 p-2">Tidak</label>
+                            </div>
+                            <div class="flex flex-col items-center text-sm">
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="hfp_ya" name="hfp" value="ya">
+                                </div>
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="hfp_tidak" name="hfp" value="tidak">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Poster -->
+                        <div class="flex flex-row border border-gray-300">
+                            <div class="bg-blue-300 p-6 flex items-center border-r border-gray-300">
+                                <p class="text-sm">POSTER</p>
+                            </div>
+                            <div class="border-r text-sm flex flex-col">
+                                <label for="poster_ya" class="border-b border-gray-300 p-2">Ya</label>
+                                <label for="poster_tidak" class="border-b border-gray-300 p-2">Tidak</label>
+                            </div>
+                            <div class="flex flex-col items-center text-sm">
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="poster_ya" name="poster" value="ya">
+                                </div>
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="poster_tidak" name="poster" value="tidak">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="grid grid-cols-1 gap-6">
                         <!-- TAJUK PROGRAM / AKTIVITI -->
