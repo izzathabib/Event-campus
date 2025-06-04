@@ -65,9 +65,10 @@ class EventManagementController extends Controller
             'days' => ['required', 'json'],
 
             // MyCSD Mapping
-            'kaedah' => 'required|in:atas_talian,fizikal,hybrid',
-            'hfp'    => 'required|in:ya,tidak',
-            'poster' => 'required|in:ya,tidak',
+            'kaedah' => 'required|in:Atas Talian,Fizikal,Hybrid',
+            'hfp'    => 'required|in:Ya,Tidak',
+            'poster' => 'required|in:Ya,Tidak',
+            'pertubuhan' => 'required|in:Persatuan,Kelab,Majlis Penghuni Desasiswa,Anak Negeri,Badan Beruniform,Sekreteriat',
 
             // Application to Organize Events
             'nama' => 'bail|required|string|max:60',
@@ -113,6 +114,7 @@ class EventManagementController extends Controller
             'kaedah.required' => 'Please make selection on Kaedah.',
             'hfp.required' => 'Please make selection on HFP.',
             'poster.required' => 'Please make selection on Poster.',
+            'pertubuhan.required' => 'Please make selection on Pertubuhan.',
             
             #--#--#
             # PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
@@ -165,6 +167,7 @@ class EventManagementController extends Controller
                 'kaedah' => $validatedData['kaedah'],
                 'hfp' => $validatedData['hfp'],
                 'poster' => $validatedData['poster'],
+                'pertubuhan' => $validatedData['pertubuhan'],
             ]);
 
             ApplyToOrganizeEvent::create([

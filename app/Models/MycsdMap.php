@@ -15,6 +15,7 @@ class MycsdMap extends Model
         'kaedah',
         'hfp',
         'poster',
+        'pertubuhan',
     ];
 
     public function users()
