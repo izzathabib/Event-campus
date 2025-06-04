@@ -69,7 +69,7 @@ window.multiStepForm = function() {
             lokasi: true,
             timeActivities: true,
             // MyCSD Mapping
-            taj_prog: true,
+            
             // Application to Organize Events
             nama: true
         },

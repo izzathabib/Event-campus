@@ -65,7 +65,9 @@ class EventManagementController extends Controller
             'days' => ['required', 'json'],
 
             // MyCSD Mapping
-            'taj_prog' => 'bail|required|string|max:100',
+            'kaedah' => 'required|in:atas_talian,fizikal,hybrid',
+            'hfp'    => 'required|in:ya,tidak',
+            'poster' => 'required|in:ya,tidak',
 
             // Application to Organize Events
             'nama' => 'bail|required|string|max:60',
@@ -161,7 +163,9 @@ class EventManagementController extends Controller
             MycsdMap::create([
                 'user_id' => Auth::id(),
                 'paper_work_id' => $paperWork->id,
-                'taj_prog' => $validatedData['taj_prog'],
+                'kaedah' => $validatedData['kaedah'],
+                'hfp' => $validatedData['hfp'],
+                'poster' => $validatedData['poster'],
             ]);
 
             ApplyToOrganizeEvent::create([
@@ -171,8 +175,7 @@ class EventManagementController extends Controller
             ]);
 
             // Redirect or return a success response
-            return redirect()->back()
-                ->with('success', 'Event application submitted successfully!');
+            return redirect()->route('society.dashboard')->with('success', 'Event application submitted successfully!');
 
         } catch (\Exception $e) {
 

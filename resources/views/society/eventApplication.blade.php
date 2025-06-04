@@ -603,13 +603,13 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian" required>
+                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian" required {{ old('kaedah') == 'atas_talian' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah2" name="kaedah" value="fizikal">
+                                    <input type="radio" id="kaedah2" name="kaedah" value="fizikal" {{ old('kaedah') == 'fizikal' ? 'checked' : '' }}>
                                 </div>
                                 <div class="p-2">
-                                    <input type="radio" id="kaedah3" name="kaedah" value="hybrid">
+                                    <input type="radio" id="kaedah3" name="kaedah" value="hybrid" {{ old('kaedah') == 'hybrid' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
@@ -624,10 +624,10 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_ya" name="hfp" value="ya" required>
+                                    <input type="radio" id="hfp_ya" name="hfp" value="ya" required {{ old('hfp') == 'ya' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_tidak" name="hfp" value="tidak">
+                                    <input type="radio" id="hfp_tidak" name="hfp" value="tidak" {{ old('hfp') == 'tidak' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
@@ -642,10 +642,10 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_ya" name="poster" value="ya" required>
+                                    <input type="radio" id="poster_ya" name="poster" value="ya" required {{ old('poster') == 'ya' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_tidak" name="poster" value="tidak">
+                                    <input type="radio" id="poster_tidak" name="poster" value="tidak" {{ old('poster') == 'tidak' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>

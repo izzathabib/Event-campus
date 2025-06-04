@@ -12,7 +12,9 @@ class MycsdMap extends Model
     protected $fillable = [
         'user_id',
         'paper_work_id',
-        'taj_prog',
+        'kaedah',
+        'hfp',
+        'poster',
     ];
 
     public function users()
