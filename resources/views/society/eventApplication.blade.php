@@ -603,7 +603,7 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian">
+                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian" required>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
                                     <input type="radio" id="kaedah2" name="kaedah" value="fizikal">
@@ -624,7 +624,7 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_ya" name="hfp" value="ya">
+                                    <input type="radio" id="hfp_ya" name="hfp" value="ya" required>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
                                     <input type="radio" id="hfp_tidak" name="hfp" value="tidak">
@@ -642,7 +642,7 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_ya" name="poster" value="ya">
+                                    <input type="radio" id="poster_ya" name="poster" value="ya" required>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
                                     <input type="radio" id="poster_tidak" name="poster" value="tidak">
