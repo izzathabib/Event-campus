@@ -110,10 +110,9 @@ class EventManagementController extends Controller
             
             #--#--#
             # PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
-            // taj_prog
-            'taj_prog.required' => 'Tajuk Program is required.',
-            'taj_prog.string' => 'Tajuk Program must be a valid text.',
-            'taj_prog.max' => 'Tajuk Program must not exceed 100 characters.',
+            'kaedah.required' => 'Please make selection on Kaedah.',
+            'hfp.required' => 'Please make selection on HFP.',
+            'poster.required' => 'Please make selection on Poster.',
             
             #--#--#
             # PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI

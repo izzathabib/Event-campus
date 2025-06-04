@@ -69,7 +69,9 @@ window.multiStepForm = function() {
             lokasi: true,
             timeActivities: true,
             // MyCSD Mapping
-            
+            kaedah: true,
+            hfp: true,
+            poster: true,
             // Application to Organize Events
             nama: true
         },

@@ -578,9 +578,26 @@
                     </h3>
 
                     <!-- Kaedah / Poster / HFP -->
-                     <div class="flex flex-row justify-between gap-2 mb-6">
+                    <div class="flex flex-row justify-between gap-2 mb-6">
                         <!-- Kaedah -->
-                        <div class="flex flex-row border border-gray-300">
+                        <div class="flex flex-row border border-gray-300"
+                            x-data="{
+                                value: '{{ old('kaedah') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    $data.updateFormError('kaedah', this.hasError);
+                                }
+                            }" 
+                            @init="validate()"
+                        >
                             <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
                                 <p class="text-sm">KAEDAH</p>
                             </div>
@@ -591,18 +608,46 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian" required {{ old('kaedah') == 'atas_talian' ? 'checked' : '' }}>
+                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        required 
+                                        {{ old('kaedah') == 'atas_talian' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah2" name="kaedah" value="fizikal" {{ old('kaedah') == 'fizikal' ? 'checked' : '' }}>
+                                    <input type="radio" id="kaedah2" name="kaedah" value="fizikal"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('kaedah') == 'fizikal' ? 'checked' : '' }}>
                                 </div>
                                 <div class="p-2">
-                                    <input type="radio" id="kaedah3" name="kaedah" value="hybrid" {{ old('kaedah') == 'hybrid' ? 'checked' : '' }}>
+                                    <input type="radio" id="kaedah3" name="kaedah" value="hybrid"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('kaedah') == 'hybrid' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- HFP -->
-                        <div class="flex flex-row border border-gray-300">
+                        <div class="flex flex-row border border-gray-300"
+                            x-data="{
+                                value: '{{ old('hfp') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Please select HFP.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    $data.updateFormError('hfp', this.hasError);
+                                }
+                            }" 
+                            @init="validate()"
+                        >
                             <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
                                 <p class="text-sm">HEBAT FLAGSHIP PROGRAMMES (HFP)</p>
                             </div>
@@ -612,15 +657,40 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_ya" name="hfp" value="ya" required {{ old('hfp') == 'ya' ? 'checked' : '' }}>
+                                    <input type="radio" id="hfp_ya" name="hfp" value="ya"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        required 
+                                        {{ old('hfp') == 'ya' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_tidak" name="hfp" value="tidak" {{ old('hfp') == 'tidak' ? 'checked' : '' }}>
+                                    <input type="radio" id="hfp_tidak" name="hfp" value="tidak"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('hfp') == 'tidak' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
+
                         <!-- Poster -->
-                        <div class="flex flex-row border border-gray-300">
+                        <div class="flex flex-row border border-gray-300"
+                            x-data="{
+                                value: '{{ old('poster') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Please select Poster.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    $data.updateFormError('poster', this.hasError);
+                                }
+                            }" 
+                            @init="validate()"
+                        >
                             <div class="bg-blue-300 p-6 flex items-center border-r border-gray-300">
                                 <p class="text-sm">POSTER</p>
                             </div>
@@ -630,14 +700,25 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_ya" name="poster" value="ya" required {{ old('poster') == 'ya' ? 'checked' : '' }}>
+                                    <input type="radio" id="poster_ya" name="poster" value="ya"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        required 
+                                        {{ old('poster') == 'ya' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_tidak" name="poster" value="tidak" {{ old('poster') == 'tidak' ? 'checked' : '' }}>
+                                    <input type="radio" id="poster_tidak" name="poster" value="tidak"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('poster') == 'tidak' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <x-input-error :messages="$errors->get('kaedah')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('hfp')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('poster')" class="mt-2 mb-4" />
+
                     
                     <!-- Pertubuhan Pelajar -->
                     <div class="bg-blue-300 px-6 flex justify-center items-center border-r border-gray-300">
