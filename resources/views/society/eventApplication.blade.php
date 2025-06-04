@@ -13,7 +13,7 @@
 
 <h1 class="text-lg font-semibold ml-4">Event Application</h1>
 <div class="flex items-center justify-center p-4 mt-3 w-full">
-    <div class="w-full max-w-4xl bg-white rounded-lg border-2 shadow-md overflow-hidden" x-data="multiStepForm()" x-cloak>
+    <div class="w-full max-w-4xl bg-white rounded-lg border border-gray-300 overflow-hidden" x-data="multiStepForm()" x-cloak>
     
         <!-- Form Header with Progress -->
         <div class=" p-6 text-gray-500">
@@ -590,7 +590,7 @@
                     </h3>
 
                     <!-- Kaedah / Poster / HFP -->
-                     <div class="flex flex-row justify-between gap-2 mb-4">
+                     <div class="flex flex-row justify-between gap-2 mb-6">
                         <!-- Kaedah -->
                         <div class="flex flex-row border border-gray-300">
                             <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
@@ -651,156 +651,9 @@
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-1 gap-6">
-                        <!-- TAJUK PROGRAM / AKTIVITI -->
-                        <div x-data="{ 
-                            value: '{{ old('taj_prog') }}',
-                            hasError: false,
-                            errorMessage: '',
-                            validate() {
-                                if (!this.value || this.value.trim() === '') {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field is required.';
-                                } else if (this.value.length > 100) {
-                                    this.hasError = true;
-                                    this.errorMessage = 'This field must not exceed 100 characters.';
-                                } else {
-                                    this.hasError = false;
-                                    this.errorMessage = '';
-                                }
-                                // Update the parent form's error tracking
-                                $data.updateFormError('taj_prog', this.hasError);
-                            }
-                        }" @init="validate()" @input="validate()">
-                            <label for="taj_prog" class="block text-sm font-medium text-gray-700 mb-1">TAJUK PROGRAM / AKTIVITI</label>
-                            <input type="text" id="taj_prog" name="taj_prog" 
-                            x-model="value"
-                            @input="validate()" 
-                            x-bind:class="hasError 
-                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
-                            required>
-                            <!-- Real-time error message -->
-                            <p
-                                x-show="hasError" 
-                                x-text="errorMessage"
-                                class="mt-2 text-sm text-red-600"
-                            ></p>
-                            <!-- Server-side error message -->
-                            <x-input-error :messages="$errors->get('taj_prog')" class="mt-2" />
-                        </div>
-
-                        <!-- <div>
-                            <label for="nam_pert" class="block text-sm font-medium text-gray-700 mb-1">NAMA PERTUBUHAN</label>
-                            <input type="text" id="nam_pert" name="nam_pert" x-model="formData.namPert" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                        </div> -->
-                        
-                        <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> -->
-                            <!-- <div>
-                                <label for="kaedah" class="block text-sm font-medium text-gray-700 mb-1">KAEDAH</label>
-                                <select id="kaedah" name="kaedah" x-model="formData.kaedah" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                    required>
-                                    <option value="" disabled {{ old('kaedah', $defaultKaedah ?? '') == '' ? 'selected' : '' }} class="bg-white">Sila Pilih Kaedah</option>
-                                    <option value="Atas Talian" {{ old('kaedah', $defaultKaedah ?? '') == 'online' ? 'selected' : '' }}>Atas Talian</option>
-                                    <option value="Fizikal (Berdasarkan SOP MKN semasa)" {{ old('kaedah', $defaultKaedah ?? '') == 'physical' ? 'selected' : '' }}>Fizikal (Berdasarkan SOP MKN semasa)</option>
-                                    <option value="Hybrid (Berdasarkan SOP MKN semasa)" {{ old('kaedah', $defaultKaedah ?? '') == 'hybrid' ? 'selected' : '' }}>Hybrid (Berdasarkan SOP MKN semasa)</option> 
-                                </select>
-                            </div> -->
-
-                            <!-- <div> -->
-                                <!-- <p class="block text-sm font-medium text-gray-700 mb-1">HEBAT FLAGSHIP PROGRAMMES (HFP)</p>  -->
-                                {{-- Using flex column for vertical layout --}}
-                                <!-- <div class="space-y-2">  -->
-                                    {{-- Option 1: Ya --}}
-                                    <!-- <div class="flex items-center"> -->
-                                        <!-- <input 
-                                            type="radio" 
-                                            id="hfp_ya" 
-                                            name="hfp" 
-                                            value="ya" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                            {{-- Pre-select if it was the old input or a default --}}
-                                            <!-- {{ old('hfp', $defaultHfp ?? '') == 'ya' ? 'checked' : '' }} 
-                                        >
-                                        <label for="hfp_ya" class="ml-3 block text-sm font-medium text-gray-700">
-                                            Ya
-                                        </label>
-                                    </div> -->
-
-                                    {{-- Option 2: Tidak --}}
-                                    <!-- <div class="flex items-center">
-                                        <input 
-                                            type="radio" 
-                                            id="hfp_tidak" 
-                                            name="hfp" 
-                                            value="tidak" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                            {{-- Pre-select if it was the old input or a default --}}
-                                            <!-- {{ old('hfp', $defaultHfp ?? '') == 'tidak' ? 'checked' : '' }} 
-                                        >
-                                        <label for="kaedah_online" class="ml-3 block text-sm font-medium text-gray-700">
-                                            Tidak
-                                        </label>
-                                    </div> -->
-                                <!-- </div>
-                            </div>
-
-                            <div>
-                                <p class="block text-sm font-medium text-gray-700 mb-1">POSTER</p>  -->
-                                {{-- Using flex column for vertical layout --}}
-                                <!-- <div class="space-y-2">  -->
-                                    {{-- Option 1: Ya --}}
-                                    <!-- <div class="flex items-center">
-                                        <input 
-                                            type="radio" 
-                                            id="poster_ya" 
-                                            name="poster" 
-                                            value="ya" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                            {{-- Pre-select if it was the old input or a default --}}
-                                            <!-- {{ old('poster', $defaultPoster ?? '') == 'ya' ? 'checked' : '' }} 
-                                        >
-                                        <label for="poster_ya" class="ml-3 block text-sm font-medium text-gray-700">
-                                            Ya
-                                        </label>
-                                    </div> -->
-
-                                    {{-- Option 2: Tidak --}}
-                                    <!-- <div class="flex items-center">
-                                        <input 
-                                            type="radio" 
-                                            id="poster_tidak" 
-                                            name="poster" 
-                                            value="tidak" 
-                                            class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                            {{-- Pre-select if it was the old input or a default --}}
-                                            <!-- {{ old('poster', $defaultPoster ?? '') == 'tidak' ? 'checked' : '' }} 
-                                        >
-                                        <label for="kaedah_online" class="ml-3 block text-sm font-medium text-gray-700">
-                                            Tidak
-                                        </label>
-                                    </div>
-                                </div> -->
-                            <!-- </div>
-                        </div>
-
-                        <div>
-                            <label for="jen_pertub" class="block text-sm font-medium text-gray-700 mb-1">PERTUBUHAN PELAJAR</label>
-                            <select id="jen_pertub" name="jen_pertub" x-model="formData.jenPertub" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                                <option value="" disabled {{ old('jen_pertub', $jenPertub ?? '') == '' ? 'selected' : '' }} class="bg-white">Sila Pilih Jenis Pertubuhan</option>
-                                <option value="Persatuan" {{ old('jen_pertub', $jenPertub ?? '') == 'Persatuan' ? 'selected' : '' }}>Persatuan</option>
-                                <option value="Majlis Penghuni Desasiswa" {{ old('jen_pertub', $jenPertub ?? '') == 'Majlis Penghuni Desasiswa' ? 'selected' : '' }}>Majlis Penghuni Desasiswa</option>
-                                <option value="Badan Beruniform" {{ old('jen_pertub', $jenPertub ?? '') == 'Badan Beruniform' ? 'selected' : '' }}>Badan Beruniform</option> 
-                                <option value="Kelab" {{ old('jen_pertub', $jenPertub ?? '') == 'Kelab' ? 'selected' : '' }}>Kelab</option> 
-                                <option value="Anak Negeri" {{ old('jen_pertub', $jenPertub ?? '') == 'Anak Negeri' ? 'selected' : '' }}>Anak Negeri</option> 
-                                <option value="Sekretariat" {{ old('jen_pertub', $jenPertub ?? '') == 'Sekretariat' ? 'selected' : '' }}>Sekretariat</option> 
-                            </select>
-                        </div> -->
+                    <!-- Pertubuhan Pelajar -->
+                    <div class="bg-blue-300 px-6 flex justify-center items-center border-r border-gray-300">
+                        <AR class="text-sm">PERTUBUHAN PELAJAR</p>
                     </div>
                 </div>
                 
@@ -911,7 +764,7 @@
                         x-show="currentStep > 1" 
                         @click="goToPrevStep" 
                         type="button"
-                        class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm rounded-md transition-colors duration-300"
+                        class="px-6 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm rounded-md transition-colors duration-300"
                     >
                         Previous
                     </button>
