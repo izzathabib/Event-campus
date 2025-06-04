@@ -608,23 +608,23 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah1" name="kaedah" value="atas_talian"
+                                    <input type="radio" id="kaedah1" name="kaedah" value="Atas Talian"
                                         x-model="value"
                                         @change="validate()" 
                                         required 
-                                        {{ old('kaedah') == 'atas_talian' ? 'checked' : '' }}>
+                                        {{ old('kaedah') == 'Atas Talian' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="kaedah2" name="kaedah" value="fizikal"
+                                    <input type="radio" id="kaedah2" name="kaedah" value="Fizikal"
                                         x-model="value"
                                         @change="validate()" 
-                                        {{ old('kaedah') == 'fizikal' ? 'checked' : '' }}>
+                                        {{ old('kaedah') == 'Fizikal' ? 'checked' : '' }}>
                                 </div>
                                 <div class="p-2">
-                                    <input type="radio" id="kaedah3" name="kaedah" value="hybrid"
+                                    <input type="radio" id="kaedah3" name="kaedah" value="Hybrid"
                                         x-model="value"
                                         @change="validate()" 
-                                        {{ old('kaedah') == 'hybrid' ? 'checked' : '' }}>
+                                        {{ old('kaedah') == 'Hybrid' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
@@ -657,17 +657,17 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_ya" name="hfp" value="ya"
+                                    <input type="radio" id="hfp_ya" name="hfp" value="Ya"
                                         x-model="value"
                                         @change="validate()" 
                                         required 
-                                        {{ old('hfp') == 'ya' ? 'checked' : '' }}>
+                                        {{ old('hfp') == 'Ya' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="hfp_tidak" name="hfp" value="tidak"
+                                    <input type="radio" id="hfp_tidak" name="hfp" value="Tidak"
                                         x-model="value"
                                         @change="validate()" 
-                                        {{ old('hfp') == 'tidak' ? 'checked' : '' }}>
+                                        {{ old('hfp') == 'Tidak' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
@@ -700,17 +700,17 @@
                             </div>
                             <div class="flex flex-col items-center text-sm">
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_ya" name="poster" value="ya"
+                                    <input type="radio" id="poster_ya" name="poster" value="Ya"
                                         x-model="value"
                                         @change="validate()" 
                                         required 
-                                        {{ old('poster') == 'ya' ? 'checked' : '' }}>
+                                        {{ old('poster') == 'Ya' ? 'checked' : '' }}>
                                 </div>
                                 <div class="border-b border-gray-300 p-2">
-                                    <input type="radio" id="poster_tidak" name="poster" value="tidak"
+                                    <input type="radio" id="poster_tidak" name="poster" value="Tidak"
                                         x-model="value"
                                         @change="validate()" 
-                                        {{ old('poster') == 'tidak' ? 'checked' : '' }}>
+                                        {{ old('poster') == 'Tidak' ? 'checked' : '' }}>
                                 </div>
                             </div>
                         </div>
@@ -719,11 +719,98 @@
                     <x-input-error :messages="$errors->get('hfp')" class="mt-2" />
                     <x-input-error :messages="$errors->get('poster')" class="mt-2 mb-4" />
 
-                    
                     <!-- Pertubuhan Pelajar -->
-                    <div class="bg-blue-300 px-6 flex justify-center items-center border-r border-gray-300">
-                        <AR class="text-sm">PERTUBUHAN PELAJAR</p>
+                    <div class="flex flex-col border border-gray-300"
+                        x-data="{
+                            value: '{{ old('pertubuhan') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'Please select type of pertubuhan.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                $data.updateFormError('pertubuhan', this.hasError);
+                            }
+                        }" 
+                        @init="validate()"
+                    >
+                        <div class="bg-blue-300 py-2 flex justify-center items-center border-b border-gray-300">
+                            <AR class="text-sm">PERTUBUHAN PELAJAR</p>
+                        </div>
+                        <div class="flex flex-row justify-stretch w-full">
+                            <!-- Persatuan & Kelab -->
+                            <div class="flex flex-row">
+                                <div class="border-r text-sm flex flex-col">
+                                    <label for="pertubuhan_persatuan" class="border-b border-gray-300 py-2 px-14">Persatuan</label>
+                                    <label for="pertubuhan_kelab" class="border-gray-300 py-2 px-14">Kelab</label>
+                                </div>
+                                <div class="flex flex-col items-center text-sm">
+                                    <div class="border-r border-b border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_persatuan" name="pertubuhan" value="Persatuan"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            required 
+                                            {{ old('pertubuhan') == 'Persatuan' ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="border-r border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_kelab" name="pertubuhan" value="Kelab"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            {{ old('pertubuhan') == 'Kelab' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- MPD & Anak Negeri -->
+                            <div class="flex flex-row">
+                                <div class="border-r text-sm flex flex-col">
+                                    <label for="pertubuhan_mpd" class="border-b border-gray-300 py-2 px-16">Majlis Penghuni Desasiswa</label>
+                                    <label for="pertubuhan_negeri" class="border-gray-300 py-2 px-16">Anak Negeri</label>
+                                </div>
+                                <div class="flex flex-col items-center text-sm">
+                                    <div class="border-r border-b border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_mpd" name="pertubuhan" value="Majlis Penghuni Desasiswa"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            required 
+                                            {{ old('pertubuhan') == 'Majlis Penghuni Desasiswa' ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="border-r border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_negeri" name="pertubuhan" value="Anak Negeri"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            {{ old('pertubuhan') == 'Anak Negeri' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Badan Beruniform & Sekreteriat -->
+                            <div class="flex flex-row">
+                                <div class="border-r text-sm flex flex-col">
+                                    <label for="pertubuhan_uniform" class="border-b border-gray-300 py-2 px-14">Badan Beruniform</label>
+                                    <label for="pertubuhan_sekreteriat" class="border-gray-300 py-2 px-14">Sekreteriat</label>
+                                </div>
+                                <div class="flex flex-col items-center text-sm">
+                                    <div class="border-b border-gray-300 py-2 px-3">
+                                        <input type="radio" id="pertubuhan_uniform" name="pertubuhan" value="Badan Beruniform"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            required 
+                                            {{ old('pertubuhan') == 'Badan Beruniform' ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="border-gray-300 py-2 px-3">
+                                        <input type="radio" id="pertubuhan_sekreteriat" name="pertubuhan" value="Sekreteriat"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            {{ old('pertubuhan') == 'Sekreteriat' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
                 
                 <!-- Step 3: Application to Organize Events -->

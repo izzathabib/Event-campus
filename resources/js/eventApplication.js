@@ -72,6 +72,7 @@ window.multiStepForm = function() {
             kaedah: true,
             hfp: true,
             poster: true,
+            pertubuhan: true,
             // Application to Organize Events
             nama: true
         },
