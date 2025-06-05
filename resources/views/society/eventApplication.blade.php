@@ -851,7 +851,7 @@
                                         <p class="text-sm">Kepimpinan; Sukan (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="holistic_kerja_kump" name="holistic" value="Kerja Kumpulan"
+                                        <input type="checkbox" id="holistic_kerja_kump" name="holistic[]" value="Kerja Kumpulan"
                                             class="rounded border-gray-400"
                                             {{ old('holistic') == 'Kerja Kumpulan' ? 'checked' : '' }}>
                                     </div>
@@ -865,7 +865,7 @@
                                         <p class="text-sm">Kepimpinan (Cth: Jawatan yang disandang dalam Pertubuhan Pelajar; Anugerah)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="holistic_kepimpinan" name="holistic" value="Kepimpinan"
+                                        <input type="checkbox" id="holistic_kepimpinan" name="holistic[]" value="Kepimpinan"
                                             class="rounded border-gray-400"
                                             {{ old('holistic') == 'Kepimpinan' ? 'checked' : '' }}>
                                     </div>
@@ -879,7 +879,7 @@
                                         <p class="text-sm">Kesukarelawanan; Khidmat Masyarakat; Reka Cipta & Inovasi (*)</p>
                                     </div>
                                     <div class="p-2">
-                                        <input type="checkbox" id="holistic_pemb_spnjg_hyt" name="holistic" value="Pembelajaran Sepanjang Hayat"
+                                        <input type="checkbox" id="holistic_pemb_spnjg_hyt" name="holistic[]" value="Pembelajaran Sepanjang Hayat"
                                             class="rounded border-gray-400"
                                             {{ old('holistic') == 'Kepimpinan' ? 'checked' : '' }}>
                                     </div>
@@ -901,7 +901,7 @@
                                         <p class="text-sm">Keusahawanan; Reka Cipta & Inovasi (Cth: Projek Menerbitkan Majalah, Produk, Sistem, Fotografi, Videografi Secara Atas Talian Atau Fizikal) (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="entrepreneurial_mind_kushwnn" name="entrepreneurial" value="Minda Keusahawanan"
+                                        <input type="checkbox" id="entrepreneurial_mind_kushwnn" name="entrepreneurial[]" value="Minda Keusahawanan"
                                             class="rounded border-gray-400"
                                             {{ old('entrepreneurial') == 'Minda Keusahawanan' ? 'checked' : '' }}>
                                     </div>
@@ -915,7 +915,7 @@
                                         <p class="text-sm">Keusahawanan (Cth: Subjek WUS101; Inkubator Usahawan Pelajar; Jualan Hari Konvokesyen; Persembahan Berbayar; Aktiviti yang melibatkan kursus berkredit tidak layak MyCSD)</p>
                                     </div>
                                     <div class="p-2">
-                                        <input type="checkbox" id="entrepreneurial_kemahirn_kushwnn" name="entrepreneurial" value="Kemahiran Keusahawanan"
+                                        <input type="checkbox" id="entrepreneurial_kemahirn_kushwnn" name="entrepreneurial[]" value="Kemahiran Keusahawanan"
                                             class="rounded border-gray-400"
                                             {{ old('entrepreneurial') == 'Kemahiran Keusahawanan' ? 'checked' : '' }}>
                                     </div>
@@ -937,7 +937,7 @@
                                         <p class="text-sm">Kesukarelawanan; Khidmat Masyarakat; Kepimpinan (Cth: Perkembangan Diri) (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="balanced_nilai_sikap_kmnusaan" name="balanced" value="Nilai, Sikap & Kemanusiaan"
+                                        <input type="checkbox" id="balanced_nilai_sikap_kmnusaan" name="balanced[]" value="Nilai, Sikap & Kemanusiaan"
                                             class="rounded border-gray-400"
                                             {{ old('balanced') == 'Nilai, Sikap & Kemanusiaan' ? 'checked' : '' }}>
                                     </div>
@@ -951,7 +951,7 @@
                                         <p class="text-sm">Kepimpinan; Pengucapan Awam; Sukan (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="balanced_etika_prof" name="balanced" value="Etika & Profesionalisme"
+                                        <input type="checkbox" id="balanced_etika_prof" name="balanced[]" value="Etika & Profesionalisme"
                                             class="rounded border-gray-400"
                                             {{ old('balanced') == 'Nilai, Sikap & Kemanusiaan' ? 'checked' : '' }}>
                                     </div>
@@ -965,7 +965,7 @@
                                         <p class="text-sm">Reka Cipta & Inovasi</p>
                                     </div>
                                     <div class="p-2 border-b border-gray-300">
-                                        <input type="checkbox" id="balanced_pemikiran_saintifik" name="balanced" value="Pemikiran Saintifik"
+                                        <input type="checkbox" id="balanced_pemikiran_saintifik" name="balanced[]" value="Pemikiran Saintifik"
                                             class="rounded border-gray-400"
                                             {{ old('balanced') == 'Pemikiran Saintifik' ? 'checked' : '' }}>
                                     </div>
@@ -979,7 +979,7 @@
                                         <p class="text-sm">Kebudayaan</p>
                                     </div>
                                     <div class="p-2">
-                                        <input type="checkbox" id="balanced_apresiasi_seni" name="balanced" value="Apresiasi Seni"
+                                        <input type="checkbox" id="balanced_apresiasi_seni" name="balanced[]" value="Apresiasi Seni"
                                             class="rounded border-gray-400"
                                             {{ old('balanced') == 'Apresiasi Seni' ? 'checked' : '' }}>
                                     </div>
@@ -1001,7 +1001,7 @@
                                         <p class="text-sm">Kepimpinan; Pengucapan Awam (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="articulate_komunikasi" name="articulate" value="Komunikasi"
+                                        <input type="checkbox" id="articulate_komunikasi" name="articulate[]" value="Komunikasi"
                                             class="rounded border-gray-400"
                                             {{ old('articulate') == 'Komunikasi' ? 'checked' : '' }}>
                                     </div>
@@ -1015,7 +1015,7 @@
                                         <p class="text-sm">Pengucapan Awam; Kebudayaan; Sukan (*)</p>
                                     </div>
                                     <div class="p-2">
-                                        <input type="checkbox" id="articulate_keyakinan" name="articulate" value="Keyakinan"
+                                        <input type="checkbox" id="articulate_keyakinan" name="articulate[]" value="Keyakinan"
                                             class="rounded border-gray-400"
                                             {{ old('articulate') == 'Keyakinan' ? 'checked' : '' }}>
                                     </div>
@@ -1037,7 +1037,7 @@
                                         <p class="text-sm">Reka Cipta & Inovasi; Keusahawanan (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="thinking_pemikiran_kritis" name="thinking" value="Pemikiran Kritis"
+                                        <input type="checkbox" id="thinking_pemikiran_kritis" name="thinking[]" value="Pemikiran Kritis"
                                             class="rounded border-gray-400"
                                             {{ old('thinking') == 'Pemikiran Kritis' ? 'checked' : '' }}>
                                     </div>
@@ -1051,7 +1051,7 @@
                                         <p class="text-sm">Reka Cipta & Inovasi; Kebudayaan (*)</p>
                                     </div>
                                     <div class="border-b border-gray-300 p-2">
-                                        <input type="checkbox" id="thinking_pemikiran_kreatif_inovatif" name="thinking" value="Pemikiran Kreatif & Inovatif"
+                                        <input type="checkbox" id="thinking_pemikiran_kreatif_inovatif" name="thinking[]" value="Pemikiran Kreatif & Inovatif"
                                             class="rounded border-gray-400"
                                             {{ old('thinking') == 'Pemikiran Kreatif & Inovatif' ? 'checked' : '' }}>
                                     </div>
@@ -1065,7 +1065,7 @@
                                         <p class="text-sm">Reka Cipta & Inovasi; Kesukarelawanan; Khidmat Masyarakat; Keusahawanan (*)</p>
                                     </div>
                                     <div class="p-2 border-b border-gray-300">
-                                        <input type="checkbox" id="thinking_penyelesaian_masalah" name="thinking" value="Penyelesaian Masalah"
+                                        <input type="checkbox" id="thinking_penyelesaian_masalah" name="thinking[]" value="Penyelesaian Masalah"
                                             class="rounded border-gray-400"
                                             {{ old('thinking') == 'Penyelesaian Masalah' ? 'checked' : '' }}>
                                     </div>
@@ -1079,7 +1079,7 @@
                                         <p class="text-sm">Program Antarabangsa (Cth: Internship; Student Exchange; Pertandingan; Persembahan) ; Sukan (*)</p>
                                     </div>
                                     <div class="p-2">
-                                        <input type="checkbox" id="thinking_minda_global" name="thinking" value="Minda Global"
+                                        <input type="checkbox" id="thinking_minda_global" name="thinking[]" value="Minda Global"
                                             class="rounded border-gray-400"
                                             {{ old('thinking') == 'Minda Global' ? 'checked' : '' }}>
                                     </div>
