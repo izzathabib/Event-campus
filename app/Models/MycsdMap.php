@@ -16,6 +16,11 @@ class MycsdMap extends Model
         'hfp',
         'poster',
         'pertubuhan',
+        'holistic',
+        'entrepreneurial',
+        'balanced',
+        'articulate',
+        'thinking',
     ];
 
     public function users()

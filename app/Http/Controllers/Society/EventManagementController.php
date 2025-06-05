@@ -69,6 +69,11 @@ class EventManagementController extends Controller
             'hfp'    => 'required|in:Ya,Tidak',
             'poster' => 'required|in:Ya,Tidak',
             'pertubuhan' => 'required|in:Persatuan,Kelab,Majlis Penghuni Desasiswa,Anak Negeri,Badan Beruniform,Sekreteriat',
+            'holistic' => 'nullable|array',
+            'entrepreneurial' => 'nullable|array',
+            'balanced' => 'nullable|array',
+            'articulate' => 'nullable|array',
+            'thinking' => 'nullable|array',
 
             // Application to Organize Events
             'nama' => 'bail|required|string|max:60',
@@ -168,6 +173,11 @@ class EventManagementController extends Controller
                 'hfp' => $validatedData['hfp'],
                 'poster' => $validatedData['poster'],
                 'pertubuhan' => $validatedData['pertubuhan'],
+                'holistic' => json_encode($request->holistic),
+                'entrepreneurial' => json_encode($request->entrepreneurial),
+                'balanced' => json_encode($request->balanced),
+                'articulate' => json_encode($request->articulate),
+                'thinking' => json_encode($request->thinking),
             ]);
 
             ApplyToOrganizeEvent::create([
