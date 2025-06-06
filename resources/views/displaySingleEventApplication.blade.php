@@ -18,7 +18,7 @@
     <!-- Form -->
     <div class="flex justify-center">
         <!-- Paper Work -->
-        <div id="paper-work-form" class="w-full max-w-4xl bg-white rounded-lg border-2 overflow-hidden">
+        <div id="paper-work-form" class="w-full max-w-4xl bg-white rounded-lg border border-gray-300 overflow-hidden">
         
             <!-- Form Header -->
             <div class=" p-6">
@@ -41,28 +41,28 @@
                             <!-- Tajuk Kertas Kerja -->
                             <div>
                                 <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300">
+                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 text-sm">
                                     {{ $eventApplications->tajuk_kk }}
                                 </div>
                             </div>
                             <!-- Pengenalan & Kumpulan Sasaran/ Penyertaan -->
                             <div>
                                 <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
+                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line text-sm">
                                     {{ $eventApplications->peng_kump_sasar }}
                                 </div>
                             </div>
                             <!-- Objektif (Selaras dengan Elemen & Atribut HEBAT) -->
                             <div>
                                 <label for="obj" class="block text-sm font-medium text-gray-700 mb-1">Objektif (Selaras dengan Elemen & Atribut HEBAT)</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
+                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line text-sm">
                                     {{ $eventApplications->obj }}
                                 </div>
                             </div>
                             <!-- Impak Dijangkakan -->
                             <div>
                                 <label for="impak" class="block text-sm font-medium text-gray-700 mb-1">Impak Dijangkakan</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
+                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line text-sm">
                                     {{ $eventApplications->impak }}
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <tbody>
                                     <!-- Tarikh -->
                                     <tr class="border-b">
-                                        <td class="py-2 font-medium text-gray-700">Tarikh: 
+                                        <td class="py-2 font-medium text-gray-700 text-sm">Tarikh: 
                                             @if ($eventApplications->start_date === $eventApplications->end_date)
                                                 {{ \Carbon\Carbon::parse($eventApplications->start_date)->format('d F Y') }}
                                             @else
@@ -86,7 +86,7 @@
                                     </tr>
                                     <!-- Masa -->
                                     <tr class="border-b">
-                                        <td class="py-2 font-medium text-gray-700">Masa: 
+                                        <td class="py-2 font-medium text-gray-700 text-sm">Masa: 
                                             @if ($eventApplications->start_time === $eventApplications->end_time)
                                                 {{ \Carbon\Carbon::parse($eventApplications->start_time)->format('h:i A') }}
                                             @else
@@ -95,7 +95,7 @@
                                         </td>
                                     </tr>
                                     <tr class="border-b">
-                                        <td class="py-2 font-medium text-gray-700">Lokasi: {{ $eventApplications->lokasi }}</td>
+                                        <td class="py-2 font-medium text-gray-700 text-sm">Lokasi: {{ $eventApplications->lokasi }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -129,12 +129,12 @@
                                                 @foreach($day->time_activities as $activity)
                                                 <tr class="border-b">
                                                     <td class="whitespace-nowrap border-r border-gray-300 px-2">
-                                                        <div class="w-32">
+                                                        <div class="w-32 text-sm">
                                                             {{ \Carbon\Carbon::parse($activity->time)->format('h:i A') }}
                                                         </div>
                                                     </td>
                                                     <td class="whitespace-nowrap px-2 py-2">
-                                                        <div class="w-32">
+                                                        <div class="w-32 text-sm">
                                                             {{ $activity->activity }}
                                                         </div>
                                                     </td>

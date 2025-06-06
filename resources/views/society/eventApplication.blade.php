@@ -464,10 +464,10 @@
                                 <div class="overflow-x-auto">
                                     <table class="min-w-full bg-white border border-gray-300 rounded-lg">
                                         <thead>
-                                            <tr class="bg-gray-50">
-                                                <th class="w-32 px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
-                                                <th class="w-full px-6 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
-                                                <th class="px-4 py-3 border-b text-center text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                                            <tr class="bg-gray-100 border border-gray-300">
+                                                <th class="w-32 px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider">Masa</th>
+                                                <th class="w-full px-6 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
+                                                <th class="px-4 py-3 text-center text-sm font-medium text-gray-500 uppercase tracking-wider"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -553,11 +553,144 @@
                     <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
                         JAWATANKUASA PELAKSANA
                     </h5>
-                    <div>
+                    <div class="mb-10">
                         <label for="collaboration" class="text-sm font-medium text-gray-700 mb-1">Sila nyatakan pihak kolaborasi bersama (Jika ada):</label>
                         <input class="text-sm px-3 py-2 border-0 border-b border-gray-300 focus:outline-none focus:ring-0 focus:border-purple-500 focus:border-b-2 w-full"
                             type="text" id="collaboration" name="collaboration"
                             placeholder="e.g., Computer Science Society, Persatuan Mahasiswa Islam, etc.">
+                    </div>
+
+                    <!-- Jawatankuasa Pelaksana -->
+                    <div class="overflow-x-auto mb-4">
+                        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-100 border border-gray-300">
+                                    <th class="py-2 px-4 border border-gray-300 text-center text-sm font-semibold text-gray-500">Jawatan</th>
+                                    <th class="py-2 px-4 border border-gray-300 text-center text-sm font-semibold text-gray-500">Nama</th>
+                                    <th class="py-2 px-4 border border-gray-300 text-center text-sm font-semibold text-gray-500">No. Matrik</th>
+                                    <th class="py-2 px-4 border border-gray-300 text-center text-sm font-semibold text-gray-500">Tahun Pengajian</th>
+                                    <th class="py-2 px-4 border border-gray-300 text-center text-sm font-semibold text-gray-500">Pusat Tanggungjawab</th>
+                                    <th class="py-2 px-4 border border-gray-300 text-center text-sm font-semibold text-gray-500">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template x-for="(item, index) in items" :key="index">
+                                    <tr class="hover:bg-gray-50 text-sm">
+                                        <td class="py-2 px-4 border border-gray-300">
+                                            <span x-show="!item.isEditing" x-text="item.jawatan"></span>
+                                            <input 
+                                                x-show="item.isEditing" 
+                                                x-model="item.jawatan" 
+                                                type="text" 
+                                                class="py-1 px-2 border border-gray-300 rounded w-full text-sm"
+                                            >
+                                        </td>
+                                        <td class="py-2 px-4 border border-gray-300">
+                                            <span x-show="!item.isEditing" x-text="item.namaPemegangJawatan" class="whitespace-pre-line text-sm"></span>
+                                            <textarea
+                                                x-show="item.isEditing"
+                                                x-model="item.namaPemegangJawatan"
+                                                class="py-1 px-2 border border-gray-300 rounded w-full text-sm"
+                                                rows="3" cols="200"
+                                                @keydown.enter="autoNumbering($event, item, 'namaPemegangJawatan')"
+                                            ></textarea>
+                                        </td>
+                                        <td class="py-2 px-4 border border-gray-300">
+                                            <span x-show="!item.isEditing" x-text="item.noMatrikPemegangJawatan" class="whitespace-pre-line text-sm"></span>
+                                            <textarea
+                                                x-show="item.isEditing"
+                                                x-model="item.noMatrikPemegangJawatan"
+                                                class="py-1 px-2 border border-gray-300 rounded w-full text-sm"
+                                                rows="2" cols="50"
+                                                @keydown.enter="autoNumbering($event, item, 'noMatrikPemegangJawatan')"
+                                            ></textarea>
+                                        </td>
+                                        <td class="py-2 px-4 border border-gray-300">
+                                            <span x-show="!item.isEditing" x-text="item.tahunPemegangJawatan" class="whitespace-pre-line text-sm"></span>
+                                            <textarea 
+                                                x-show="item.isEditing" 
+                                                x-model="item.tahunPemegangJawatan" 
+                                                class="py-1 px-2 border border-gray-300 rounded w-full text-sm"
+                                                rows="2" cols="5"
+                                                @keydown.enter="autoNumbering($event, item, 'tahunPemegangJawatan')"
+                                            ></textarea>
+                                        </td>
+                                        <td class="py-2 px-4 border border-gray-300">
+                                            <span x-show="!item.isEditing" x-text="item.pusatTanggungjawab" class="whitespace-pre-line text-sm"></span>
+                                            <textarea 
+                                                x-show="item.isEditing" 
+                                                x-model="item.pusatTanggungjawab" 
+                                                class="py-1 px-2 border border-gray-300 rounded w-full text-sm"
+                                                rows="2" cols="20"
+                                                @keydown.enter="autoNumbering($event, item, 'tahunPemegangJawatan')"
+                                            ></textarea>
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-300 text-center">
+                                            <template x-if="!item.isEditing">
+                                                <button
+                                                    title="Edit" 
+                                                    @click="editRow(index)"
+                                                    class="text-purple-600 hover:text-purple-800 text-center"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                                    </svg>
+                                                </button>
+                                            </template>
+                                            <template x-if="item.isEditing">
+                                                <div class="py-1">
+                                                    <button
+                                                        title="Save" 
+                                                        @click="saveRow(index)"
+                                                        class="bg-indigo-500 text-white py-1 px-4 rounded-md hover:bg-indigo-600 text-xs text-center"
+                                                    >
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </template>
+                                            <template x-if="!item.isEditing">
+                                                <button
+                                                    title="Delete" 
+                                                    @click="deleteRow(index)"
+                                                    class="text-red-600 hover:text-red-800 text-center"
+                                                >
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" class="whitespace-nowrap">
+                                        <button 
+                                            type="button"
+                                            @click="addRowTableJawatankuasa()"
+                                            class="w-full px-1 py-1 text-gray-500 text-sm font-medium hover:text-gray-800 transition-colors duration-300 flex flex-row  justify-center gap-2 hover:bg-gray-100"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-4">
+                                            <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                            </svg>
+                                            <p>
+                                                <span>
+                                                    Add Row
+                                                </span>
+                                            </p>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="text-sm mt-8 p-2 font-medium text-gray-700">
+                            <p class="mb-2">*Nota:</p>
+                            <p class="mb-2">1. Hanya Program/ Projek/ Aktiviti yang mempunyai kolaborasi bersama dibenarkan untuk membuat pelantikan ke-II atau lebih daripada pihak yang berkolaborasi.</p>
+                            <p class="mb-2">2. Keseluruhan Jawatankuasa Pelaksana tidak boleh melebihi 20% daripada peserta Program/ Projek/ Aktiviti dan mengikut kesesuaian.</p>
+                            <p class="mb-2">3. Status Akademik dalam Sidang Akademik semasa Jawatankuasa Pelaksana yang dicadangkan berada dalam keadaan aktif dan bukan dalam tempoh percubaan (P1 atau P2).</p>
+                        </div>
                     </div>
                 </div>
                 

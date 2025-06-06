@@ -182,8 +182,69 @@ window.multiStepForm = function() {
                     this.formData[key] = '';
                 }
             });
-        }
+        },
 
-        
+        /* ##- Function for JAWATANKUASA PELAKSANA -## */
+        items: [
+            { jawatan: "Penaung", namaPemegangJawatan: "", noMatrikPemegangJawatan: "Not applicable", tahunPemegangJawatan: "Not applicable", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Penasihat", namaPemegangJawatan: "", noMatrikPemegangJawatan: "Not applicable", tahunPemegangJawatan: "Not applicable", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Pemantau", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Pengarah", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Timb. Pengarah", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Timb. Pengarah II*", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Setiausaha", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Setiausaha II*", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "Bendahari (jika ada belanjawan)", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "AJK 1", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+            { jawatan: "AJK 2", namaPemegangJawatan: "", noMatrikPemegangJawatan: "", tahunPemegangJawatan: "", pusatTanggungjawab: "", isEditing: false },
+        ],
+
+        // Edit a row
+        editRow(index) {
+            this.items[index].isEditing = true;
+        },
+
+        // Save edited row
+        saveRow(index) {
+            this.items[index].isEditing = false;
+        },
+
+        // Delete a row
+        deleteRow(index) {
+            this.items.splice(index, 1);
+        },
+
+        // Add a new empty row
+        addRowTableJawatankuasa() {
+            this.items.push({ 
+                jawatan: "", 
+                namaPemegangJawatan: "", 
+                noMatrikPemegangJawatan: "", 
+                tahunPemegangJawatan: "", 
+                pusatTanggungjawab: "", 
+                isEditing: true  // Automatically enter edit mode
+            });
+        },
+
+        autoNumbering(event, item, field) {
+            const textarea = event.target;
+            const value = textarea.value;
+            const lines = value.split('\n');
+            const lastLine = lines[lines.length - 1];
+            const match = lastLine.match(/^(\d+)\.\s/);
+            if (match) {
+                event.preventDefault();
+                const nextNumber = parseInt(match[1], 10) + 1;
+                const insert = `\n${nextNumber}. `;
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                item[field] = value.substring(0, start) + insert + value.substring(end);
+                // Move cursor to end of inserted text
+                setTimeout(() => {
+                    textarea.selectionStart = textarea.selectionEnd = start + insert.length;
+                }, 0);
+            }
+        }
+        /* End of Function for JAWATANKUASA PELAKSANA */
     };
 }
