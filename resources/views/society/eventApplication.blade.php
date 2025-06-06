@@ -82,7 +82,7 @@
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                     : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                class="cursor-auto" 
+                                class="cursor-auto text-sm" 
                                 required>
                             <!-- Real-time error message -->
                             <p
@@ -124,6 +124,7 @@
                                 ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                 : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                             required
+                            class="text-sm cursor-auto"
                             ></textarea>
                             <!-- Real-time error message -->
                             <p
@@ -165,6 +166,7 @@
                                 ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                 : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                             required
+                            class="text-sm cursor-auto"
                             ></textarea>
                             <!-- Real-time error message -->
                             <p
@@ -206,6 +208,7 @@
                                 ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                 : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
                             required
+                            class="text-sm cursor-auto"
                             ></textarea>
                             <!-- Real-time error message -->
                             <p
@@ -257,7 +260,8 @@
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                     : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
+                                required
+                                class="text-sm cursor-auto">
                             <p x-show="hasError" 
                                 x-text="errorMessage"
                                 class="mt-2 text-sm text-red-600">
@@ -290,7 +294,8 @@
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                     : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
+                                required
+                                class="text-sm cursor-auto">
                             <p x-show="hasError" 
                                 x-text="errorMessage"
                                 class="mt-2 text-sm text-red-600">
@@ -336,7 +341,8 @@
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                     : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
+                                required
+                                class="text-sm cursor-auto">
                             <p x-show="hasError" 
                                 x-text="errorMessage"
                                 class="mt-2 text-sm text-red-600">
@@ -384,7 +390,8 @@
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                     : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                                required>
+                                required
+                                class="text-sm cursor-auto">
                             <p x-show="hasError" 
                                 x-text="errorMessage"
                                 class="mt-2 text-sm text-red-600">
@@ -419,7 +426,8 @@
                             x-bind:class="hasError 
                                 ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                 : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'"
-                            required>
+                            required
+                            class="text-sm cursor-auto">
                         <p class="block text-sm font-medium text-gray-700 mb-1 mt-6">
                             * Sila nyatakan alamat pautan sekiranya Program/ Projek/ Aktiviti dijalankan secara atas talian atau hibrid.<br> 
                             Sila patuhi SOP pencegahan/ penularan wabak pandemik Covid-19 MKN/ USM yang sedang berkuatkuasa.
@@ -474,6 +482,7 @@
                                                                 ? 'w-32 px-2 py-2 border rounded-md border-red-500'
                                                                 : 'w-32 px-2 py-2 border rounded-md border-gray-300'"
                                                             required
+                                                            class="text-sm cursor-auto"
                                                         >
                                                     </td>
                                                     <td class="px-2 py-4 whitespace-nowrap border-b">
@@ -486,7 +495,7 @@
                                                                 : 'w-full px-2 py-2 border rounded-md border-gray-300'"
                                                             placeholder="Enter activity"
                                                             required
-                                                        >
+                                                            class="text-sm cursor-auto"                                                        >
                                                     </td>
                                                     <td class="py-4 whitespace-nowrap border-b">
                                                         <button 
@@ -539,36 +548,17 @@
                             Add Day
                         </button>
                     </div>
-
                     <input type="hidden" name="days" x-bind:value="JSON.stringify(days)">
-                    <!-- <div>
-                        <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                        <textarea id="atur_cara" name="atur_cara" rows="10" cols="50" x-model="formData.aturCara" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            required>
-                        </textarea>
-                    </div> -->
 
-                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
+                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
                         JAWATANKUASA PELAKSANA
-                    </h5> -->
-                    <!-- <div>
-                        <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                        <textarea id="jawat_pelak" name="jawat_pelak" rows="10" cols="50" x-model="formData.jawatPelak" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            required>
-                        </textarea>
-                    </div> -->
-
-                    <!-- <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
-                        CADANGAN BELANJAWAN
                     </h5>
                     <div>
-                        <textarea id="cada_belan" name="cada_belan" rows="10" cols="50" x-model="formData.cadaBelan" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            required>
-                        </textarea>
-                    </div> -->
+                        <label for="collaboration" class="text-sm font-medium text-gray-700 mb-1">Sila nyatakan pihak kolaborasi bersama (Jika ada):</label>
+                        <input class="text-sm px-3 py-2 border-0 border-b border-gray-300 focus:outline-none focus:ring-0 focus:border-purple-500 focus:border-b-2 w-full"
+                            type="text" id="collaboration" name="collaboration"
+                            placeholder="e.g., Computer Science Society, Persatuan Mahasiswa Islam, etc.">
+                    </div>
                 </div>
                 
                 <!-- Step 2: MyCSD Mapping -->
