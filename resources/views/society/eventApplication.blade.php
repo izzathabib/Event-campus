@@ -775,6 +775,7 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <input type="hidden" name="belanjawans" :value="JSON.stringify(belanjawans)">
 
                         <div class="text-sm mt-8 p-2 font-medium text-gray-700">
                             <p class="mb-2">*Jawatankuasa Pelaksana/ Bendahari Program/ Projek/ Aktiviti digalakkan untuk mendapatkan tajaan/ sumbangan pihak luar USM.</p>

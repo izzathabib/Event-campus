@@ -49,4 +49,9 @@ class PaperWork extends Model
         return $this->hasMany(Jawatankuasa::class);
     }
 
+    public function belanjawans()
+    {
+        return $this->hasOne(Belanjawan::class);
+    }
+
 }

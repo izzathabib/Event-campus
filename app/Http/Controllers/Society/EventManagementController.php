@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Society;
 
 use App\Http\Controllers\Controller;
 use App\Models\ApplyToOrganizeEvent;
+use App\Models\Belanjawan;
 use App\Models\EventDay;
 use App\Models\Jawatankuasa;
 use App\Models\MycsdMap;
@@ -67,6 +68,7 @@ class EventManagementController extends Controller
             'collaboration' => 'nullable|string|max:200',
             'jawatankuasa' => 'json',
             'penaja' => 'nullable|string|max:200',
+            'belanjawans' => 'json',
 
             // MyCSD Mapping
             'kaedah' => 'required|in:Atas Talian,Fizikal,Hybrid',
@@ -137,6 +139,8 @@ class EventManagementController extends Controller
         $daysData = json_decode($request->days, true);
         // Decode the JSON jawatankuasa data
         $jawatankuasa = json_decode($request->jawatankuasa, true);
+        // Decode the JSON string into an array
+        $belanjawans = json_decode($request->belanjawans, true);
         
         try {
 
@@ -183,6 +187,19 @@ class EventManagementController extends Controller
                     'no_matrik_pemegang_jawatan' => $row['noMatrikPemegangJawatan'],
                     'tahun_pemegang_jawatan' => $row['tahunPemegangJawatan'],
                     'pusat_tanggungjawab' => $row['pusatTanggungjawab'],
+                ]);
+            }
+
+            foreach ($belanjawans as $row) {
+                // Save to your Belanjawan model/table
+                Belanjawan::create([
+                    'paper_work_id' => $paperWork->id, // if you have a foreign key
+                    'pendapatan' => $row['pendapatan'],
+                    'unit_pendapatan' => $row['unitPendapatan'] === '' ? null : $row['unitPendapatan'],
+                    'rm_pendapatan' => $row['rmPendapatan'] === '' ? null : $row['rmPendapatan'],
+                    'perbelanjaan' => $row['perbelanjaan'],
+                    'unit_perbelanjaan' => $row['unitPerbelanjaan'] === '' ? null : $row['unitPerbelanjaan'],
+                    'rm_perbelanjaan' => $row['rmPerbelanjaan'] === '' ? null : $row['rmPerbelanjaan'],
                 ]);
             }
 
