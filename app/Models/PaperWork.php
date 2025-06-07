@@ -21,6 +21,7 @@ class PaperWork extends Model
         'end_time',
         'lokasi',
         'collaboration',
+        'penaja',
     ];
 
     public function users()

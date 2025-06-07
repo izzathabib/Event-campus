@@ -66,6 +66,7 @@ class EventManagementController extends Controller
             'days' => ['required', 'json'],
             'collaboration' => 'nullable|string|max:200',
             'jawatankuasa' => 'json',
+            'penaja' => 'nullable|string|max:200',
 
             // MyCSD Mapping
             'kaedah' => 'required|in:Atas Talian,Fizikal,Hybrid',
@@ -152,6 +153,7 @@ class EventManagementController extends Controller
                 'end_time' => $validatedData['end_time'],
                 'lokasi' => $validatedData['lokasi'],
                 'collaboration' => $validatedData['collaboration'],
+                'penaja' => $validatedData['penaja'],
             ]);
             // dd($paperWork);
             foreach ($daysData as $index => $day) {
