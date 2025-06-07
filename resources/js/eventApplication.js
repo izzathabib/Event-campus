@@ -257,7 +257,7 @@ window.multiStepForm = function() {
             { pendapatan: "Yuran Peserta (Sertakan resit bayaran)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Pentadbiran", unitPerbelanjaan: "", rmPerbelanjaan: "" },
             { pendapatan: "*Tajaan Kewangan (Syarikat/ Individu)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Logistik", unitPerbelanjaan: "", rmPerbelanjaan: "" },
             { pendapatan: "*Tajaan Barangan (Syarikat/ Individu)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Publisiti", unitPerbelanjaan: "", rmPerbelanjaan: "" },
-            { pendapatan: "*Sumbangan Kewangan (NGO/ Syarikat/ Individu))", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Hadiah (Untuk pertandingan sahaja}", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "*Sumbangan Kewangan (NGO/ Syarikat/ Individu))", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Hadiah (Untuk pertandingan sahaja)", unitPerbelanjaan: "", rmPerbelanjaan: "" },
             { pendapatan: "*Sumbangan Barangan (NGO/ Syarikat/ Individu)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Honorarium/ Saguhati", unitPerbelanjaan: "", rmPerbelanjaan: "" },
             { pendapatan: "Tabung Pertubuhan Pelajar", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Kontigensi (5% daripada jumlah perbelanjaan)", unitPerbelanjaan: "", rmPerbelanjaan: "" },
             { pendapatan: "Lain-lain", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "", unitPerbelanjaan: "", rmPerbelanjaan: "" },
