@@ -43,4 +43,9 @@ class PaperWork extends Model
         return $this->hasMany(EventDay::class);
     }
 
+    public function jawatankuasa()
+    {
+        return $this->hasMany(Jawatankuasa::class);
+    }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Society;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyToOrganizeEvent;
 use App\Models\EventDay;
+use App\Models\Jawatankuasa;
 use App\Models\MycsdMap;
 use App\Models\PaperWork;
 use App\Models\TimeActivity;
@@ -64,6 +65,7 @@ class EventManagementController extends Controller
             'lokasi' => 'required|string|max:100',
             'days' => ['required', 'json'],
             'collaboration' => 'nullable|string|max:200',
+            'jawatankuasa' => 'json',
 
             // MyCSD Mapping
             'kaedah' => 'required|in:Atas Talian,Fizikal,Hybrid',
@@ -132,7 +134,9 @@ class EventManagementController extends Controller
 
         // Decode the JSON days data
         $daysData = json_decode($request->days, true);
-
+        // Decode the JSON jawatankuasa data
+        $jawatankuasa = json_decode($request->jawatankuasa, true);
+        
         try {
 
             // Store data in the respective tables
@@ -166,6 +170,18 @@ class EventManagementController extends Controller
                         ]);
                     }
                 }
+            }
+
+            foreach ($jawatankuasa as $row) {
+                // Save to Jawatankuasa model
+                Jawatankuasa::create([
+                    'paper_work_id' => $paperWork->id,
+                    'jawatan' => $row['jawatan'],
+                    'nama_pemegang_jawatan' => $row['namaPemegangJawatan'],
+                    'no_matrik_pemegang_jawatan' => $row['noMatrikPemegangJawatan'],
+                    'tahun_pemegang_jawatan' => $row['tahunPemegangJawatan'],
+                    'pusat_tanggungjawab' => $row['pusatTanggungjawab'],
+                ]);
             }
 
             MycsdMap::create([

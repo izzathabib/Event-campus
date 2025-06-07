@@ -692,6 +692,7 @@
                             <p class="mb-2">3. Status Akademik dalam Sidang Akademik semasa Jawatankuasa Pelaksana yang dicadangkan berada dalam keadaan aktif dan bukan dalam tempoh percubaan (P1 atau P2).</p>
                         </div>
                     </div>
+                    <input type="hidden" name="jawatankuasa" :value="JSON.stringify(items)">
                 </div>
                 
                 <!-- Step 2: MyCSD Mapping -->
