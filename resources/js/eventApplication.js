@@ -250,7 +250,8 @@ window.multiStepForm = function() {
         },
         /* End of Function for JAWATANKUASA PELAKSANA */
         /*
-        *
+        #
+        #
         */
         /* ##- Function for CADANGAN BELANJAWAN -## */
         belanjawans: [
@@ -263,5 +264,63 @@ window.multiStepForm = function() {
             { pendapatan: "Lain-lain", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "", unitPerbelanjaan: "", rmPerbelanjaan: "" },
         ],
         /* End of Function for JAWATANKUASA PELAKSANA */
+        /*
+        #
+        #
+        */
+        /* ##- Function for PROFILE TETAMU -## */
+        penceramahs: [
+            {
+                photoPenceramah: null,
+                namaPenceramah: '',
+                umurPenceramah: '',
+                alamatPenceramah: '',
+                emailPenceramah: '',
+                telefonPenceramah: '',
+                media_sosialPenceramah: '',
+                kerjayaPenceramah: '',
+                bidangPenceramah: '',
+                pendidikanPenceramah: ''
+            }
+        ],
+
+        // Add new penceramah profile
+        addPenceramah() {
+            this.penceramahs.push({
+                photoPenceramah: null,
+                namaPenceramah: '',
+                umurPenceramah: '',
+                alamatPenceramah: '',
+                emailPenceramah: '',
+                telefonPenceramah: '',
+                media_sosialPenceramah: '',
+                kerjayaPenceramah: '',
+                bidangPenceramah: '',
+                pendidikanPenceramah: ''
+            });
+        },
+
+        // Remove penceramah profile
+        removePenceramah(index) {
+            if (this.penceramahs.length > 1) {
+                this.penceramahs.splice(index, 1);
+            } else {
+                alert('Anda mesti mempunyai sekurang-kurangnya satu jemputan');
+            }
+        },
+
+        // Handle photo upload
+        handlePhotoUpload(index, event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.penceramahs[index].photo = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        },
+        /* End of Function for PROFILE TETAMU */
+
     };
 }

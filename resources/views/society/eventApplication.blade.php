@@ -704,7 +704,7 @@
                     </div>
 
                     <!-- Cadangan Belanjawan -->
-                    <div class="overflow-x-auto mb-4">
+                    <div class="overflow-x-auto mb-14">
                         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
                             <thead>
                                 <tr class="bg-gray-100 border border-gray-300">
@@ -783,6 +783,149 @@
                             <p class="mb-2">Pekeliling Perbendaharaan Malaysia PB 3.1</p>
                             <p class="mb-2">3.10.1.3 pemberian cenderamata tidak dibenarkan tetapi sekiranya benar-benar perlu, hendaklah dihadkan kepada buku, kraf tangan tempatan, produk makanan tempatan atau produk agensi sendiri.</p>
                         </div>
+                    </div>
+
+                    <!-- Profil Tetamu -->
+                    <div class="bg-white rounded-lg border border-gray-300 p-6">
+                        <div class="flex justify-between items-center mb-12 text-sm">
+                            <h2 class="text-sm font-semibold text-gray-800">FORMAT PROFIL PENCERAMAH/ TETAMU JEMPUTAN/ JURI</h2>
+                            <button
+                                type="button" 
+                                @click="addPenceramah()"
+                                class="px-4 py-2 border border-purple-500 text-purple-500 hover:text-white rounded hover:bg-purple-500 transition flex items-center"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                                </svg>
+                                Tambah Jemputan
+                            </button>
+                        </div>
+
+                        <!-- Penceramah Profiles -->
+                        <template x-for="(penceramah, index) in penceramahs" :key="index">
+                            <div class="border border-gray-300 rounded-lg p-4 mb-6 bg-white relative">
+                                <button 
+                                    @click="removePenceramah(index)"
+                                    class="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                                    title="Remove"
+                                    type="button"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Photo Upload -->
+                                    <div class="md:col-span-2 flex items-center">
+                                        <div class="w-40 h-40 bg-white border border-gray-300 mr-4 overflow-hidden flex items-center justify-center">
+                                            <template x-if="!penceramah.photo">
+                                                <span class="text-gray-500 text-sm">Gambar</span>
+                                            </template>
+                                            <template x-if="penceramah.photo">
+                                                <img :src="penceramah.photo" class="w-full h-full object-cover">
+                                            </template>
+                                            <input 
+                                                type="file" 
+                                                class="hidden" 
+                                                :id="'photo-upload-'+index"
+                                                @change="handlePhotoUpload(index, $event)"
+                                            >
+                                        </div>
+                                        <button 
+                                            type="button"
+                                            @click="document.getElementById('photo-upload-'+index).click()"
+                                            class="px-3 py-1 border border-purple-500 text-purple-500 rounded hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600 transition text-sm"
+                                        >
+                                            Muat Naik Gambar
+                                        </button>
+                                    </div>
+
+                                    <!-- Personal Details -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama:</label>
+                                        <input 
+                                            type="text" 
+                                            x-model="penceramah.namaPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="Nama Penuh"
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Umur:</label>
+                                        <input 
+                                            type="number" 
+                                            x-model="penceramah.umurPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="Umur"
+                                        >
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Alamat:</label>
+                                        <textarea 
+                                            x-model="penceramah.alamatPenceramah"
+                                            rows="2"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="Alamat Penuh"
+                                        ></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">E-mel:</label>
+                                        <input 
+                                            type="email" 
+                                            x-model="penceramah.emailPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="example@email.com"
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">No. Tel. Bimbit:</label>
+                                        <input 
+                                            type="tel" 
+                                            x-model="penceramah.telefonPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="012-3456789"
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Media Sosial:</label>
+                                        <input 
+                                            type="text" 
+                                            x-model="penceramah.media_sosialPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="@username"
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Kerjaya/Jawatan:</label>
+                                        <input 
+                                            type="text" 
+                                            x-model="penceramah.kerjayaPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="Pekerjaan Semasa"
+                                        >
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Bidang Kepakaran:</label>
+                                        <input 
+                                            type="text" 
+                                            x-model="penceramah.bidangPenceramah"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="Bidang Pakar"
+                                        >
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Latarbelakang Pendidikan:</label>
+                                        <textarea 
+                                            x-model="penceramah.pendidikanPenceramah"
+                                            rows="3"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
+                                            placeholder="Sijil/Ijazah/Pengalaman"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
                 
