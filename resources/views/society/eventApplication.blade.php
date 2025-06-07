@@ -893,7 +893,6 @@
                                             type="text" 
                                             x-model="penceramah.media_sosialPenceramah"
                                             class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
-                                            placeholder="@username"
                                         >
                                     </div>
                                     <div>
