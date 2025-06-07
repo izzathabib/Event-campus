@@ -184,6 +184,9 @@ window.multiStepForm = function() {
             });
         },
 
+        /*
+        *
+        */
         /* ##- Function for JAWATANKUASA PELAKSANA -## */
         items: [
             { jawatan: "Penaung", namaPemegangJawatan: "", noMatrikPemegangJawatan: "Not applicable", tahunPemegangJawatan: "Not applicable", pusatTanggungjawab: "", isEditing: false },
@@ -244,7 +247,21 @@ window.multiStepForm = function() {
                     textarea.selectionStart = textarea.selectionEnd = start + insert.length;
                 }, 0);
             }
-        }
+        },
+        /* End of Function for JAWATANKUASA PELAKSANA */
+        /*
+        *
+        */
+        /* ##- Function for CADANGAN BELANJAWAN -## */
+        belanjawans: [
+            { pendapatan: "Yuran Peserta (Sertakan resit bayaran)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Pentadbiran", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "*Tajaan Kewangan (Syarikat/ Individu)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Logistik", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "*Tajaan Barangan (Syarikat/ Individu)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Publisiti", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "*Sumbangan Kewangan (NGO/ Syarikat/ Individu))", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Hadiah (Untuk pertandingan sahaja}", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "*Sumbangan Barangan (NGO/ Syarikat/ Individu)", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Honorarium/ Saguhati", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "Tabung Pertubuhan Pelajar", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "Kontigensi (5% daripada jumlah perbelanjaan)", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+            { pendapatan: "Lain-lain", unitPendapatan: "", rmPendapatan: "", perbelanjaan: "", unitPerbelanjaan: "", rmPerbelanjaan: "" },
+        ],
         /* End of Function for JAWATANKUASA PELAKSANA */
     };
 }
