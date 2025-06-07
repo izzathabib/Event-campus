@@ -555,7 +555,7 @@
                     </h5>
                     <div class="mb-10">
                         <label for="collaboration" class="text-sm font-medium text-gray-700 mb-1">Sila nyatakan pihak kolaborasi bersama (Jika ada):</label>
-                        <input class="text-sm px-3 py-2 border-0 border-b border-gray-300 focus:outline-none focus:ring-0 focus:border-purple-500 focus:border-b-2 w-full"
+                        <input class="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500 text-sm"
                             type="text" id="collaboration" name="collaboration"
                             placeholder="e.g., Computer Science Society, Persatuan Mahasiswa Islam, etc.">
                     </div>
