@@ -87,6 +87,13 @@ class EventManagementController extends Controller
 
             // Application to Organize Events
             'nama' => 'bail|required|string|max:60',
+            'no_ic' => 'required|string|max:14',
+            'jawatan_borg_adkn_prog' => 'required|string|max:100',
+            'no_matric' => 'required|string|max:20',
+            'tel_bimbit' => 'required|string|max:20',
+            'email_borg_adkn_prog' => 'required|email|max:255',
+            'alamat_penggal' => 'nullable|string|max:255',
+            'alamat_cuti' => 'nullable|string|max:255',
         ], [
             #--#--#
             # KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA
@@ -252,6 +259,13 @@ class EventManagementController extends Controller
                 'user_id' => Auth::id(),
                 'paper_work_id' => $paperWork->id,
                 'nama' => $validatedData['nama'],
+                'no_ic' => $validatedData['no_ic'],
+                'jawatan_borg_adkn_prog' => $validatedData['jawatan_borg_adkn_prog'],
+                'no_matric' => $validatedData['no_matric'],
+                'tel_bimbit' => $validatedData['tel_bimbit'],
+                'email_borg_adkn_prog' => $validatedData['email_borg_adkn_prog'],
+                'alamat_penggal' => $validatedData['alamat_penggal'],
+                'alamat_cuti' => $validatedData['alamat_cuti'],
             ]);
 
             // Redirect or return a success response

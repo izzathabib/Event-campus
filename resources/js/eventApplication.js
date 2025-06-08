@@ -75,7 +75,14 @@ window.multiStepForm = function() {
             poster: true,
             pertubuhan: true,
             // Application to Organize Events
-            nama: true
+            nama: true,
+            no_ic: true,
+            jawatan_borg_adkn_prog: true,
+            no_matric: true,
+            tel_bimbit: true,
+            email_borg_adkn_prog: true,
+            alamat_penggal: true,
+            alamat_cuti: true,
         },
         
         steps: [

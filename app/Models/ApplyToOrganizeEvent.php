@@ -13,6 +13,13 @@ class ApplyToOrganizeEvent extends Model
         'user_id',
         'paper_work_id',
         'nama',
+        'no_ic',
+        'jawatan_borg_adkn_prog',
+        'no_matric',
+        'tel_bimbit',
+        'email_borg_adkn_prog',
+        'alamat_penggal',
+        'alamat_cuti',
     ];
 
     public function users()

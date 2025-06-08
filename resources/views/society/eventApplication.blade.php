@@ -1529,7 +1529,9 @@
                 
                 <!-- Step 3: Application to Organize Events -->
                 <div x-show="currentStep === 3" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">PERMOHONAN MENGADAKAN PROGRAM</h3>
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-bold text-gray-800 mb-10">BORANG PERMOHONAN MENGADAKAN PROGRAM</h3>
+                    </div>
                     
                     <div class="grid grid-cols-1 gap-6">
                     <h5 class="text-sm font-semibold text-gray-800 mb-2 mt-2">
@@ -1563,6 +1565,7 @@
                             x-bind:class="hasError 
                                 ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
                                 : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                            class="text-sm"
                             required>
                             <!-- Real-time error message -->
                             <p
@@ -1574,57 +1577,285 @@
                             <x-input-error :messages="$errors->get('nama')" class="mt-2" />
                         </div>
                         
-                        <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
+                        <!-- No IC -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div x-data="{ 
+                                value: '{{ old('no_ic') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 14) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 14 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('no_ic', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
                                 <label for="no_ic" class="block text-sm font-medium text-gray-700 mb-1">No. Kad Pengenalan</label>
-                                <input type="text" id="no_ic" name="no_ic" x-model="formData.noIc" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                <input type="text" id="no_ic" name="no_ic"  
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="012345-01-1234"
                                     required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('no_ic')" class="mt-2" />
                             </div>
                             
-                            <div>
-                                <label for="jawatan" class="block text-sm font-medium text-gray-700 mb-1">Jawatan</label>
-                                <input type="text" id="jawatan" name="jawatan" x-model="formData.jawatan" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            <!-- Jawatan -->
+                            <div x-data="{ 
+                                value: '{{ old('jawatan_borg_adkn_prog') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 100) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 100 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('jawatan_borg_adkn_prog', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
+                                <label for="jawatan_borg_adkn_prog" class="block text-sm font-medium text-gray-700 mb-1">Jawatan</label>
+                                <input type="text" id="jawatan_borg_adkn_prog" name="jawatan_borg_adkn_prog"  
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="PENGARAH PROGRAM"
                                     required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('jawatan_borg_adkn_prog')" class="mt-2" />
                             </div>
-
-                            <div>
+                        
+                            <!-- No. Matrik -->
+                            <div x-data="{ 
+                                value: '{{ old('no_matric') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 20) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 20 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('no_matric', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
                                 <label for="no_matric" class="block text-sm font-medium text-gray-700 mb-1">No. Matrik</label>
-                                <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                <input type="number" id="no_matric" name="no_matric" 
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
                                     required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('no_matric')" class="mt-2" />
                             </div>
 
-                            <div>
-                                <label for="no_matric" class="block text-sm font-medium text-gray-700 mb-1">Tel. Bimbit</label>
-                                <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
+                            <!-- Tel. Bimbit -->
+                            <div x-data="{ 
+                                value: '{{ old('tel_bimbit') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 20) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 20 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('tel_bimbit', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
+                                <label for="tel_bimbit" class="block text-sm font-medium text-gray-700 mb-1">Tel. Bimbit</label>
+                                <input type="tel" id="tel_bimbit" name="tel_bimbit"  
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="012-3456789"
                                     required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('tel_bimbit')" class="mt-2" />
                             </div>
 
-                            <div>
-                                <label for="no_matric" class="block text-sm font-medium text-gray-700 mb-1">Tel.</label>
-                                <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500">
+                            <!-- Email -->
+                            <div x-data="{ 
+                                value: '{{ old('email_borg_adkn_prog') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (!emailPattern.test(this.value)) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Please enter a valid email address.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('email_borg_adkn_prog', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
+                                <label for="email_borg_adkn_prog" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email_borg_adkn_prog" name="email_borg_adkn_prog"  
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="example@email.com"
+                                    required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('email_borg_adkn_prog')" class="mt-2" />
                             </div>
-                        </div> -->
-
-                        <!-- <div>
-                            <label for="alamat_penggal" class="block text-sm font-medium text-gray-700 mb-1">Alamat Penggal</label>
-                            <textarea id="alamat_penggal" name="alamat_penggal" rows="5" cols="30" x-model="formData.alamatPenggal" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                            </textarea>
                         </div>
 
-                        <div>
+                        <!-- Alamat Penggal -->
+                        <div x-data="{ 
+                            value: '{{ old('alamat_penggal') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (this.value.length > 255) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 255 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $data.updateFormError('alamat_penggal', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
+                            <label for="alamat_penggal" class="block text-sm font-medium text-gray-700 mb-1">Alamat Penggal</label>
+                            <textarea 
+                            id="alamat_penggal" 
+                            name="alamat_penggal" 
+                            rows="4" cols="50"
+                            x-model="value"
+                            @input="validate()"
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                            class="text-sm"
+                            ></textarea>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('alamat_penggal')" class="mt-2" />
+                        </div>
+
+                        <!-- Alamat Cuti -->
+                        <div x-data="{ 
+                            value: '{{ old('alamat_cuti') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (this.value.length > 255) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'This field must not exceed 255 characters.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                // Update the parent form's error tracking
+                                $data.updateFormError('alamat_cuti', this.hasError);
+                            }
+                        }" @init="validate()" @input="validate()">
                             <label for="alamat_cuti" class="block text-sm font-medium text-gray-700 mb-1">Alamat Semasa Cuti</label>
-                            <textarea id="alamat_cuti" name="alamat_cuti" rows="5" cols="30" x-model="formData.alamatCuti" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                required>
-                            </textarea>
-                        </div> -->
+                            <textarea 
+                            id="alamat_cuti" 
+                            name="alamat_cuti" 
+                            rows="4" cols="50"
+                            x-model="value"
+                            @input="validate()"
+                            x-bind:class="hasError 
+                                ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                            class="text-sm"
+                            ></textarea>
+                            <!-- Real-time error message -->
+                            <p
+                                x-show="hasError" 
+                                x-text="errorMessage"
+                                class="mt-2 text-sm text-red-600"
+                            ></p>
+                            <!-- Server-side error message -->
+                            <x-input-error :messages="$errors->get('alamat_cuti')" class="mt-2" />
+                        </div>
                     </div>
                 </div>
 
