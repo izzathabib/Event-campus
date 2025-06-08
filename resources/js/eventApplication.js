@@ -68,6 +68,7 @@ window.multiStepForm = function() {
             end_date: true,
             lokasi: true,
             timeActivities: true,
+            posterHebahan: true,
             // MyCSD Mapping
             kaedah: true,
             hfp: true,
@@ -324,29 +325,5 @@ window.multiStepForm = function() {
         /*
         #
         */
-        /* ##- Function for POSTER HEBAHAN -## */
-        posterFile: null,
-        posterUrl: '',
-        showPreview: false,
-        handlePosterChange(event) {
-            const file = event.target.files[0];
-            if (file) {
-                this.posterFile = file;
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.posterUrl = e.target.result;
-                    this.showPreview = true;
-                };
-                reader.readAsDataURL(file);
-            }
-        },
-        removePoster() {
-            this.posterFile = null;
-            this.posterUrl = '';
-            this.showPreview = false;
-            this.$refs.posterInput.value = '';
-        }
-        /* End of Function for Poster Hebahan */
-
     };
 }

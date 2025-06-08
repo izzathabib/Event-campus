@@ -934,7 +934,42 @@
                         POSTER HEBAHAN
                     </h5>
 
-                    <div x-data="posterUpload()">
+                    <div x-data="{
+                        posterFile: null,
+                        posterUrl: '',
+                        showPreview: false,
+                        hasError: false,
+                        errorMessage: '',
+                        validate() {
+                            this.hasError = !this.posterFile;
+                            this.errorMessage = this.hasError ? 'Poster Hebahan is required.' : '';
+                            // Update the parent form's error tracking
+                            $data.updateFormError('posterHebahan', this.hasError);
+                        },
+                        handlePosterChange(event) {
+                            const file = event.target.files[0];
+                            this.posterFile = file;
+                            this.validate();
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    this.posterUrl = e.target.result;
+                                    this.showPreview = true;
+                                };
+                                reader.readAsDataURL(file);
+                            } else {
+                                this.posterUrl = '';
+                                this.showPreview = false;
+                            }
+                        },
+                        removePoster() {
+                            this.posterFile = null;
+                            this.posterUrl = '';
+                            this.showPreview = false;
+                            this.$refs.posterInput.value = '';
+                            this.validate();
+                        }
+                    }">
                         <!-- Image Preview Area -->
                         <div class="relative rounded-lg overflow-hidden bg-gray-100 mb-2 object-contain w-96 h-96" 
                             x-show="showPreview">
@@ -958,8 +993,15 @@
                                     <span class="text-sm">Upload</span>
                                 </label>
                                 <input type="file" id="posterHebahan" name="posterHebahan" accept="image/*" class="hidden" x-ref="posterInput" @change="handlePosterChange">
+                                
                             </div>
                         </div>
+                        <!-- Real-time error message -->
+                        <p
+                            x-show="hasError" 
+                            x-text="errorMessage"
+                            class="mt-2 text-sm text-red-600"
+                        ></p>
                     </div>
                 </div>
                 
