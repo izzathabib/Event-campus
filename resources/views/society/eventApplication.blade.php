@@ -53,7 +53,10 @@
                 @csrf
                 <!-- Step 1: Paper work -->
                 <div x-show="currentStep === 1" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-bold text-gray-800">KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA</h3>
+                    </div>
                     
                     <div class="grid grid-cols-1  gap-6">
                         <!-- Tajuk Kertas Kerja -->
@@ -622,7 +625,7 @@
                                                 x-model="item.pusatTanggungjawab" 
                                                 class="py-1 px-2 border border-gray-300 rounded w-full text-sm"
                                                 rows="2" cols="20"
-                                                @keydown.enter="autoNumbering($event, item, 'tahunPemegangJawatan')"
+                                                @keydown.enter="autoNumbering($event, item, 'pusatTanggungjawab')"
                                             ></textarea>
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-300 text-center">
@@ -1007,9 +1010,10 @@
                 
                 <!-- Step 2: MyCSD Mapping -->
                 <div x-show="currentStep === 2" class="step-transition">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">
-                        PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
-                    </h3>
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-bold text-gray-800">PEMETAAN MyCSD & ATRIBUT HEBAT</h3>
+                        <h3 class="text-xl font-bold text-gray-800 mb-10">PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI</h3>
+                    </div>
 
                     <!-- Kaedah / Poster / HFP -->
                     <div class="flex flex-row justify-between gap-2 mb-6">

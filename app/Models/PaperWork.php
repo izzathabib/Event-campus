@@ -22,6 +22,7 @@ class PaperWork extends Model
         'lokasi',
         'collaboration',
         'penaja',
+        'poster_hebahan_path',
     ];
 
     public function users()

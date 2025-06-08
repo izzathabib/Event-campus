@@ -72,6 +72,7 @@ class EventManagementController extends Controller
             'belanjawans' => 'json',
             'penceramahs' => 'json',
             'photoPenceramah.*' => 'nullable|image|max:2048',
+            'posterHebahan' => 'image|max:2048',
 
             // MyCSD Mapping
             'kaedah' => 'required|in:Atas Talian,Fizikal,Hybrid',
@@ -146,6 +147,11 @@ class EventManagementController extends Controller
 
         // Get the penceramah photo
         $photoPenceramah = $request->file('photoPenceramah', []);
+        // Handle the poster hebahan upload
+        $posterHebahanPath = null;
+        if ($request->hasFile('posterHebahan')) {
+            $posterHebahanPath = $request->file('posterHebahan')->store('poster_hebahan', 'public');
+        }
         
         try {
 
@@ -163,6 +169,7 @@ class EventManagementController extends Controller
                 'lokasi' => $validatedData['lokasi'],
                 'collaboration' => $validatedData['collaboration'],
                 'penaja' => $validatedData['penaja'],
+                'poster_hebahan_path' => $posterHebahanPath,
             ]);
             // dd($paperWork);
             foreach ($daysData as $index => $day) {
@@ -207,7 +214,7 @@ class EventManagementController extends Controller
                 ]);
             }
 
-            foreach ($penceramahs as $row) {
+            foreach ($penceramahs as $index => $row) {
                 $photoPenceramahPath = null;
                 if (isset($photoPenceramah[$index]) && $photoPenceramah[$index]) {
                     $photoPenceramahPath = $photoPenceramah[$index]->store('penceramah_photos', 'public');
