@@ -826,7 +826,8 @@
                                                 <img :src="penceramah.photo" class="w-full h-full object-cover">
                                             </template>
                                             <input 
-                                                type="file" 
+                                                type="file"
+                                                name="photoPenceramah[]" 
                                                 class="hidden" 
                                                 :id="'photo-upload-'+index"
                                                 @change="handlePhotoUpload(index, $event)"
@@ -925,6 +926,7 @@
                                 </div>
                             </div>
                         </template>
+                        <input type="hidden" name="penceramahs" :value="JSON.stringify(penceramahs)">
                     </div>
                 </div>
                 

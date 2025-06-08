@@ -9,6 +9,7 @@ use App\Models\EventDay;
 use App\Models\Jawatankuasa;
 use App\Models\MycsdMap;
 use App\Models\PaperWork;
+use App\Models\Penceramah;
 use App\Models\TimeActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -69,6 +70,8 @@ class EventManagementController extends Controller
             'jawatankuasa' => 'json',
             'penaja' => 'nullable|string|max:200',
             'belanjawans' => 'json',
+            'penceramahs' => 'json',
+            'photoPenceramah.*' => 'nullable|image|max:2048',
 
             // MyCSD Mapping
             'kaedah' => 'required|in:Atas Talian,Fizikal,Hybrid',
@@ -135,12 +138,14 @@ class EventManagementController extends Controller
             'nama.max' => 'Nama Program must not exceed 100 characters.',
         ]);
 
-        // Decode the JSON days data
+        // Decode the JSON data
         $daysData = json_decode($request->days, true);
-        // Decode the JSON jawatankuasa data
         $jawatankuasa = json_decode($request->jawatankuasa, true);
-        // Decode the JSON string into an array
         $belanjawans = json_decode($request->belanjawans, true);
+        $penceramahs = json_decode($request->penceramahs, true);
+
+        // Get the penceramah photo
+        $photoPenceramah = $request->file('photoPenceramah', []);
         
         try {
 
@@ -191,15 +196,34 @@ class EventManagementController extends Controller
             }
 
             foreach ($belanjawans as $row) {
-                // Save to your Belanjawan model/table
                 Belanjawan::create([
-                    'paper_work_id' => $paperWork->id, // if you have a foreign key
+                    'paper_work_id' => $paperWork->id, 
                     'pendapatan' => $row['pendapatan'],
                     'unit_pendapatan' => $row['unitPendapatan'] === '' ? null : $row['unitPendapatan'],
                     'rm_pendapatan' => $row['rmPendapatan'] === '' ? null : $row['rmPendapatan'],
                     'perbelanjaan' => $row['perbelanjaan'],
                     'unit_perbelanjaan' => $row['unitPerbelanjaan'] === '' ? null : $row['unitPerbelanjaan'],
                     'rm_perbelanjaan' => $row['rmPerbelanjaan'] === '' ? null : $row['rmPerbelanjaan'],
+                ]);
+            }
+
+            foreach ($penceramahs as $row) {
+                $photoPenceramahPath = null;
+                if (isset($photoPenceramah[$index]) && $photoPenceramah[$index]) {
+                    $photoPenceramahPath = $photoPenceramah[$index]->store('penceramah_photos', 'public');
+                }
+                Penceramah::create([
+                    'paper_work_id' => $paperWork->id, 
+                    'namaPenceramah' => $row['namaPenceramah'] ?? '',
+                    'umurPenceramah' => $row['umurPenceramah'] ?? null,
+                    'alamatPenceramah' => $row['alamatPenceramah'] ?? '',
+                    'emailPenceramah' => $row['emailPenceramah'] ?? '',
+                    'telefonPenceramah' => $row['telefonPenceramah'] ?? '',
+                    'media_sosialPenceramah' => $row['media_sosialPenceramah'] ?? '',
+                    'kerjayaPenceramah' => $row['kerjayaPenceramah'] ?? '',
+                    'bidangPenceramah' => $row['bidangPenceramah'] ?? '',
+                    'pendidikanPenceramah' => $row['pendidikanPenceramah'] ?? '',
+                    'photoPenceramahPath' => $photoPenceramahPath,
                 ]);
             }
 

@@ -54,4 +54,9 @@ class PaperWork extends Model
         return $this->hasOne(Belanjawan::class);
     }
 
+    public function penceramahs()
+    {
+        return $this->hasMany(Penceramah::class);
+    }
+
 }
