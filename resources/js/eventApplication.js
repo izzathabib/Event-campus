@@ -315,12 +315,38 @@ window.multiStepForm = function() {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    this.penceramahs[index].photo = e.target.result;
+                    this.penceramahs[index].photoPenceramah = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         },
         /* End of Function for PROFILE TETAMU */
+        /*
+        #
+        */
+        /* ##- Function for POSTER HEBAHAN -## */
+        posterFile: null,
+        posterUrl: '',
+        showPreview: false,
+        handlePosterChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.posterFile = file;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.posterUrl = e.target.result;
+                    this.showPreview = true;
+                };
+                reader.readAsDataURL(file);
+            }
+        },
+        removePoster() {
+            this.posterFile = null;
+            this.posterUrl = '';
+            this.showPreview = false;
+            this.$refs.posterInput.value = '';
+        }
+        /* End of Function for Poster Hebahan */
 
     };
 }

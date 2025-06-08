@@ -819,11 +819,11 @@
                                     <!-- Photo Upload -->
                                     <div class="md:col-span-2 flex items-center">
                                         <div class="w-40 h-40 bg-white border border-gray-300 mr-4 overflow-hidden flex items-center justify-center">
-                                            <template x-if="!penceramah.photo">
+                                            <template x-if="!penceramah.photoPenceramah">
                                                 <span class="text-gray-500 text-sm">Gambar</span>
                                             </template>
-                                            <template x-if="penceramah.photo">
-                                                <img :src="penceramah.photo" class="w-full h-full object-cover">
+                                            <template x-if="penceramah.photoPenceramah">
+                                                <img :src="penceramah.photoPenceramah" class="w-full h-full object-cover">
                                             </template>
                                             <input 
                                                 type="file"
@@ -927,6 +927,39 @@
                             </div>
                         </template>
                         <input type="hidden" name="penceramahs" :value="JSON.stringify(penceramahs)">
+                    </div>
+
+                    <!-- Poster Hebahan -->
+                    <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-14">
+                        POSTER HEBAHAN
+                    </h5>
+
+                    <div x-data="posterUpload()">
+                        <!-- Image Preview Area -->
+                        <div class="relative rounded-lg overflow-hidden bg-gray-100 mb-2 object-contain w-96 h-96" 
+                            x-show="showPreview">
+                            <img :src="posterUrl" alt="Preview" class="object-contain w-96 h-96">
+                            <button type="button"
+                                class="absolute top-2 right-2 bg-gray-800 bg-opacity-70 rounded-full p-1 text-white hover:bg-gray-900"
+                                @click="removePoster">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Upload Image -->
+                        <div class="flex items-center p-2">
+                            <div class="flex items-center space-x-2 mt-6 mb-2">
+                                <label for="posterHebahan" class="flex items-center gap-2 cursor-pointer text-purple-500 hover:text-purple-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    <span class="text-sm">Upload</span>
+                                </label>
+                                <input type="file" id="posterHebahan" name="posterHebahan" accept="image/*" class="hidden" x-ref="posterInput" @change="handlePosterChange">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
