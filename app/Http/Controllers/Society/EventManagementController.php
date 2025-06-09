@@ -94,6 +94,9 @@ class EventManagementController extends Controller
             'email_borg_adkn_prog' => 'required|email|max:255',
             'alamat_penggal' => 'nullable|string|max:255',
             'alamat_cuti' => 'nullable|string|max:255',
+            'klasifikasi_program' => 'required|string|max:100',
+            'bilangan_kumpulan_pengelola' => 'required|string|max:100',
+            'bilangan_sasaran' => 'required|string|max:100',
         ], [
             #--#--#
             # KERTAS KERJA PROGRAM/ PROJEK/ AKTIVITI PERTUBUHAN PELAJAR UNIVERSITI SAINS MALAYSIA
@@ -145,7 +148,7 @@ class EventManagementController extends Controller
             'nama.string' => 'Nama Program must be a valid text.',
             'nama.max' => 'Nama Program must not exceed 100 characters.',
         ]);
-
+        
         // Decode the JSON data
         $daysData = json_decode($request->days, true);
         $jawatankuasa = json_decode($request->jawatankuasa, true);
@@ -174,8 +177,8 @@ class EventManagementController extends Controller
                 'end_date' => $validatedData['end_date'],
                 'end_time' => $validatedData['end_time'],
                 'lokasi' => $validatedData['lokasi'],
-                'collaboration' => $validatedData['collaboration'],
-                'penaja' => $validatedData['penaja'],
+                'collaboration' => $validatedData['collaboration'] ?? null,
+                'penaja' => $validatedData['penaja'] ?? null,
                 'poster_hebahan_path' => $posterHebahanPath,
             ]);
             // dd($paperWork);
@@ -264,8 +267,15 @@ class EventManagementController extends Controller
                 'no_matric' => $validatedData['no_matric'],
                 'tel_bimbit' => $validatedData['tel_bimbit'],
                 'email_borg_adkn_prog' => $validatedData['email_borg_adkn_prog'],
-                'alamat_penggal' => $validatedData['alamat_penggal'],
-                'alamat_cuti' => $validatedData['alamat_cuti'],
+                'alamat_penggal' => $validatedData['alamat_penggal'] ?? null,
+                'alamat_cuti' => $validatedData['alamat_cuti'] ?? null,
+                'klasifikasi_program' => $validatedData['klasifikasi_program'],
+                'bilangan_kumpulan_pengelola' => $validatedData['bilangan_kumpulan_pengelola'],
+                'bilangan_sasaran' => $validatedData['bilangan_sasaran'],
+                'kutipan_dari_peserta' => $request->kutipan_dari_peserta ?? null,
+                'tujuan_kutipan_wang' => $request->tujuan_kutipan_wang ?? null,
+                'tempat_kutipan' => $request->tempat_kutipan ?? null,
+                
             ]);
 
             // Redirect or return a success response

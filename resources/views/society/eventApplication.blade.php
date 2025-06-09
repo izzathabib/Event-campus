@@ -81,6 +81,8 @@
                             <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
                             <input type="text" id="tajuk_kk" name="tajuk_kk"
                                 x-model="value"
+                                x-ref="tajukKkInput"
+                                @input="document.getElementById('nama_program').value = $refs.tajukKkInput.value"
                                 @input="validate()"
                                 x-bind:class="hasError 
                                     ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
@@ -923,7 +925,7 @@
                                             x-model="penceramah.pendidikanPenceramah"
                                             rows="3"
                                             class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-purple-500 focus:border-purple-500 text-sm"
-                                            placeholder="Sijil/Ijazah/Pengalaman"
+                                            placeholder="Sijil/ Ijazah/ Pengalaman"
                                         ></textarea>
                                     </div>
                                 </div>
@@ -1533,10 +1535,11 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-10">BORANG PERMOHONAN MENGADAKAN PROGRAM</h3>
                     </div>
                     
+                    <!-- Butiran Pemohon -->
                     <div class="grid grid-cols-1 gap-6">
-                    <h5 class="text-sm font-semibold text-gray-800 mb-2 mt-2">
-                    1. Butiran Pemohon
-                    </h5>
+                        <h5 class="text-sm font-semibold text-gray-800 mb-2 mt-2">
+                        Butiran Pemohon
+                        </h5>
 
                         <!-- Nama -->
                         <div x-data="{ 
@@ -1855,6 +1858,215 @@
                             ></p>
                             <!-- Server-side error message -->
                             <x-input-error :messages="$errors->get('alamat_cuti')" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <!-- Permohonan -->
+                    <div class="grid grid-cols-1 gap-6 mt-10">
+                        <h5 class="text-sm font-semibold text-gray-800 mb-1">
+                        Permohonan
+                        </h5>
+
+                        <!-- Nama Program-->
+                        <div>
+                            <label for="nama_program" class="block text-sm font-medium text-gray-700 mb-1">Nama Program</label>
+                            <input type="text" id="nama_program" name="nama_program"
+                                value=""
+                                readonly
+                                class="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-100 cursor-not-allowed text-sm focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                placeholder="Nama Program akan sama seperti Tajuk Kertas Kerja"
+                            />
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Klasifikasi Program -->
+                            <div x-data="{ 
+                                value: '{{ old('klasifikasi_program') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 100) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 100 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('klasifikasi_program', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
+                                <label for="klasifikasi_program" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Klasifikasi Program<span class="text-red-600 text-md font-semibold">*</span>
+                                </label>
+                                <input type="text" id="klasifikasi_program" name="klasifikasi_program"  
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="e.g. KEPIMPINAN"
+                                    required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('klasifikasi_program')" class="mt-2" />
+                            </div>
+                            
+                            <!-- Bilangan kumpulan pengelola -->
+                            <div x-data="{ 
+                                value: '{{ old('bilangan_kumpulan_pengelola') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 100) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 100 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('bilangan_kumpulan_pengelola', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
+                                <label for="bilangan_kumpulan_pengelola" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Bilangan kumpulan pengelola<span class="text-red-600 text-md font-semibold">*</span>
+                                </label>
+                                <input type="text" id="bilangan_kumpulan_pengelola" name="bilangan_kumpulan_pengelola"  
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="e.g. 10 orang"
+                                    required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('bilangan_kumpulan_pengelola')" class="mt-2" />
+                            </div>
+                        
+                            <!-- Bilangan sasaran -->
+                            <div x-data="{ 
+                                value: '{{ old('bilangan_sasaran') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value || this.value.trim() === '') {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field is required.';
+                                    } else if (this.value.length > 100) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'This field must not exceed 100 characters.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    // Update the parent form's error tracking
+                                    $data.updateFormError('bilangan_sasaran', this.hasError);
+                                }
+                            }" @init="validate()" @input="validate()">
+                                <label for="bilangan_sasaran" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Bilangan Sasaran<span class="text-red-600 text-md font-semibold">*</span>
+                                </label>
+                                <input type="text" id="bilangan_sasaran" name="bilangan_sasaran" 
+                                    x-model="value"
+                                    @input="validate()"
+                                    x-bind:class="hasError 
+                                        ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
+                                        : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
+                                    class="text-sm"
+                                    placeholder="e.g. 100 orang"
+                                    required>
+                                <!-- Real-time error message -->
+                                <p
+                                    x-show="hasError" 
+                                    x-text="errorMessage"
+                                    class="mt-2 text-sm text-red-600"
+                                ></p>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('bilangan_sasaran')" class="mt-2" />
+                            </div>
+
+                            <!-- Kutipan dari peserta -->
+                            <div>
+                                <label for="kutipan_dari_peserta" class="block text-sm font-medium text-gray-700 mb-1">Kutipan Dari Peserta</label>
+                                <input type="text" id="kutipan_dari_peserta" name="kutipan_dari_peserta"  
+                                    class="text-sm w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                    placeholder="e.g. RM3 atau abaikan jika tiada">
+                            </div>
+                        </div>
+
+                        <!-- Tujuan Kutipan Wang (Dynamic Visibility & Real-time Required) -->
+                        <div>
+                            <label for="tujuan_kutipan_wang" class="block text-sm font-medium text-gray-700 mb-1">Tujuan kutipan wang</label>
+                            <input type="text" id="tujuan_kutipan_wang" name="tujuan_kutipan_wang"  
+                                class="text-sm w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                placeholder="e.g. Pendaftaran atau abaikan jika tiada">
+                        </div>
+
+                        <!-- Tempat Kutipan (Dynamic Checkbox) -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tempat Kutipan</label>
+                            <div class="flex flex-col gap-1">
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" name="tempat_kutipan[]" value="Di Dalam Kampus"
+                                        x-model="values"
+                                        @change="validate()"
+                                        class="mr-2 rounded border-gray-400">
+                                    Di Dalam Kampus
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" name="tempat_kutipan[]" value="Di Luar Kampus"
+                                        x-model="values"
+                                        @change="validate()"
+                                        class="mr-2 rounded border-gray-400">
+                                    Di Luar Kampus
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pengakuan -->
+                    <div class="mt-10"
+                    x-data="{
+                        checked: false,
+                        hasError: true,
+                        validate() {
+                            this.hasError = !this.checked;
+                            $data.updateFormError('pengakuan', this.hasError);
+                        }
+                    }"
+                    @init="validate()">
+                        <h5 class="text-sm font-semibold text-gray-800 mb-1">
+                        Pengakuan
+                        </h5>
+
+                        <div>
+                           <label class="text-sm text-gray-700">Saya sertakan kertas kerja tentang program yang dicadangkan itu. Kutipan wang akan diuruskan mengikut kehendak AUKU seksyen 15A dan saya akan mematuhi semua peraturan yang ditetapkan oleh Universiti. 
+                           <input type="checkbox" id="pengakuan" name="pengakuan" 
+                                x-model="checked"
+                                @change="validate()"
+                                class="ml-2 rounded border-gray-400 focus:ring-blue-500"
+                                required></label>
+                            <p class="text-red-600 text-sm mt-4">Tanda pengakuan untuk menghantar borang*</p>
                         </div>
                     </div>
                 </div>

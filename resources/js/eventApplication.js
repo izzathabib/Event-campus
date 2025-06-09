@@ -83,6 +83,10 @@ window.multiStepForm = function() {
             email_borg_adkn_prog: true,
             alamat_penggal: true,
             alamat_cuti: true,
+            klasifikasi_program: true,
+            bilangan_kumpulan_pengelola: true,
+            bilangan_sasaran: true,
+            pengakuan: true,
         },
         
         steps: [

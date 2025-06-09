@@ -20,6 +20,12 @@ class ApplyToOrganizeEvent extends Model
         'email_borg_adkn_prog',
         'alamat_penggal',
         'alamat_cuti',
+        'klasifikasi_program',
+        'bilangan_kumpulan_pengelola',
+        'bilangan_sasaran',
+        'kutipan_dari_peserta',
+        'tujuan_kutipan_wang',
+        'tempat_kutipan',
     ];
 
     public function users()
