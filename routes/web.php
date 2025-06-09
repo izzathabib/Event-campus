@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CreateEventContoller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Society\EventManagementController;
@@ -12,15 +13,7 @@ use App\Http\Controllers\MapcsdDemoController;
 
 # Demo routes
 
-Route::get('/schedule-builder', function () {
-    return view('schedule-builder');
-});
 
-// Route to display the form
-Route::get('/my-csd-form', [MapcsdDemoController::class, 'showForm'])->name('csd.form.show');
-
-// Route to handle form submission
-Route::post('/my-csd-form', [MapcsdDemoController::class, 'submitForm'])->name('csd.form.submit');
 
 #--#--#
 
@@ -56,7 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/display-single-event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])
         ->name('society.displaySingleEventApplication');
     Route::delete('/society/delete-event-epplication/{id}', [SocietyDashboardController::class, 'deleteEventApplication'])->name('society.deleteEventApplication');
-    // Route::get('/event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])->name('society.event-application');
+    Route::get('/society/add-society-advisor-view', [RegisteredUserController::class, 'add_society_advisor_view'])
+        ->name('society.add_society_advisor_view');
+    Route::post('/society/add-society-advisor', [RegisteredUserController::class, 'add_society_advisor'])
+        ->name('society.add_society_advisor');
 });
 
 Route::middleware('auth')->group(function () {

@@ -76,4 +76,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(MycsdMap::class);
     }
+
+    public function advisor(): HasMany
+    {
+        return $this->hasMany(Advisor::class);
+    }
 }
