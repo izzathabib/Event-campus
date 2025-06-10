@@ -1,10 +1,6 @@
 {
     "private": true,
     "type": "module",
-    "scripts": {
-        "build": "vite build",
-        "dev": "vite"
-    },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/postcss": "^4.0.7",
@@ -19,5 +15,10 @@
     },
     "dependencies": {
         "@tailwindcss/line-clamp": "^0.4.4"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "production": "npm run build"
     }
 }
