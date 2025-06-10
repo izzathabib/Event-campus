@@ -370,422 +370,517 @@
             
             <!-- Form Body -->
             <div class="p-6">
-                <form action="{{ route('society.storeEventApplicationData') }}" method="POST" enctype="multipart/form-data" id="multi-step-form">
-                    @csrf
-                    <!-- Step 1: Paper work -->
-                    <div x-show="currentStep === 1" class="step-transition">
-                        
-                        
-                        <div class="grid grid-cols-1  gap-6">
-                            <!-- Tajuk Kertas Kerja -->
-                            <div>
-                                <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300">
-                                    {{ $eventApplications->tajuk_kk }}
-                                </div>
-                            </div>
-                            <!-- Pengenalan & Kumpulan Sasaran/ Penyertaan -->
-                            <div>
-                                <label for="peng_kump_sasar" class="block text-sm font-medium text-gray-700 mb-1">Pengenalan & Kumpulan Sasaran/ Penyertaan</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
-                                    {{ $eventApplications->peng_kump_sasar }}
-                                </div>
-                            </div>
-                            <!-- Objektif (Selaras dengan Elemen & Atribut HEBAT) -->
-                            <div>
-                                <label for="obj" class="block text-sm font-medium text-gray-700 mb-1">Objektif (Selaras dengan Elemen & Atribut HEBAT)</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
-                                    {{ $eventApplications->obj }}
-                                </div>
-                            </div>
-                            <!-- Impak Dijangkakan -->
-                            <div>
-                                <label for="impak" class="block text-sm font-medium text-gray-700 mb-1">Impak Dijangkakan</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 whitespace-pre-line">
-                                    {{ $eventApplications->impak }}
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-sm font-semibold text-gray-800 mb-4 mt-14">Lampiran A</p>
-                        <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-8">
-                            TENTATIF PROGRAM/ PROJEK/ AKTIVITI
-                        </h5>
-                        <div class="w-full px-3 py-2 border rounded-md border-gray-300">
-                            <table class="w-full mb-6">
-                                <tbody>
-                                    <!-- Tarikh -->
-                                    <tr class="border-b">
-                                        <td class="py-2 font-medium text-gray-700">Tarikh: 
-                                            @if ($eventApplications->start_date === $eventApplications->end_date)
-                                                {{ \Carbon\Carbon::parse($eventApplications->start_date)->format('d F Y') }}
-                                            @else
-                                                {{ \Carbon\Carbon::parse($eventApplications->start_date)->format('d F Y') }} - {{ \Carbon\Carbon::parse($eventApplications->end_date)->format('d F Y') }}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <!-- Masa -->
-                                    <tr class="border-b">
-                                        <td class="py-2 font-medium text-gray-700">Masa: 
-                                            @if ($eventApplications->start_time === $eventApplications->end_time)
-                                                {{ \Carbon\Carbon::parse($eventApplications->start_time)->format('h:i A') }}
-                                            @else
-                                                {{ \Carbon\Carbon::parse($eventApplications->start_time)->format('h:i A') }} - {{ \Carbon\Carbon::parse($eventApplications->end_time)->format('h:i A') }}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr class="border-b">
-                                        <td class="py-2 font-medium text-gray-700">Lokasi: {{ $eventApplications->lokasi }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <h5 class="text-sm font-semibold text-gray-800 mb-4 mt-10">
-                            Atur Cara
-                        </h5>
-
-                        <!-- Table for Time and Activity -->
-                        <div>
-                            <!-- Loop through each day -->
-                            <div class="mb-8">
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
-                                        <thead>
-                                            <tr class="bg-gray-50">
-                                                <th class="w-32 px-6 py-3 border-b border-r border-gray-300 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Masa</th>
-                                                <th class="w-full px-6 py-3 border-b border-gray-300 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aktiviti</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($eventApplications->event_days as $day)
-                                                @if($eventApplications->event_days->count() > 1)
-                                                <tr class="border-b">
-                                                    <td>
-                                                        <h5 class="text-sm font-semibold text-gray-800 px-2 py-2">{{ $day->title }}</h5>
-                                                    </td>
-                                                </tr>
-                                                @endif
-                                                @foreach($day->time_activities as $activity)
-                                                <tr class="border-b">
-                                                    <td class="whitespace-nowrap border-r border-gray-300 px-2">
-                                                        <div class="w-32">
-                                                            {{ \Carbon\Carbon::parse($activity->time)->format('h:i A') }}
-                                                        </div>
-                                                    </td>
-                                                    <td class="whitespace-nowrap px-2 py-2">
-                                                        <div class="w-32">
-                                                            {{ $activity->activity }}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 2: MyCSD Mapping -->
-                    <div x-show="currentStep === 2" class="step-transition">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">
-                            PEMETAAN MyCSD & ATRIBUT HEBAT PERMOHONAN MENGADAKAN PROGRAM / AKTIVITI
-                        </h3>
-                        
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- TAJUK PROGRAM / AKTIVITI -->
-                            <div x-data="{ 
-                                value: '{{ old('taj_prog') }}',
+                <!-- Kaedah / Poster / HFP -->
+                    <div class="flex flex-row justify-between gap-2 mb-6">
+                        <!-- Kaedah -->
+                        <div class="flex flex-row border border-gray-300"
+                            x-data="{
+                                value: '{{ old('kaedah') }}',
                                 hasError: false,
                                 errorMessage: '',
                                 validate() {
-                                    if (!this.value || this.value.trim() === '') {
+                                    if (!this.value) {
                                         this.hasError = true;
-                                        this.errorMessage = 'This field is required.';
-                                    } else if (this.value.length > 1) {
-                                        this.hasError = true;
-                                        this.errorMessage = 'This field must not exceed 2000 characters.';
+                                        this.errorMessage = 'This field is required';
                                     } else {
                                         this.hasError = false;
                                         this.errorMessage = '';
                                     }
-                                    // Update the parent form's error tracking
-                                    $data.updateFormError('taj_prog', this.hasError);
+                                    $data.updateFormError('kaedah', this.hasError);
                                 }
-                            }" @init="validate()" @input="validate()">
-                                <label for="taj_prog" class="block text-sm font-medium text-gray-700 mb-1">TAJUK PROGRAM / AKTIVITI</label>
-                                <input type="text" id="taj_prog" name="taj_prog" 
-                                x-model="value"
-                                @input="validate()" 
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
-                                required>
-                                <!-- Real-time error message -->
-                                <p
-                                    x-show="hasError" 
-                                    x-text="errorMessage"
-                                    class="mt-2 text-sm text-red-600"
-                                ></p>
-                                <!-- Server-side error message -->
-                                <x-input-error :messages="$errors->get('taj_prog')" class="mt-2" />
-                            </div>
-
-                            <!-- <div>
-                                <label for="nam_pert" class="block text-sm font-medium text-gray-700 mb-1">NAMA PERTUBUHAN</label>
-                                <input type="text" id="nam_pert" name="nam_pert" x-model="formData.namPert" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                    required>
-                            </div> -->
-                            
-                            <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> -->
-                                <!-- <div>
-                                    <label for="kaedah" class="block text-sm font-medium text-gray-700 mb-1">KAEDAH</label>
-                                    <select id="kaedah" name="kaedah" x-model="formData.kaedah" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                        required>
-                                        <option value="" disabled {{ old('kaedah', $defaultKaedah ?? '') == '' ? 'selected' : '' }} class="bg-white">Sila Pilih Kaedah</option>
-                                        <option value="Atas Talian" {{ old('kaedah', $defaultKaedah ?? '') == 'online' ? 'selected' : '' }}>Atas Talian</option>
-                                        <option value="Fizikal (Berdasarkan SOP MKN semasa)" {{ old('kaedah', $defaultKaedah ?? '') == 'physical' ? 'selected' : '' }}>Fizikal (Berdasarkan SOP MKN semasa)</option>
-                                        <option value="Hybrid (Berdasarkan SOP MKN semasa)" {{ old('kaedah', $defaultKaedah ?? '') == 'hybrid' ? 'selected' : '' }}>Hybrid (Berdasarkan SOP MKN semasa)</option> 
-                                    </select>
-                                </div> -->
-
-                                <!-- <div> -->
-                                    <!-- <p class="block text-sm font-medium text-gray-700 mb-1">HEBAT FLAGSHIP PROGRAMMES (HFP)</p>  -->
-                                    {{-- Using flex column for vertical layout --}}
-                                    <!-- <div class="space-y-2">  -->
-                                        {{-- Option 1: Ya --}}
-                                        <!-- <div class="flex items-center"> -->
-                                            <!-- <input 
-                                                type="radio" 
-                                                id="hfp_ya" 
-                                                name="hfp" 
-                                                value="ya" 
-                                                class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                                {{-- Pre-select if it was the old input or a default --}}
-                                                <!-- {{ old('hfp', $defaultHfp ?? '') == 'ya' ? 'checked' : '' }} 
-                                            >
-                                            <label for="hfp_ya" class="ml-3 block text-sm font-medium text-gray-700">
-                                                Ya
-                                            </label>
-                                        </div> -->
-
-                                        {{-- Option 2: Tidak --}}
-                                        <!-- <div class="flex items-center">
-                                            <input 
-                                                type="radio" 
-                                                id="hfp_tidak" 
-                                                name="hfp" 
-                                                value="tidak" 
-                                                class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                                {{-- Pre-select if it was the old input or a default --}}
-                                                <!-- {{ old('hfp', $defaultHfp ?? '') == 'tidak' ? 'checked' : '' }} 
-                                            >
-                                            <label for="kaedah_online" class="ml-3 block text-sm font-medium text-gray-700">
-                                                Tidak
-                                            </label>
-                                        </div> -->
-                                    <!-- </div>
-                                </div>
-
-                                <div>
-                                    <p class="block text-sm font-medium text-gray-700 mb-1">POSTER</p>  -->
-                                    {{-- Using flex column for vertical layout --}}
-                                    <!-- <div class="space-y-2">  -->
-                                        {{-- Option 1: Ya --}}
-                                        <!-- <div class="flex items-center">
-                                            <input 
-                                                type="radio" 
-                                                id="poster_ya" 
-                                                name="poster" 
-                                                value="ya" 
-                                                class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                                {{-- Pre-select if it was the old input or a default --}}
-                                                <!-- {{ old('poster', $defaultPoster ?? '') == 'ya' ? 'checked' : '' }} 
-                                            >
-                                            <label for="poster_ya" class="ml-3 block text-sm font-medium text-gray-700">
-                                                Ya
-                                            </label>
-                                        </div> -->
-
-                                        {{-- Option 2: Tidak --}}
-                                        <!-- <div class="flex items-center">
-                                            <input 
-                                                type="radio" 
-                                                id="poster_tidak" 
-                                                name="poster" 
-                                                value="tidak" 
-                                                class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300" -->
-                                                {{-- Pre-select if it was the old input or a default --}}
-                                                <!-- {{ old('poster', $defaultPoster ?? '') == 'tidak' ? 'checked' : '' }} 
-                                            >
-                                            <label for="kaedah_online" class="ml-3 block text-sm font-medium text-gray-700">
-                                                Tidak
-                                            </label>
-                                        </div>
-                                    </div> -->
-                                <!-- </div>
-                            </div>
-
-                            <div>
-                                <label for="jen_pertub" class="block text-sm font-medium text-gray-700 mb-1">PERTUBUHAN PELAJAR</label>
-                                <select id="jen_pertub" name="jen_pertub" x-model="formData.jenPertub" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                    required>
-                                    <option value="" disabled {{ old('jen_pertub', $jenPertub ?? '') == '' ? 'selected' : '' }} class="bg-white">Sila Pilih Jenis Pertubuhan</option>
-                                    <option value="Persatuan" {{ old('jen_pertub', $jenPertub ?? '') == 'Persatuan' ? 'selected' : '' }}>Persatuan</option>
-                                    <option value="Majlis Penghuni Desasiswa" {{ old('jen_pertub', $jenPertub ?? '') == 'Majlis Penghuni Desasiswa' ? 'selected' : '' }}>Majlis Penghuni Desasiswa</option>
-                                    <option value="Badan Beruniform" {{ old('jen_pertub', $jenPertub ?? '') == 'Badan Beruniform' ? 'selected' : '' }}>Badan Beruniform</option> 
-                                    <option value="Kelab" {{ old('jen_pertub', $jenPertub ?? '') == 'Kelab' ? 'selected' : '' }}>Kelab</option> 
-                                    <option value="Anak Negeri" {{ old('jen_pertub', $jenPertub ?? '') == 'Anak Negeri' ? 'selected' : '' }}>Anak Negeri</option> 
-                                    <option value="Sekretariat" {{ old('jen_pertub', $jenPertub ?? '') == 'Sekretariat' ? 'selected' : '' }}>Sekretariat</option> 
-                                </select>
-                            </div> -->
-                        </div>
-                    </div>
-                    
-                    <!-- Step 3: Application to Organize Events -->
-                    <div x-show="currentStep === 3" class="step-transition">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">PERMOHONAN MENGADAKAN PROGRAM</h3>
-                        
-                        <div class="grid grid-cols-1 gap-6">
-                        <h5 class="text-sm font-semibold text-gray-800 mb-2 mt-2">
-                        1. Butiran Pemohon
-                        </h5>
-
-                            <!-- Nama -->
-                            <div x-data="{ 
-                                value: '{{ old('nama') }}',
-                                hasError: false,
-                                errorMessage: '',
-                                validate() {
-                                    if (!this.value || this.value.trim() === '') {
-                                        this.hasError = true;
-                                        this.errorMessage = 'This field is required.';
-                                    } else if (this.value.length > 1) {
-                                        this.hasError = true;
-                                        this.errorMessage = 'This field must not exceed 100 characters.';
-                                    } else {
-                                        this.hasError = false;
-                                        this.errorMessage = '';
-                                    }
-                                    // Update the parent form's error tracking
-                                    $data.updateFormError('nama', this.hasError);
-                                }
-                            }" @init="validate()" @input="validate()">
-                                <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
-                                <input type="text" id="nama" name="nama" 
-                                x-model="value"
-                                @input="validate()"
-                                x-bind:class="hasError 
-                                    ? 'w-full px-3 py-2 border rounded-md border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500'
-                                    : 'w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500'" 
-                                required>
-                                <!-- Real-time error message -->
-                                <p
-                                    x-show="hasError" 
-                                    x-text="errorMessage"
-                                    class="mt-2 text-sm text-red-600"
-                                ></p>
-                                <!-- Server-side error message -->
-                                <x-input-error :messages="$errors->get('nama')" class="mt-2" />
-                            </div>
-                            
-                            <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="no_ic" class="block text-sm font-medium text-gray-700 mb-1">No. Kad Pengenalan</label>
-                                    <input type="text" id="no_ic" name="no_ic" x-model="formData.noIc" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                        required>
-                                </div>
-                                
-                                <div>
-                                    <label for="jawatan" class="block text-sm font-medium text-gray-700 mb-1">Jawatan</label>
-                                    <input type="text" id="jawatan" name="jawatan" x-model="formData.jawatan" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                        required>
-                                </div>
-
-                                <div>
-                                    <label for="no_matric" class="block text-sm font-medium text-gray-700 mb-1">No. Matrik</label>
-                                    <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                        required>
-                                </div>
-
-                                <div>
-                                    <label for="no_matric" class="block text-sm font-medium text-gray-700 mb-1">Tel. Bimbit</label>
-                                    <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                        required>
-                                </div>
-
-                                <div>
-                                    <label for="no_matric" class="block text-sm font-medium text-gray-700 mb-1">Tel.</label>
-                                    <input type="number" id="no_matric" name="no_matric" x-model="formData.noMatric" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500">
-                                </div>
-                            </div> -->
-
-                            <!-- <div>
-                                <label for="alamat_penggal" class="block text-sm font-medium text-gray-700 mb-1">Alamat Penggal</label>
-                                <textarea id="alamat_penggal" name="alamat_penggal" rows="5" cols="30" x-model="formData.alamatPenggal" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                    required>
-                                </textarea>
-                            </div>
-
-                            <div>
-                                <label for="alamat_cuti" class="block text-sm font-medium text-gray-700 mb-1">Alamat Semasa Cuti</label>
-                                <textarea id="alamat_cuti" name="alamat_cuti" rows="5" cols="30" x-model="formData.alamatCuti" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-purple-500"
-                                    required>
-                                </textarea>
-                            </div> -->
-                        </div>
-                    </div>
-
-                    <!-- Form Navigation Buttons -->
-                    <div class="flex justify-between mt-8">
-                        <button 
-                            x-show="currentStep > 1" 
-                            @click="goToPrevStep" 
-                            type="button"
-                            class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm rounded-md transition-colors duration-300"
+                            }" 
+                            @init="validate()"
                         >
-                            Previous
-                        </button>
+                            <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
+                                <p class="text-sm">KAEDAH</p>
+                            </div>
+                            <div class="border-r text-sm flex flex-col">
+                                <label for="kaedah1" class="border-b border-gray-300 p-2">Atas Talian</label>
+                                <label for="kaedah2" class="border-b border-gray-300 p-2">Fizikal</label>
+                                <label for="kaedah3" class="p-2">Hybrid</label>
+                            </div>
+                            <div class="flex flex-col items-center text-sm">
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="kaedah1" name="kaedah" value="Atas Talian"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        required 
+                                        {{ old('kaedah') == 'Atas Talian' ? 'checked' : '' }}>
+                                </div>
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="kaedah2" name="kaedah" value="Fizikal"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('kaedah') == 'Fizikal' ? 'checked' : '' }}>
+                                </div>
+                                <div class="p-2">
+                                    <input type="radio" id="kaedah3" name="kaedah" value="Hybrid"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('kaedah') == 'Hybrid' ? 'checked' : '' }}>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <div class="ml-auto">
-                            <button 
-                                x-show="currentStep < steps.length" 
-                                @click="goToNextStep" 
-                                type="button"
-                                class="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-md transition-colors duration-300"
-                            >
-                                Next
-                            </button>
-                            
-                            <button 
-                                x-show="currentStep === steps.length" 
-                                type="submit"
-                                x-bind:disabled="hasErrors()"
-                                class="px-6 py-2 text-sm rounded-md transition-colors duration-300"
-                                x-bind:class="{
-                                    'bg-purple-600 hover:bg-purple-700 text-white cursor-pointer': !hasErrors(),
-                                    'bg-gray-400 text-gray-200 cursor-not-allowed': hasErrors()
-                                }"
-                                
-                            >
-                                <span>Submit Application</span>
-                            </button>
+                        <!-- HFP -->
+                        <div class="flex flex-row border border-gray-300"
+                            x-data="{
+                                value: '{{ old('hfp') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Please select HFP.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    $data.updateFormError('hfp', this.hasError);
+                                }
+                            }" 
+                            @init="validate()"
+                        >
+                            <div class="bg-blue-300 px-6 flex items-center border-r border-gray-300">
+                                <p class="text-sm">HEBAT FLAGSHIP PROGRAMMES (HFP)</p>
+                            </div>
+                            <div class="border-r text-sm flex flex-col">
+                                <label for="hfp_ya" class="border-b border-gray-300 p-2">Ya</label>
+                                <label for="hfp_tidak" class="border-b border-gray-300 p-2">Tidak</label>
+                            </div>
+                            <div class="flex flex-col items-center text-sm">
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="hfp_ya" name="hfp" value="Ya"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        required 
+                                        {{ old('hfp') == 'Ya' ? 'checked' : '' }}>
+                                </div>
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="hfp_tidak" name="hfp" value="Tidak"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('hfp') == 'Tidak' ? 'checked' : '' }}>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Poster -->
+                        <div class="flex flex-row border border-gray-300"
+                            x-data="{
+                                value: '{{ old('poster') }}',
+                                hasError: false,
+                                errorMessage: '',
+                                validate() {
+                                    if (!this.value) {
+                                        this.hasError = true;
+                                        this.errorMessage = 'Please select Poster.';
+                                    } else {
+                                        this.hasError = false;
+                                        this.errorMessage = '';
+                                    }
+                                    $data.updateFormError('poster', this.hasError);
+                                }
+                            }" 
+                            @init="validate()"
+                        >
+                            <div class="bg-blue-300 p-6 flex items-center border-r border-gray-300">
+                                <p class="text-sm">POSTER</p>
+                            </div>
+                            <div class="border-r text-sm flex flex-col">
+                                <label for="poster_ya" class="border-b border-gray-300 p-2">Ya</label>
+                                <label for="poster_tidak" class="border-b border-gray-300 p-2">Tidak</label>
+                            </div>
+                            <div class="flex flex-col items-center text-sm">
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="poster_ya" name="poster" value="Ya"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        required 
+                                        {{ old('poster') == 'Ya' ? 'checked' : '' }}>
+                                </div>
+                                <div class="border-b border-gray-300 p-2">
+                                    <input type="radio" id="poster_tidak" name="poster" value="Tidak"
+                                        x-model="value"
+                                        @change="validate()" 
+                                        {{ old('poster') == 'Tidak' ? 'checked' : '' }}>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                    <x-input-error :messages="$errors->get('kaedah')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('hfp')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('poster')" class="mt-2 mb-4" />
 
+                    <!-- Pertubuhan Pelajar -->
+                    <div class="flex flex-col border border-gray-300 mb-6"
+                        x-data="{
+                            value: '{{ old('pertubuhan') }}',
+                            hasError: false,
+                            errorMessage: '',
+                            validate() {
+                                if (!this.value) {
+                                    this.hasError = true;
+                                    this.errorMessage = 'Please select type of pertubuhan.';
+                                } else {
+                                    this.hasError = false;
+                                    this.errorMessage = '';
+                                }
+                                $data.updateFormError('pertubuhan', this.hasError);
+                            }
+                        }" 
+                        @init="validate()"
+                    >
+                        <div class="bg-blue-300 py-1 flex justify-center items-center border-b border-gray-300">
+                            <AR class="text-sm">PERTUBUHAN PELAJAR</p>
+                        </div>
+                        <div class="flex flex-row justify-stretch w-full">
+                            <!-- Persatuan & Kelab -->
+                            <div class="flex flex-row">
+                                <div class="border-r text-sm flex flex-col">
+                                    <label for="pertubuhan_persatuan" class="border-b border-gray-300 py-2 px-14">Persatuan</label>
+                                    <label for="pertubuhan_kelab" class="border-gray-300 py-2 px-14">Kelab</label>
+                                </div>
+                                <div class="flex flex-col items-center text-sm">
+                                    <div class="border-r border-b border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_persatuan" name="pertubuhan" value="Persatuan"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            required 
+                                            {{ old('pertubuhan') == 'Persatuan' ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="border-r border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_kelab" name="pertubuhan" value="Kelab"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            {{ old('pertubuhan') == 'Kelab' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- MPD & Anak Negeri -->
+                            <div class="flex flex-row">
+                                <div class="border-r text-sm flex flex-col">
+                                    <label for="pertubuhan_mpd" class="border-b border-gray-300 py-2 px-16">Majlis Penghuni Desasiswa</label>
+                                    <label for="pertubuhan_negeri" class="border-gray-300 py-2 px-16">Anak Negeri</label>
+                                </div>
+                                <div class="flex flex-col items-center text-sm">
+                                    <div class="border-r border-b border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_mpd" name="pertubuhan" value="Majlis Penghuni Desasiswa"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            required 
+                                            {{ old('pertubuhan') == 'Majlis Penghuni Desasiswa' ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="border-r border-gray-300 p-2">
+                                        <input type="radio" id="pertubuhan_negeri" name="pertubuhan" value="Anak Negeri"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            {{ old('pertubuhan') == 'Anak Negeri' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Badan Beruniform & Sekreteriat -->
+                            <div class="flex flex-row">
+                                <div class="border-r text-sm flex flex-col">
+                                    <label for="pertubuhan_uniform" class="border-b border-gray-300 py-2 px-14">Badan Beruniform</label>
+                                    <label for="pertubuhan_sekreteriat" class="border-gray-300 py-2 px-14">Sekreteriat</label>
+                                </div>
+                                <div class="flex flex-col items-center text-sm">
+                                    <div class="border-b border-gray-300 py-2 px-3">
+                                        <input type="radio" id="pertubuhan_uniform" name="pertubuhan" value="Badan Beruniform"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            required 
+                                            {{ old('pertubuhan') == 'Badan Beruniform' ? 'checked' : '' }}>
+                                    </div>
+                                    <div class="border-gray-300 py-2 px-3">
+                                        <input type="radio" id="pertubuhan_sekreteriat" name="pertubuhan" value="Sekreteriat"
+                                            x-model="value"
+                                            @change="validate()" 
+                                            {{ old('pertubuhan') == 'Sekreteriat' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Elemen Attribute Hebat -->
+                    <div class="flex flex-col border border-gray-300 mb-6">
+                        <!-- Header -->
+                        <div class="flex flex-row border-b border-gray-300">
+                            <div class="w-1/5">
+                                <div class="bg-blue-300 border-r border-gray-300 p-2">
+                                    <p class="text-sm">ELEMEN</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-row justify-between w-4/5">
+                                <div class="bg-blue-300 border-r border-gray-300 p-2 w-1/3">
+                                    <p class="text-sm">ATTRIBUTE HEBAT</p>
+                                </div>
+                                <div class=" bg-blue-300 border-r border-gray-300 p-2 w-2/3">
+                                    <p class="text-sm">TERAS MYCSD</p>
+                                </div>
+                                <div class="bg-blue-300 p-2 flex items-center justify-center">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Holistik -->
+                        <div class="flex flex-row border-b border-gray-300">
+                            <div class="border-r border-gray-300 py-1 px-1 w-1/5 flex flex-col items-center justify-center">
+                                <p class="text-sm">HOLISTIC</p>
+                                <p class="text-sm">(HOLISTIK)</p>
+                            </div>
+                            <div class="w-4/5">
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Kerja Kumpulan</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kepimpinan; Sukan (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="holistic_kerja_kump" name="holistic[]" value="Kerja Kumpulan"
+                                            class="rounded border-gray-400"
+                                            {{ old('holistic') == 'Kerja Kumpulan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Kepimpinan</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kepimpinan (Cth: Jawatan yang disandang dalam Pertubuhan Pelajar; Anugerah)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="holistic_kepimpinan" name="holistic[]" value="Kepimpinan"
+                                            class="rounded border-gray-400"
+                                            {{ old('holistic') == 'Kepimpinan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row">
+                                    <div class="border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Pembelajaran Sepanjang Hayat</p>
+                                    </div>
+                                    <div class="border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kesukarelawanan; Khidmat Masyarakat; Reka Cipta & Inovasi (*)</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <input type="checkbox" id="holistic_pemb_spnjg_hyt" name="holistic[]" value="Pembelajaran Sepanjang Hayat"
+                                            class="rounded border-gray-400"
+                                            {{ old('holistic') == 'Kepimpinan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ENTREPRENEURIAL -->
+                        <div class="flex flex-row border-b border-gray-300">
+                            <div class="border-r border-gray-300 py-1 px-1 w-1/5 flex flex-col items-center justify-center">
+                                <p class="text-sm">ENTREPRENEURIAL</p>
+                                <p class="text-sm">(KEUSAHAWANAN)</p>
+                            </div>
+                            <div class="w-4/5">
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Minda Keusahawanan</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Keusahawanan; Reka Cipta & Inovasi (Cth: Projek Menerbitkan Majalah, Produk, Sistem, Fotografi, Videografi Secara Atas Talian Atau Fizikal) (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="entrepreneurial_mind_kushwnn" name="entrepreneurial[]" value="Minda Keusahawanan"
+                                            class="rounded border-gray-400"
+                                            {{ old('entrepreneurial') == 'Minda Keusahawanan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-row">
+                                    <div class="border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Kemahiran Keusahawanan</p>
+                                    </div>
+                                    <div class="border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Keusahawanan (Cth: Subjek WUS101; Inkubator Usahawan Pelajar; Jualan Hari Konvokesyen; Persembahan Berbayar; Aktiviti yang melibatkan kursus berkredit tidak layak MyCSD)</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <input type="checkbox" id="entrepreneurial_kemahirn_kushwnn" name="entrepreneurial[]" value="Kemahiran Keusahawanan"
+                                            class="rounded border-gray-400"
+                                            {{ old('entrepreneurial') == 'Kemahiran Keusahawanan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BALANCED -->
+                        <div class="flex flex-row border-b border-gray-300">
+                            <div class="border-r border-gray-300 py-1 px-1 w-1/5 flex flex-col items-center justify-center">
+                                <p class="text-sm">BALANCED</p>
+                                <p class="text-sm">(SEIMBANG)</p>
+                            </div>
+                            <div class="w-4/5">
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Nilai, Sikap & Kemanusiaan</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kesukarelawanan; Khidmat Masyarakat; Kepimpinan (Cth: Perkembangan Diri) (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="balanced_nilai_sikap_kmnusaan" name="balanced[]" value="Nilai, Sikap & Kemanusiaan"
+                                            class="rounded border-gray-400"
+                                            {{ old('balanced') == 'Nilai, Sikap & Kemanusiaan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Etika & Profesionalisme</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kepimpinan; Pengucapan Awam; Sukan (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="balanced_etika_prof" name="balanced[]" value="Etika & Profesionalisme"
+                                            class="rounded border-gray-400"
+                                            {{ old('balanced') == 'Nilai, Sikap & Kemanusiaan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row">
+                                    <div class="border-r border-b border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Pemikiran Saintifik</p>
+                                    </div>
+                                    <div class="border-r border-b border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Reka Cipta & Inovasi</p>
+                                    </div>
+                                    <div class="p-2 border-b border-gray-300">
+                                        <input type="checkbox" id="balanced_pemikiran_saintifik" name="balanced[]" value="Pemikiran Saintifik"
+                                            class="rounded border-gray-400"
+                                            {{ old('balanced') == 'Pemikiran Saintifik' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row">
+                                    <div class="border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Apresiasi Seni</p>
+                                    </div>
+                                    <div class="border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kebudayaan</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <input type="checkbox" id="balanced_apresiasi_seni" name="balanced[]" value="Apresiasi Seni"
+                                            class="rounded border-gray-400"
+                                            {{ old('balanced') == 'Apresiasi Seni' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ARTICULATE -->
+                        <div class="flex flex-row border-b border-gray-300">
+                            <div class="border-r border-gray-300 py-1 px-1 w-1/5 flex flex-col items-center justify-center">
+                                <p class="text-sm">ARTICULATE</p>
+                                <p class="text-sm">(ARTIKULASI)</p>
+                            </div>
+                            <div class="w-4/5">
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Komunikasi</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Kepimpinan; Pengucapan Awam (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="articulate_komunikasi" name="articulate[]" value="Komunikasi"
+                                            class="rounded border-gray-400"
+                                            {{ old('articulate') == 'Komunikasi' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-row">
+                                    <div class="border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Keyakinan</p>
+                                    </div>
+                                    <div class="border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Pengucapan Awam; Kebudayaan; Sukan (*)</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <input type="checkbox" id="articulate_keyakinan" name="articulate[]" value="Keyakinan"
+                                            class="rounded border-gray-400"
+                                            {{ old('articulate') == 'Keyakinan' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- THINKING -->
+                        <div class="flex flex-row">
+                            <div class="border-r border-gray-300 py-1 px-1 w-1/5 flex flex-col items-center justify-center">
+                                <p class="text-sm">THINKING</p>
+                                <p class="text-sm">(BERFIKIR)</p>
+                            </div>
+                            <div class="w-4/5">
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Pemikiran Kritis</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Reka Cipta & Inovasi; Keusahawanan (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="thinking_pemikiran_kritis" name="thinking[]" value="Pemikiran Kritis"
+                                            class="rounded border-gray-400"
+                                            {{ old('thinking') == 'Pemikiran Kritis' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-row">
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Pemikiran Kreatif & Inovatif</p>
+                                    </div>
+                                    <div class="border-b border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Reka Cipta & Inovasi; Kebudayaan (*)</p>
+                                    </div>
+                                    <div class="border-b border-gray-300 p-2">
+                                        <input type="checkbox" id="thinking_pemikiran_kreatif_inovatif" name="thinking[]" value="Pemikiran Kreatif & Inovatif"
+                                            class="rounded border-gray-400"
+                                            {{ old('thinking') == 'Pemikiran Kreatif & Inovatif' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row">
+                                    <div class="border-r border-b border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Penyelesaian Masalah</p>
+                                    </div>
+                                    <div class="border-r border-b border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Reka Cipta & Inovasi; Kesukarelawanan; Khidmat Masyarakat; Keusahawanan (*)</p>
+                                    </div>
+                                    <div class="p-2 border-b border-gray-300">
+                                        <input type="checkbox" id="thinking_penyelesaian_masalah" name="thinking[]" value="Penyelesaian Masalah"
+                                            class="rounded border-gray-400"
+                                            {{ old('thinking') == 'Penyelesaian Masalah' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-row">
+                                    <div class="border-r border-gray-300 py-1 px-2 w-1/3">
+                                        <p class="text-sm">Minda Global</p>
+                                    </div>
+                                    <div class="border-r border-gray-300 py-1 px-2 w-2/3">
+                                        <p class="text-sm">Program Antarabangsa (Cth: Internship; Student Exchange; Pertandingan; Persembahan) ; Sukan (*)</p>
+                                    </div>
+                                    <div class="p-2">
+                                        <input type="checkbox" id="thinking_minda_global" name="thinking[]" value="Minda Global"
+                                            class="rounded border-gray-400"
+                                            {{ old('thinking') == 'Minda Global' ? 'checked' : '' }}>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
     </div>
     
