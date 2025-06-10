@@ -53,6 +53,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('society.add_society_advisor_view');
     Route::post('/society/add-society-advisor', [RegisteredUserController::class, 'add_society_advisor'])
         ->name('society.add_society_advisor');
+    Route::delete('/society/delete-advisor/{id}', [SocietyDashboardController::class, 'deleteSocietyAdvisor'])
+    ->name('society.delete_society_advisor');
+    
 });
 
 Route::middleware('auth')->group(function () {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -77,8 +78,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(MycsdMap::class);
     }
 
+    // Relationship with users function in Advisor model
     public function advisor(): HasMany
     {
         return $this->hasMany(Advisor::class);
+    }
+
+    // Relationship with society_advisor_data function in Advisor model
+    public function advisor_data(): HasOne
+    {
+        return $this->hasOne(Advisor::class);
     }
 }

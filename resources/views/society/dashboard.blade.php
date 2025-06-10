@@ -82,10 +82,10 @@
     <h2 class="text-sm font-semibold px-4 py-4 mt-2">Society Advisor</h2>
     <div class="px-4 py-2 rounded-lg mb-4">
       <table class="min-w-full bg-white">
-        @if (session()->has('delete_success'))
+        @if (session()->has('delete_advisor'))
           <div id="flash-error" class="bg-red-700 text-white px-4 py-3 rounded relative mb-4 text-sm font-medium flex items-center justify-between" role="alert">
               <div class="px-4 py-3">
-                  <span class="block sm:inline">{{ session('delete_success') }}</span>
+                  <span class="block sm:inline">{{ session('delete_advisor') }}</span>
               </div>
               <button class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="document.getElementById('flash-error').remove()">
                   <svg class="fill-current h-6 w-6 text-white" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -94,10 +94,10 @@
                   </svg>
               </button>
           </div>
-        @elseif (session()->has('success'))
+        @elseif (session()->has('success_add_advisor'))
           <div id="flash-error" class="bg-sky-700 text-white px-4 py-3 rounded relative mb-4 text-sm font-medium flex items-center justify-between" role="alert">
               <div class="px-4 py-3">
-                  <span class="block sm:inline">{{ session('success') }}</span>
+                  <span class="block sm:inline">{{ session('success_add_advisor') }}</span>
               </div>
               <button class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="document.getElementById('flash-error').remove()">
                   <svg class="fill-current h-6 w-6 text-white" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -110,29 +110,17 @@
           <thead>
             <tr class="bg-slate-200">
                 <th class="px-4 py-2 text-left text-sm font-semibold text-gray-500">Event</th>
-                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-500">Status</th>
-                <th class="px-4 py-2 text-left text-sm font-semibold text-gray-500">Action</th>
+                <th class="px-4 py-2 text-center text-sm font-semibold text-gray-500">Action</th>
             </tr>
           </thead>
           <tbody>
-            @forelse($eventApplications as $index => $event)
+            @forelse($advisors as $index => $advisor)
             <tr>
-                <td class="px-4 py-2 border-b text-sm">{{ $event->tajuk_kk }}</td>
-                <td class="px-4 py-2 border-b"><span class="px-2 py-1 rounded-2xl bg-red-800 text-xs text-white">Pending</span></td>
-                <td class="px-4 py-2 border-b text-sm flex gap-2 item-center">
-                  <!-- Document Icon -->
-                  <div>
-                    <form action="{{ route('society.displaySingleEventApplication', $event->id) }}" method="GET">
-                      <button title="View event applications" type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-5 text-blue-600 hover:text-blue-800">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                        </svg>
-                      </button>
-                    </form>
-                  </div>
+                <td class="px-4 py-2 border-b text-sm">{{ $advisor->society_advisor_data->name }}</td>
+                <td class="px-4 py-2 border-b text-sm flex gap-2 item-center justify-center">
                   <!-- Delete Icon -->
                   <div>
-                    <form action="{{ route('society.deleteEventApplication', $event->id) }}" method="POST">
+                    <form action="{{ route('society.delete_society_advisor', $advisor->society_advisor_id) }}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button title="Delete" type="submit">
@@ -146,7 +134,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" class="px-4 py-4 text-center text-gray-500 text-sm">No event applications submitted yet.</td>
+                <td colspan="6" class="px-4 py-4 text-center text-gray-500 text-sm">No advisor.</td>
             </tr>
             @endforelse
           </tbody>

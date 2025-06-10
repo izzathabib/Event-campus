@@ -15,4 +15,9 @@ class Advisor extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function society_advisor_data()
+    {
+        return $this->belongsTo(User::class, 'society_advisor_id', 'id');
+    }
 }

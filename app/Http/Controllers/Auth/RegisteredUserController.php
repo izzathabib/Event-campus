@@ -84,7 +84,7 @@ class RegisteredUserController extends Controller
 
         // Save in advisor table
         // To map each advisor to specific society
-        $user = Advisor::create([
+        $advisor = Advisor::create([
             'user_id' => $request->user()->id,
             'society_advisor_id' => $user->id,
         ]);
@@ -96,7 +96,6 @@ class RegisteredUserController extends Controller
             return redirect()->back()->with('error', 'Advisor added, but failed to send email.');
         }
 
-        return redirect()->back()
-        ->with('success_add_advisor', 'Advisor added and credentials sent to their email.');    
+        return redirect()->route('society.dashboard')->with('success_add_advisor', 'Advisor added and credentials sent to their email.');    
     }
 }
