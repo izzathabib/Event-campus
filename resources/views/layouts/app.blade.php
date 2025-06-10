@@ -10,6 +10,7 @@
     @vite([
       'resources/css/app.css',
       'resources/css/sidebar.css', 
+      'resources/css/register.css', 
       'resources/js/app.js'
       ])
 </head>
