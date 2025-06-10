@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Society;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advisor;
+use App\Models\Belanjawan;
 use App\Models\PaperWork;
+use App\Models\Penceramah;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,11 +28,19 @@ class DashboardController extends Controller
     public function displaySingleEventApplication($id)
     {
         // Get single event application
-        $eventApplications = PaperWork::with('event_days.time_activities')
+        $eventApplications = PaperWork::with(['event_days.time_activities', 'jawatankuasa', 'belanjawans'])
         ->where('user_id', auth()->id())
         ->where('id', $id)->first();
+
+        $belanjawans = Belanjawan::where('paper_work_id', $id)->get();
+
+        $penceramahs = Penceramah::where('paper_work_id', $id)->get();
         // dd($eventApplications);
-        return view('displaySingleEventApplication', compact('eventApplications'));
+        return view('displaySingleEventApplication', compact(
+            'eventApplications', 
+            'belanjawans', 
+            'penceramahs',
+        ));
     }
 
     public function deleteEventApplication($id)
