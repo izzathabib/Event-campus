@@ -48,7 +48,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/store-event-application-data', [EventManagementController::class, 'storeEventApplicationData'])->name('society.storeEventApplicationData');
     Route::get('/display-single-event-application/{id}', [SocietyDashboardController::class, 'displaySingleEventApplication'])
         ->name('society.displaySingleEventApplication');
-    Route::delete('/society/delete-event-epplication/{id}', [SocietyDashboardController::class, 'deleteEventApplication'])->name('society.deleteEventApplication');
+    Route::delete('/society/delete-event-epplication/{id}', [SocietyDashboardController::class, 'deleteEventApplication'])
+        ->name('society.deleteEventApplication');
+
+    Route::get('/society/edit-event-application-form/{id}', [SocietyDashboardController::class, 'editEventApplicationForm'])
+        ->name('society.editEventApplicationForm');
+
     Route::get('/society/add-society-advisor-view', [RegisteredUserController::class, 'add_society_advisor_view'])
         ->name('society.add_society_advisor_view');
     Route::post('/society/add-society-advisor', [RegisteredUserController::class, 'add_society_advisor'])

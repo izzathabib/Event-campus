@@ -43,6 +43,25 @@ class DashboardController extends Controller
         ));
     }
 
+    // Controller to display the edit page for event application form
+    public function editEventApplicationForm($id)
+    {
+        // Get single event application
+        $eventApplications = PaperWork::with(['event_days.time_activities', 'jawatankuasa', 'belanjawans'])
+        ->where('user_id', auth()->id())
+        ->where('id', $id)->first();
+
+        $belanjawans = Belanjawan::where('paper_work_id', $id)->get();
+
+        $penceramahs = Penceramah::where('paper_work_id', $id)->get();
+        // dd($eventApplications);
+        return view('society.editEventApplicationForm', compact(
+            'eventApplications', 
+            'belanjawans', 
+            'penceramahs',
+        ));
+    }
+
     public function deleteEventApplication($id)
     {
         $event = PaperWork::where('user_id', auth()->id())->findOrFail($id);

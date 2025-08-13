@@ -15,9 +15,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
         </svg>
     </button>
-    <h2 class="text-xl font-semibold">Event Application</h2>
+    <h2 class="text-xl font-semibold">Edit Event Application</h2>
 </div>
-<p class="mt-2 text-sm/6 text-gray-600">View your event application form for <span class="font-semibold">{{ $eventApplications->tajuk_kk }}</span>.</p>
+<p class="mt-2 text-sm/6 text-gray-600">You can update or edit your event application form.</span>.</p>
 </div>
 <div class="mt-4 mb-8">
     <!-- Form Navigation -->
