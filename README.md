@@ -1,4 +1,4 @@
-# 🎉 Event-Campus
+# 🎉 Event@campus Management System
 
 University event management web application built with **Laravel** and **MySQL**, customized to follow Universiti Sains Malaysia (USM) event procedures.
 
@@ -6,8 +6,8 @@ University event management web application built with **Laravel** and **MySQL**
 
 ## 🚀 Features
 - User registration & login  
-- Event creation & management  
-- RSVP system for attendees  
+- Event advertisement 
+- Paperwork, MyCSD Point Mapping & Event proposal digital form 
 - Admin dashboard with event statistics  
 
 ---
