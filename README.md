@@ -40,8 +40,12 @@ php artisan migrate --seed
 # Serve the application
 php artisan serve
 
----
+```bash
 
-## 📸 Screenshot
+## 🛠️ Tech Stack
+- Laravel (PHP)
+- MySQL
+- Tailwind CSS
+- Blade Templates / Vite
 
 ---
