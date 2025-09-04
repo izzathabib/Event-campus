@@ -17,7 +17,7 @@
     </button>
     <h2 class="text-xl font-semibold">Edit Event Application</h2>
 </div>
-<p class="mt-2 text-sm/6 text-gray-600">You can update or edit your event application form.</span>.</p>
+<p class="mt-2 text-sm/6 text-gray-600">You can update your event application form.</p>
 </div>
 <div class="mt-4 mb-8">
     <!-- Form Navigation -->
