@@ -39,3 +39,9 @@ php artisan migrate --seed
 
 # Serve the application
 php artisan serve
+
+---
+
+## 📸 Screenshot
+
+---
