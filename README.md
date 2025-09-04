@@ -44,7 +44,6 @@ php artisan serve
 ---
 
 ## 📸 Screenshot
-<p align="center"> <img src="https://github.com/user-attachments/assets/a00a8ce3-c992-434b-99d0-adc4e98f6342" width="450" /> <img src="https://github.com/user-attachments/assets/4e056a17-c5f8-4cb4-82a2-eff9072a7ddd" width="450" /> </p> 
-<p align="center"> <img src="https://github.com/user-attachments/assets/e8630302-93fd-4125-81fb-e62ba805cf39" width="450" /> </p>
+<p align="center" style="background-color:#1e1e1e; padding:10px; border-radius:8px;"> <img src="https://github.com/user-attachments/assets/a00a8ce3-c992-434b-99d0-adc4e98f6342" width="450" /> <img src="https://github.com/user-attachments/assets/4e056a17-c5f8-4cb4-82a2-eff9072a7ddd" width="450" /> </p> <p align="center" style="background-color:#1e1e1e; padding:10px; border-radius:8px;"> <img src="https://github.com/user-attachments/assets/e8630302-93fd-4125-81fb-e62ba805cf39" width="450" /> </p>
 
 ---
