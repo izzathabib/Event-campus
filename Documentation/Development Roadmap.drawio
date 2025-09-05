@@ -1,0 +1,55 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" border="50" scale="3" compressed="false" locked="false" version="28.1.2">
+  <diagram name="Blank" id="YmL12bMKpDGza6XwsDPr">
+    <mxGraphModel dx="2465" dy="889" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="1" shadow="0">
+      <root>
+        <mxCell id="X5NqExCQtvZxIxQ7pmgY-0" />
+        <mxCell id="1" parent="X5NqExCQtvZxIxQ7pmgY-0" />
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;curved=1;" edge="1" parent="1" source="LPzCtCQhzy_hltwwi_LQ-2" target="LPzCtCQhzy_hltwwi_LQ-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-2" value="&lt;font face=&quot;poppins&quot;&gt;FYP Event@campus Management System Roadmap&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="118" y="37" width="229" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-7" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-family: poppins; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Install this project from github (&amp;nbsp;https://github.com/thecodeholic/laravel11-react-spa ) to study the file structure of the application&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-219" y="359" width="350" height="79" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-8" value="&lt;span style=&quot;text-align: center;&quot;&gt;Refer to Gemini Step 2: Create a React Component (Big Bang Software Development Explained)&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-153" y="159" width="192" height="79" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.399;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;" edge="1" parent="1" source="LPzCtCQhzy_hltwwi_LQ-8" target="LPzCtCQhzy_hltwwi_LQ-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-11" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="116" y="351" width="23" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80FF00;" vertex="1" parent="1">
+          <mxGeometry x="23" y="152" width="23" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-13" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80FF00;" vertex="1" parent="1">
+          <mxGeometry x="-540" y="63" width="23" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-14" value="&lt;font face=&quot;poppins&quot;&gt;Ongoing&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-510" y="59.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-15" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#007FFF;" vertex="1" parent="1">
+          <mxGeometry x="-540" y="103.5" width="23" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-16" value="&lt;font face=&quot;poppins&quot;&gt;Completed&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-502" y="100" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-17" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-540" y="25.5" width="23" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-18" value="&lt;font face=&quot;poppins&quot;&gt;Draft&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-506" y="22" width="36" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-19" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FF3333;" vertex="1" parent="1">
+          <mxGeometry x="-540" y="145.5" width="23" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="LPzCtCQhzy_hltwwi_LQ-20" value="&lt;font face=&quot;poppins&quot;&gt;Cancel&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-506" y="142" width="47" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

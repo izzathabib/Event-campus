@@ -11,7 +11,7 @@
       'resources/css/app.css',
       'resources/css/sidebar.css', 
       'resources/css/register.css', 
-      'resources/js/app.js'
+      'resources/js/app.jsx'
       ])
 </head>
 <body class="flex">
