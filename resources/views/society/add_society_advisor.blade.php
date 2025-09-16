@@ -4,7 +4,7 @@
         <div class="flex items-center gap-4">
             <button type="button" title="Back"
                 onclick="window.history.back();"
-                class="inline-flex items-center px-3 py-1.5 text-xl font-semibold hover:text-purple-600">
+                class="inline-flex items-center px-3 py-1.5 text-xl font-semibold hover:text-purple-900">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                 </svg>
@@ -64,7 +64,7 @@
             </div>
 
             <div id="submit-button" class="mt-6">
-                <button type="submit" class="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-medium text-white shadow-xs hover:bg-purple-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Add advisor</button>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-purple-900 px-3 py-1.5 text-sm/6 font-medium text-white shadow-xs hover:bg-purple-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Add advisor</button>
             </div>
 
             
