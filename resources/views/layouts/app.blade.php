@@ -20,7 +20,7 @@
         <div id="top-sidebar">
             <div class="flex items-center gap-4 p-3">
                 <button id="toggle-btn">
-                    <span id="toggle-icon" class="text-black">
+                    <span id="toggle-icon" class="">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
@@ -31,12 +31,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                     </svg>
                 </button>
-                <span class="text-black text-lg font-extrabold" id="dashboard-text">EventUSM</span>
+                <span class="text-lg font-extrabold" id="dashboard-text">EventUSM</span>
             </div>
             <nav id="sidebar-menu" class="mt-3">
                 <ul>
                     @if (Auth::user()->roles->desc == 'admin')
-                    <li class="{{ Route::is('adminDashboard')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 cursor-pointer ">
+                    <li class="{{ Route::is('adminDashboard')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 hover:text-purple-900 cursor-pointer ">
                         <a href="{{ route('adminDashboard') }}" class="flex items-center gap-4">
                         <span class="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     @elseif (Auth::user()->roles->desc == 'society')
-                    <li class="{{ Route::is('society.dashboard')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 cursor-pointer ">
+                    <li class="{{ Route::is('society.dashboard')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 hover:text-purple-900 cursor-pointer ">
                         <a href="{{ route('society.dashboard') }}" class="flex items-center gap-4">
                         <span class="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -58,7 +58,7 @@
                         </a>
                     </li>
                     @endif
-                    <li class="{{ Route::is('homeEvent')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 cursor-pointer">
+                    <li class="{{ Route::is('homeEvent')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 hover:text-purple-900 cursor-pointer">
                         <a href="{{ route('homeEvent') }}" class="flex items-center gap-4">
                         <span class="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -70,7 +70,7 @@
                     </li>
                     @if (Auth::user()->roles->desc == 'society')
                     <li class="">
-                        <button id="event-management-toggle" class="{{ Route::is(['society.event_application_view', 'society.create-event-view'])? 'text-purple-600 font-semibold':'' }} cursor-pointer flex items-center gap-4 hover:bg-slate-300 p-3 rounded-md w-full">
+                        <button id="event-management-toggle" class="{{ Route::is(['society.event_application_view', 'society.create-event-view'])? 'text-purple-600 font-semibold':'' }} cursor-pointer flex items-center gap-4 hover:bg-slate-300 hover:text-purple-900 p-3 rounded-md w-full">
                             <span class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
@@ -101,7 +101,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Route::is('society.add_society_advisor_view')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 cursor-pointer ">
+                    <li class="{{ Route::is('society.add_society_advisor_view')? 'active' : '' }} rounded-md p-3 hover:bg-slate-300 hover:text-purple-900 cursor-pointer ">
                         <a href="{{ route('society.add_society_advisor_view') }}" class="flex items-center gap-4">
                         <span class="">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -119,7 +119,7 @@
             <div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="rounded-md p-3 hover:bg-slate-300 cursor-pointer w-full">
+                    <button type="submit" class="rounded-md p-3 hover:bg-slate-300 hover:text-purple-900 cursor-pointer w-full">
                         <div class="flex gap-4 items-center">
                                 <span class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -157,7 +157,7 @@
         <div id="noti-profile" class="flex flex-wrap gap-7 mb-4 justify-end">
             <!-- Notification Icon -->
             <div class="flex">
-                <div class="w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center text-white">
+                <div class="w-9 h-9 rounded-full bg-purple-900 flex items-center justify-center text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                     </svg>

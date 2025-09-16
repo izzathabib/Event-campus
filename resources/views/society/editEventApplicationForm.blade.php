@@ -44,15 +44,17 @@
             <!-- Form Body -->
             <div class="p-6">
                 <form>
-                    <!-- Step 1: Paper work -->
                     <div>
                         <div class="grid grid-cols-1  gap-6">
                             <!-- Tajuk Kertas Kerja -->
                             <div>
                                 <label for="tajuk_kk" class="block text-sm font-medium text-gray-700 mb-1">Tajuk Kertas Kerja</label>
-                                <div class="w-full px-3 py-2 border rounded-md border-gray-300 text-sm">
-                                    {{ $eventApplications->tajuk_kk }}
-                                </div>
+                                <input type="text" id="tajuk_kk" name="tajuk_kk"
+                                    class="cursor-auto text-sm w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                    value="{{ old('tajuk_kk', $eventApplications->tajuk_kk) }}" 
+                                    required>
+                                <!-- Server-side error message -->
+                                <x-input-error :messages="$errors->get('tajuk_kk')" class="mt-2" />
                             </div>
                             <!-- Pengenalan & Kumpulan Sasaran/ Penyertaan -->
                             <div>

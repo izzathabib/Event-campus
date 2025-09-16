@@ -3,14 +3,15 @@
 }
 
 .sidebar {
-  background-color: #EFF3FF;
+  background-color: oklch(30.875% 0.11611 307.617);
+  color: white;;
   z-index: 1000;
   transition: width 0.3s ease;
 }
 
 .active {
-  background-color: oklch(0.558 0.288 302.321);
-  color: white;
+  background-color: white;
+  color: oklch(28.014% 0.126 306.393);
 }
 
 #main-section {
