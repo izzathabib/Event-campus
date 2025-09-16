@@ -10,7 +10,7 @@
 <div class="flex items-center gap-4">
     <button type="button" title="Back"
         onclick="window.history.back();"
-        class="inline-flex items-center px-3 py-1.5 text-xl font-semibold hover:text-purple-600">
+        class="inline-flex items-center px-3 py-1.5 text-xl font-semibold hover:text-purple-900">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
         </svg>
@@ -22,9 +22,9 @@
 <div class="mt-4 mb-8">
     <!-- Form Navigation -->
     <div class="flex items-center gap-10 mt-6 mb-6 text-sm text-gray-400 border-b sticky top-0 bg-white z-10">
-        <div id="paper-work-nav" class="py-4 hover:text-purple-800 cursor-pointer hover:border-b border-b text-purple-800 border-purple-800">Paper Work</div>
-        <div id="mycsd-map-nav" class="py-4 hover:text-purple-800 cursor-pointer hover:border-b border-b">MyCSD Mapping</div>
-        <div id="apply-to-organize-event-nav" class="py-4 hover:text-purple-800 cursor-pointer hover:border-b border-b">Application to Organize Events</div>
+        <div id="paper-work-nav" class="py-4 hover:text-purple-900 cursor-pointer hover:border-b border-b text-purple-900 border-purple-900">Paper Work</div>
+        <div id="mycsd-map-nav" class="py-4 hover:text-purple-900 cursor-pointer hover:border-b border-b">MyCSD Mapping</div>
+        <div id="apply-to-organize-event-nav" class="py-4 hover:text-purple-900 cursor-pointer hover:border-b border-b">Application to Organize Events</div>
     </div>
 
     <!-- Form -->
@@ -364,6 +364,12 @@
                                 <span class="text-gray-400 text-sm">No photo available</span>
                             @endif
                         </div>
+                    </div>
+                    <div class="mt-8 flex justify-end">
+                        <button type="submit"
+                            class="px-6 py-2 bg-purple-900 text-white rounded hover:bg-purple-950 transition font-normal text-sm">
+                            Save Changes
+                        </button>
                     </div>
                 </form>
             </div>
