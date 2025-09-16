@@ -1,15 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-lg font-semibold ml-4">Create Event</h1>
-<div class="flex items-center justify-center p-4 mt-3 w-full">
-    <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden p-4">
+<div class="w-full">
+    <div class="flex items-center gap-4">
+        <button type="button" title="Back"
+            onclick="window.history.back();"
+            class="inline-flex items-center px-3 py-1.5 text-xl font-semibold hover:text-purple-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+        </button>
+        <h2 class="text-xl font-semibold">Create Event Posting</h2>
+    </div>
+    <p class="mt-2 text-sm/6 text-gray-600">Upload your event poster and detail information.</p>
+</div>
+<div class="flex items-center justify-center p-4 mt-3">
+    <div class="w-full max-w-4xl bg-white rounded-lg border border-gray-300 overflow-hidden p-4">
         <form action="{{ route('society.createEvent') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- Cancel and share buttons -->
         <div id="cancel-share-but" class="flex items-center justify-between p-2 hidden">
         <button id="cancel-button" type="reset" class="text-base font-medium text-gray-900 hover:text-gray-500">Cancel</button>
-        <button type="submit" class=" hover:text-purple-950 text-purple-600 font-semibold rounded-full px-5 py-2 text-base">Share</button>
+        <button type="submit" class=" hover:text-purple-950 text-purple-900 font-semibold rounded-full px-5 py-2 text-base">Share</button>
         </div>
 
         <!-- Image Preview Area -->
@@ -25,7 +37,7 @@
         <!-- Upload Image -->
         <div class="flex items-center border-t p-2">
             <div class="flex items-center space-x-2 mt-6 mb-2">
-                <label for="imageInput" class="flex items-center gap-2 cursor-pointer text-purple-500 hover:text-purple-700">
+                <label for="imageInput" class="flex items-center gap-2 cursor-pointer text-purple-900 hover:text-purple-950">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -41,7 +53,7 @@
                 cols="50" rows="18" 
                 name="caption" 
                 placeholder="Write your caption..." 
-                class="w-full resize-none border-0 focus:ring-1 focus:ring-purple-500 text-base text-gray-600 placeholder-gray-400 p-2 min-h-[120px]"
+                class="w-full resize-none border-0 focus:ring-1 focus:ring-purple-900 text-base text-gray-600 placeholder-gray-400 p-2 min-h-[120px]"
             >{{ old('caption') }}</textarea>
         </div>
         </form> 

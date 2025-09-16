@@ -3,7 +3,7 @@
 }
 
 .sidebar {
-  background-color: oklch(30.875% 0.11611 307.617);
+  background-color: oklch(23.744% 0.08606 308.127);
   color: white;;
   z-index: 1000;
   transition: width 0.3s ease;
@@ -11,7 +11,7 @@
 
 .active {
   background-color: white;
-  color: oklch(28.014% 0.126 306.393);
+  color: oklch(23.744% 0.08606 308.127);
 }
 
 #main-section {
