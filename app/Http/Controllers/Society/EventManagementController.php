@@ -290,5 +290,10 @@ class EventManagementController extends Controller
         }
 
     }
+
+    public function successReportView()
+    {
+        return view('society.successReportView'); 
+    }
 }
  
