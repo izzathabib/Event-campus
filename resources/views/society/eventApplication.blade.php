@@ -11,7 +11,19 @@
 
 @section('content')
 
-<h1 class="text-lg font-semibold ml-4">Event Application</h1>
+<div class="w-full">
+        <div class="flex items-center gap-4">
+            <button type="button" title="Back"
+                onclick="window.history.back();"
+                class="inline-flex items-center px-3 py-1.5 text-xl font-semibold hover:text-purple-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+            </button>
+            <h2 class="text-xl font-semibold">Event Application</h2>
+        </div>
+        <p class="mt-2 text-sm/6 text-gray-600">Please fill in all the required details for your event application.</p>
+    </div>
 <div class="flex items-center justify-center p-4 mt-3 w-full">
     <div class="w-full max-w-4xl bg-white rounded-lg border border-gray-300 overflow-hidden" x-data="multiStepForm()" x-cloak>
     
