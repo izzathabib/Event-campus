@@ -2,8 +2,28 @@
 @section('content')
  <h1 class="text-xl font-semibold">Dashboard</h1>
 
+<!-- Number of event application submit -->
+<div class="bg-white rounded-lg border border-gray-300 overflow-hidden mt-6 w-1/5">
+  <div class="flex items-center justify-center px-4 py-6 gap-6">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-16 h-16">
+        <path fill-rule="evenodd" d="M5.478 5.559A1.5 1.5 0 0 1 6.912 4.5H9A.75.75 0 0 0 9 3H6.912a3 3 0 0 0-2.868 2.118l-2.411 7.838a3 3 0 0 0-.133.882V18a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-4.162c0-.299-.045-.596-.133-.882l-2.412-7.838A3 3 0 0 0 17.088 3H15a.75.75 0 0 0 0 1.5h2.088a1.5 1.5 0 0 1 1.434 1.059l2.213 7.191H17.89a3 3 0 0 0-2.684 1.658l-.256.513a1.5 1.5 0 0 1-1.342.829h-3.218a1.5 1.5 0 0 1-1.342-.83l-.256-.512a3 3 0 0 0-2.684-1.658H3.265l2.213-7.191Z" clip-rule="evenodd" />
+        <path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v6.44l1.72-1.72a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 0 1 1.06-1.06l1.72 1.72V3a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <span class="text-4xl font-bold text-purple-900">
+          {{ $eventApplications->count() }}
+      </span>
+      <span class="text-sm text-gray-600">
+          Event Applications 
+      </span>
+  </div>
+  </div>
+</div>
+
  <!-- Event Application list -->
- <div class="bg-white rounded-lg border border-gray-300 overflow-hidden mt-4">
+ <div class="bg-white rounded-lg border border-gray-300 overflow-hidden mt-14">
   <h2 class="text-sm font-semibold px-4 py-4 mt-2">Event Applications</h2>
   <div class="px-4 py-2 rounded-lg mb-4">
     <table class="min-w-full bg-white">
